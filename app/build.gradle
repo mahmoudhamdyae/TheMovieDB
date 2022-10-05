@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -56,4 +57,12 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:2.5.0"
     // Retrofit Coroutines Support
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.14.1'
+
+    // SDP Library
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
+    // SSP Library
+    implementation 'com.intuit.ssp:ssp-android:1.1.0'
 }
