@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mahmoudhamdyae.themoviedb.network.MovieApi
-import com.mahmoudhamdyae.themoviedb.network.NetworkMovieContainer
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class MoviesViewModel : ViewModel() {
 
@@ -18,19 +18,27 @@ class MoviesViewModel : ViewModel() {
     val response: LiveData<String>
         get() = _response
 
+    private var viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
+
     init {
         getMovies()
     }
 
     private fun getMovies() {
-        MovieApi.retrofitService.getPopularMovies().enqueue( object: Callback<NetworkMovieContainer> {
-            override fun onFailure(call: Call<NetworkMovieContainer>, t: Throwable) {
-                _response.value = "Failure: " + t.message
+        coroutineScope.launch {
+            val getMoviesDeferred = MovieApi.retrofitService.getPopularMoviesAsync()
+            try {
+                val listResults = getMoviesDeferred.await()
+                _response.value = "Success: ${listResults.results.size} Movies  retrieved"
+            } catch (e: Exception) {
+                _response.value = "Failure: ${e.message}"
             }
+        }
+    }
 
-            override fun onResponse(call: Call<NetworkMovieContainer>, response: Response<NetworkMovieContainer>) {
-                _response.value = "Success: ${response.body()?.results?.size} Movies  retrieved"
-            }
-        })
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 }
