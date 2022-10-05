@@ -53,13 +53,6 @@ class MoviesFragment : Fragment () {
             }
         })
 
-        // Handle Errors
-        viewModel.toastShow.observe(viewLifecycleOwner, Observer{
-            if (null != it) Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-            viewModel.toastShowCleared()
-        })
-
-
         return binding.root
     }
 

@@ -9,16 +9,9 @@
             type="com.mahmoudhamdyae.themoviedb.movies.MoviesViewModel" />
     </data>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Popular Movies"
-            tools:ignore="HardcodedText" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/photos_grid"
@@ -28,5 +21,13 @@
             app:listData="@{viewModel.moviesList}"
             tools:listitem="@layout/grid_view_item" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/status_image"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            app:movieApiStatus="@{viewModel.status}"
+            tools:src="@drawable/ic_launcher_foreground"/>
+
+    </RelativeLayout>
 </layout>

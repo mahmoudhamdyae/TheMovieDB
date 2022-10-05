@@ -1,11 +1,13 @@
 package com.mahmoudhamdyae.themoviedb
 
+import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.mahmoudhamdyae.themoviedb.movies.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb.movies.MoviesAdapter
 import com.mahmoudhamdyae.themoviedb.network.MovieProperty
 
@@ -30,5 +32,23 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
                     .placeholder(R.drawable.loading_animation)
                     .error(R.drawable.ic_broken_image))
             .into(imgView)
+    }
+}
+
+@BindingAdapter("movieApiStatus")
+fun bindStatus(statusImageView: ImageView, status: MovieApiStatus?) {
+    when (status) {
+        MovieApiStatus.LOADING -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.loading_animation)
+        }
+        MovieApiStatus.ERROR -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.ic_connection_error)
+        }
+        MovieApiStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
+        else -> {}
     }
 }

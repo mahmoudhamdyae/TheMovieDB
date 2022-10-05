@@ -10,6 +10,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
+enum class MovieApiStatus { LOADING, ERROR, DONE }
+
 class MoviesViewModel : ViewModel() {
 
     private val _moviesList = MutableLiveData<List<MovieProperty>>()
@@ -22,10 +24,10 @@ class MoviesViewModel : ViewModel() {
     val navigateToSelectedMovie: LiveData<MovieProperty>
         get() = _navigateToSelectedMovie
 
-    // Handle Exception
-    private val _toastShow = MutableLiveData<String>()
-    val toastShow: LiveData<String>
-        get() = _toastShow
+    // The external immutable LiveData for the request status
+    private val _status = MutableLiveData<MovieApiStatus>()
+    val status: LiveData<MovieApiStatus>
+        get() = _status
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
@@ -38,16 +40,14 @@ class MoviesViewModel : ViewModel() {
         coroutineScope.launch {
             val getMoviesDeferred = MovieApi.retrofitService.getPopularMoviesAsync()
             try {
+                _status.value = MovieApiStatus.LOADING
                 val listResults = getMoviesDeferred.await()
                 _moviesList.value = listResults.results
+                _status.value = MovieApiStatus.DONE
             } catch (e: Exception) {
-                _toastShow.value = e.message
+                _status.value = MovieApiStatus.ERROR
             }
         }
-    }
-
-    fun toastShowCleared() {
-        _toastShow.value = null
     }
 
     /**
