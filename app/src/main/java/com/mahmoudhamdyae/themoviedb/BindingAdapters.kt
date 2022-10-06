@@ -7,15 +7,15 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.mahmoudhamdyae.themoviedb.domain.Movie
 import com.mahmoudhamdyae.themoviedb.movies.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb.movies.MoviesAdapter
-import com.mahmoudhamdyae.themoviedb.network.MovieProperty
 
 /**
  * When there is no Movie property data (data is null), hide the [RecyclerView], otherwise show it.
  */
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<MovieProperty>?) {
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<Movie>?) {
     val adapter = recyclerView.adapter as MoviesAdapter
     adapter.submitList(data)
 }

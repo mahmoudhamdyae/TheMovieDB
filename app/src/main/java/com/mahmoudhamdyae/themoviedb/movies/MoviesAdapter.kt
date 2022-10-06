@@ -6,18 +6,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmoudhamdyae.themoviedb.databinding.GridViewItemBinding
-import com.mahmoudhamdyae.themoviedb.network.MovieProperty
+import com.mahmoudhamdyae.themoviedb.domain.Movie
 
 class MoviesAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<MovieProperty, MoviesAdapter.MoviePropertyViewHolder>(DiffCallback) {
+    ListAdapter<Movie, MoviesAdapter.MoviePropertyViewHolder>(DiffCallback) {
 
     /**
      * The MoviePropertyViewHolder constructor takes the binding variable from the associated
-     * GridViewItem, which nicely gives it access to the full [MovieProperty] information.
+     * GridViewItem, which nicely gives it access to the full [Movie] information.
      */
     class MoviePropertyViewHolder(private var binding: GridViewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: MovieProperty) {
+        fun bind(movie: Movie) {
             binding.property = movie
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
@@ -26,15 +26,15 @@ class MoviesAdapter(private val onClickListener: OnClickListener) :
     }
 
     /**
-     * Allows the RecyclerView to determine which items have changed when the [List] of [MovieProperty]
+     * Allows the RecyclerView to determine which items have changed when the [List] of [Movie]
      * has been updated.
      */
-    companion object DiffCallback : DiffUtil.ItemCallback<MovieProperty>() {
-        override fun areItemsTheSame(oldItem: MovieProperty, newItem: MovieProperty): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<Movie>() {
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: MovieProperty, newItem: MovieProperty): Boolean {
+        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem.id == newItem.id
         }
     }
@@ -59,12 +59,12 @@ class MoviesAdapter(private val onClickListener: OnClickListener) :
     }
 
     /**
-    * Custom listener that handles clicks on [RecyclerView] items.  Passes the [MovieProperty]
+    * Custom listener that handles clicks on [RecyclerView] items.  Passes the [Movie]
     * associated with the current item to the [onClick] function.
-    * @param clickListener lambda that will be called with the current [MovieProperty]
+    * @param clickListener lambda that will be called with the current [Movie]
     */
-    class OnClickListener(val clickListener: (movie:MovieProperty) -> Unit) {
-        fun onClick(movie:MovieProperty) = clickListener(movie)
+    class OnClickListener(val clickListener: (movie:Movie) -> Unit) {
+        fun onClick(movie:Movie) = clickListener(movie)
     }
 
 }

@@ -23,6 +23,9 @@ class MoviesFragment : Fragment () {
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
+//        val viewModelFactory = MoviesViewModelFactory(requireActivity().application)
+//        val viewModel = ViewModelProvider(this, viewModelFactory)[MoviesViewModel::class.java]
+
         // Initialize [MoviesViewModel].
         val viewModel : MoviesViewModel = ViewModelProvider(this)[MoviesViewModel::class.java]
 
@@ -50,6 +53,14 @@ class MoviesFragment : Fragment () {
                 viewModel.displayPropertyDetailsComplete()
             }
         })
+
+        // Handle Network is not available
+//        viewModel.toastNetwork.observe(viewLifecycleOwner, Observer {
+//            if (null != it) {
+//                Toast.makeText(context,it, Toast.LENGTH_SHORT).show()
+//                viewModel.clearToast()
+//            }
+//        })
 
         return binding.root
     }

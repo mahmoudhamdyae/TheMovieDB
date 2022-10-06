@@ -36,7 +36,7 @@ private val retrofit = Retrofit.Builder()
  */
 interface MovieApiService {
     /**
-     * Returns a Coroutine [List] of [MovieProperty] which can be fetched with await() if in a Coroutine scope.
+     * Returns a Coroutine [List] of [MovieNetwork] which can be fetched with await() if in a Coroutine scope.
      * The @GET annotation indicates that the "getPopularMovies" endpoint will be requested with the GET
      * HTTP method
      */
