@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="property"
             type="com.mahmoudhamdyae.themoviedb.domain.Movie" />
@@ -14,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/movie_image_description"
         android:padding="@dimen/movies_padding"
         app:imageUrl="@{property.posterPath}"
         tools:src="@tools:sample/backgrounds/scenic" />

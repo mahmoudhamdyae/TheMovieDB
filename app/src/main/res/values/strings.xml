@@ -5,17 +5,8 @@
 
     <string name="favourite_image_button_description">Favourite</string>
 
-    <string name="no_reviews_string">There is no reviews</string>
-
     <!-- Actions -->
     <string name="action_setting">Settings</string>
-
-    <!-- Tabs -->
-    <string name="popular_fragment">Popular Movies</string>
-    <string name="top_rated_fragment">Top Rated Movies</string>
-    <string name="summary_fragment">Summary</string>
-    <string name="reviews_fragment">Reviews</string>
-    <string name="trailers_fragment">Trailers</string>
 
     <!-- Content Descriptions -->
     <string name="movie_image_description"> Movie Image</string>

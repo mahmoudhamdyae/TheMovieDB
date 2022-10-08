@@ -4,19 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.mahmoudhamdyae.themoviedb.detail.DetailViewModel" />
     </data>
-
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.selectedProperty.title}"/>
-    </LinearLayout>-->
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -25,14 +17,14 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            ><!--android:theme="@style/AppTheme.AppBarOverlay"-->
+            android:theme="@style/AppTheme.AppBarOverlay">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                android:elevation="@dimen/_8sdp"
+                android:elevation="@dimen/toolbar_elevation"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:navigationIcon="@drawable/ic_arrow_back_white_24dp">
 
@@ -47,9 +39,11 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
                         android:id="@+id/movie_image"
+                        android:layout_width="@dimen/details_movie_image_width"
+                        android:layout_height="@dimen/details_movie_image_height"
+                        android:layout_marginTop="@dimen/details_movie_image_margin_top"
+                        android:contentDescription="@string/movie_image_description"
                         android:transitionName="movie"
                         app:imageUrl="@{viewModel.selectedProperty.posterPath}" />
 
@@ -62,6 +56,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/details_movie_vote_average_margin"
+                            android:layout_marginBottom="@dimen/details_movie_vote_average_margin"
                             android:orientation="horizontal">
 
                             <TextView
@@ -75,7 +71,7 @@
                                 android:id="@+id/ten"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="vote_average" />
+                                android:text="@string/vote_average" />
                         </LinearLayout>
 
                         <TextView
@@ -92,7 +88,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:background="@drawable/ic_heart"/>
+                        android:background="@drawable/ic_heart"
+                        android:contentDescription="@string/favourite_image_button_description"/>
                 </RelativeLayout>
             </ScrollView>
 
@@ -102,11 +99,11 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
                 app:tabGravity="fill"
-                app:tabIndicatorHeight="@dimen/_3sdp"
-                app:tabIndicatorColor="#FFFFFF"
+                app:tabIndicatorHeight="@dimen/tab_indicator_height"
+                app:tabIndicatorColor="@color/tabIndicatorColor"
                 app:tabMode="fixed"
-                app:tabSelectedTextColor="#FFFFFF"
-                app:tabTextColor="#CDCDCD" />
+                app:tabSelectedTextColor="@color/tabSelectedTextColor"
+                app:tabTextColor="@color/tabTextColor" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager2.widget.ViewPager2

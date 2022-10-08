@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="activity_horizontal_margin">@dimen/_16sdp</dimen>
+    <dimen name="activity_vertical_margin">@dimen/_16sdp</dimen>
+
+    <dimen name="toolbar_elevation">@dimen/_8sdp</dimen>
+
     <dimen name="movies_padding">@dimen/_4sdp</dimen>
+    <dimen name="details_movie_image_width">@dimen/_150sdp</dimen>
+    <dimen name="details_movie_image_height">@dimen/_150sdp</dimen>
+    <dimen name="details_movie_image_margin_top">@dimen/_8sdp</dimen>
+    <dimen name="details_movie_vote_average_margin">@dimen/_16sdp</dimen>
+
+    <dimen name="tab_indicator_height">@dimen/_3sdp</dimen>
 </resources>
