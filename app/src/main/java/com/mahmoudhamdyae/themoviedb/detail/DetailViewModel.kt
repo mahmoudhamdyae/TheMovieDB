@@ -6,10 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mahmoudhamdyae.themoviedb.domain.Movie
 
-/**
- * The [ViewModel] associated with the [DetailFragment], containing information about the selected
- *  [Movie].
- */
 class DetailViewModel(movie: Movie, app: Application) : AndroidViewModel(app) {
 
     private val _selectedProperty = MutableLiveData<Movie>()

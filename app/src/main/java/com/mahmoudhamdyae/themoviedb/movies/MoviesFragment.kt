@@ -7,11 +7,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
 import com.mahmoudhamdyae.themoviedb.domain.Movie
 
-@Suppress("DEPRECATION")
 class MoviesFragment : Fragment () {
 
     override fun onCreateView(
@@ -23,9 +21,6 @@ class MoviesFragment : Fragment () {
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
-
-//        val viewModelFactory = MoviesViewModelFactory(requireActivity().application)
-//        val viewModel = ViewModelProvider(this, viewModelFactory)[MoviesViewModel::class.java]
 
         // Initialize [MoviesViewModel].
         val viewModel : MoviesViewModel = ViewModelProvider(this)[MoviesViewModel::class.java]
@@ -54,14 +49,13 @@ class MoviesFragment : Fragment () {
             }
         }))
 
-        // Handle Network is not available
+        // TODO Handle Network is not available
 //        viewModel.toastNetwork.observe(viewLifecycleOwner, Observer {
 //            if (null != it) {
 //                Toast.makeText(context,it, Toast.LENGTH_SHORT).show()
 //                viewModel.clearToast()
 //            }
 //        })
-        setHasOptionsMenu(true)
 
         return binding.root
     }
@@ -70,22 +64,5 @@ class MoviesFragment : Fragment () {
         val displayMetrics = requireContext().resources.displayMetrics
         val screenWidthDp = displayMetrics.widthPixels / displayMetrics.density
         return kotlin.math.ceil(screenWidthDp / 185f).toInt()
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.main_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_setting -> {
-                findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToSettingFragment())
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }
