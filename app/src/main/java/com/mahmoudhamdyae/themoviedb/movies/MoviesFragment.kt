@@ -1,17 +1,17 @@
 package com.mahmoudhamdyae.themoviedb.movies
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
 import com.mahmoudhamdyae.themoviedb.domain.Movie
 
+@Suppress("DEPRECATION")
 class MoviesFragment : Fragment () {
 
     override fun onCreateView(
@@ -61,6 +61,7 @@ class MoviesFragment : Fragment () {
 //                viewModel.clearToast()
 //            }
 //        })
+        setHasOptionsMenu(true)
 
         return binding.root
     }
@@ -69,5 +70,22 @@ class MoviesFragment : Fragment () {
         val displayMetrics = requireContext().resources.displayMetrics
         val screenWidthDp = displayMetrics.widthPixels / displayMetrics.density
         return kotlin.math.ceil(screenWidthDp / 185f).toInt()
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_setting -> {
+                findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToSettingFragment())
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
