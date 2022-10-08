@@ -1,5 +1,9 @@
 package com.mahmoudhamdyae.themoviedb.domain
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 class Movie(
     val id: String,
     val title: String,
@@ -7,4 +11,4 @@ class Movie(
     val overview: String,
     val userRating: String,
     val releaseDate: String
-)
+) : Parcelable

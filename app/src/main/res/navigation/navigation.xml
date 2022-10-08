@@ -23,8 +23,8 @@
         android:name="com.mahmoudhamdyae.themoviedb.detail.DetailFragment"
         android:label="DetailFragment"
         tools:layout="@layout/fragment_detail" >
-        <!--<argument
+        <argument
             android:name="selectedMovie"
-            app:argType="com.mahmoudhamdyae.themoviedb.network.MovieProperty" />-->
+            app:argType="com.mahmoudhamdyae.themoviedb.domain.Movie" />
     </fragment>
 </navigation>

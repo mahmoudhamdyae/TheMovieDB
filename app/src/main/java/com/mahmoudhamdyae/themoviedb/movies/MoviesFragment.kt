@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
+import com.mahmoudhamdyae.themoviedb.domain.Movie
 
 class MoviesFragment : Fragment () {
 
@@ -45,14 +46,13 @@ class MoviesFragment : Fragment () {
         // Observe the navigateToSelectedProperty LiveData and Navigate when it isn't null
         // After navigating, call displayPropertyDetailsComplete() so that the ViewModel is ready
         // for another navigation event.
-        viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer {
-            if ( null != it ) {
-                // TODO Safe args
-                findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToDetailFragment(/*it*/))
+        viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer(fun(movie : Movie?) {
+            if (null != movie) {
+                findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToDetailFragment(movie))
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation
                 viewModel.displayPropertyDetailsComplete()
             }
-        })
+        }))
 
         // Handle Network is not available
 //        viewModel.toastNetwork.observe(viewLifecycleOwner, Observer {
