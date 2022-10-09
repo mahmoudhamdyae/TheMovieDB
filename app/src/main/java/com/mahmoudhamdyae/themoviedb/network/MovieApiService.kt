@@ -41,13 +41,15 @@ interface MovieApiService {
      * The @GET annotation indicates that the "getPopularMovies" endpoint will be requested with the GET
      * HTTP method
      */
+    // https://api.themoviedb.org/3/discover/movie?api_key=308fc9935783b6199369f60243c21395&sort_by=popularity.desc
     @GET("discover/movie?api_key=$API_KEY&sort_by=popularity.desc")
     fun getPopularMoviesAsync(): Deferred<NetworkMovieContainer>
 
-    @GET("movie/{movieId}/reviews?api_key=308fc9935783b6199369f60243c21395")
+    // https://api.themoviedb.org/3/movie/760161/reviews?api_key=308fc9935783b6199369f60243c21395
+    @GET("movie/{movieId}/reviews?api_key=$API_KEY")
     fun getReviewsAsync(@Path("movieId") movieId: String): Deferred<NetworkReviewContainer>
 
-    @GET("movie/{movieId}/videos?api_key=308fc9935783b6199369f60243c21395")
+    @GET("movie/{movieId}/videos?api_key=$API_KEY")
     fun getTrailersAsync(@Path("movieId") movieId: String): Deferred<NetworkTrailerContainer>
 }
 
