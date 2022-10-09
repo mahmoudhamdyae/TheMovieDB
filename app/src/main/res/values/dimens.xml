@@ -10,6 +10,9 @@
     <dimen name="details_movie_image_height">@dimen/_150sdp</dimen>
     <dimen name="details_movie_image_margin_top">@dimen/_8sdp</dimen>
     <dimen name="details_movie_vote_average_margin">@dimen/_16sdp</dimen>
+    <dimen name="tabs_padding">@dimen/_4sdp</dimen>
 
     <dimen name="tab_indicator_height">@dimen/_3sdp</dimen>
+
+    <dimen name="text_size">@dimen/_16ssp</dimen>
 </resources>

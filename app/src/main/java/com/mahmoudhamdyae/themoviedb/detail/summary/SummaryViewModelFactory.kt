@@ -1,21 +1,20 @@
-package com.mahmoudhamdyae.themoviedb.detail
+package com.mahmoudhamdyae.themoviedb.detail.summary
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mahmoudhamdyae.themoviedb.domain.Movie
 
 /**
- * Simple ViewModel factory that provides the Movie and context to the ViewModel.
+ * Simple ViewModel factory that provides the Summary and context to the ViewModel.
  */
-class DetailViewModelFactory(
-    private val movie: Movie,
+class SummaryViewModelFactory(
+    private val overview: String,
     private val application: Application
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
-            return DetailViewModel(movie, application) as T
+        if (modelClass.isAssignableFrom(SummaryViewModel::class.java)) {
+            return SummaryViewModel(overview, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
