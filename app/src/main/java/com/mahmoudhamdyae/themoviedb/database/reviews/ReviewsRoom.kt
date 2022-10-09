@@ -6,8 +6,8 @@ import com.mahmoudhamdyae.themoviedb.domain.Review
 
 @Entity
 class ReviewsRoom (
-    @PrimaryKey
     val id: String,
+    @PrimaryKey
     val author: String,
     val content: String
 )
