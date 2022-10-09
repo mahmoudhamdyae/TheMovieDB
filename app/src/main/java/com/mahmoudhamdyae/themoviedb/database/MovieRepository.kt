@@ -2,7 +2,12 @@ package com.mahmoudhamdyae.themoviedb.database
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import com.mahmoudhamdyae.themoviedb.database.movies.asDomainModel
+import com.mahmoudhamdyae.themoviedb.database.reviews.asDomainModel
+import com.mahmoudhamdyae.themoviedb.database.trailers.asDomainModel
 import com.mahmoudhamdyae.themoviedb.domain.Movie
+import com.mahmoudhamdyae.themoviedb.domain.Review
+import com.mahmoudhamdyae.themoviedb.domain.Trailer
 import com.mahmoudhamdyae.themoviedb.network.MovieApi
 import com.mahmoudhamdyae.themoviedb.network.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
@@ -15,6 +20,22 @@ class MovieRepository(private val database: MoviesDatabase) {
      */
     val movies: LiveData<List<Movie>> =
         Transformations.map(database.movieDao.getMovies()) {
+            it.asDomainModel()
+        }
+
+    /**
+    * A playlist of reviews that can be shown on the screen.
+    */
+    val reviews: LiveData<List<Review>> =
+        Transformations.map(database.reviewDao.getReviews()) {
+            it.asDomainModel()
+        }
+
+    /**
+     * A playlist of trailers that can be shown on the screen.
+     */
+    val trailers: LiveData<List<Trailer>> =
+        Transformations.map(database.trailerDao.getTrailers()) {
             it.asDomainModel()
         }
 
@@ -33,6 +54,20 @@ class MovieRepository(private val database: MoviesDatabase) {
             val moviesDao = database.movieDao
             moviesDao.clear()
             moviesDao.insertAll(*moviesList.asDatabaseModel())
+        }
+    }
+
+    suspend fun refreshReviews(movieId: String) {
+        withContext(Dispatchers.IO) {
+            val reviewsList = MovieApi.retrofitService.getReviewsAsync(movieId).await()
+            database.reviewDao.insertAll(*reviewsList.asDatabaseModel())
+        }
+    }
+
+    suspend fun refreshTrailers(movieId: String) {
+        withContext(Dispatchers.IO) {
+            val trailersList = MovieApi.retrofitService.getTrailersAsync(movieId).await()
+            database.trailerDao.insertAll(*trailersList.asDatabaseModel())
         }
     }
 

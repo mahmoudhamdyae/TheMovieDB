@@ -1,4 +1,4 @@
-package com.mahmoudhamdyae.themoviedb.database
+package com.mahmoudhamdyae.themoviedb.database.movies
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface MovieDao {
+interface MoviesDao {
     @Query("SELECT * FROM movieroom")
     fun getMovies(): LiveData<List<MovieRoom>>
 

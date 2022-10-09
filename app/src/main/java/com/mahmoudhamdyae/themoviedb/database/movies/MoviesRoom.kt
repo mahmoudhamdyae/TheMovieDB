@@ -1,4 +1,4 @@
-package com.mahmoudhamdyae.themoviedb.database
+package com.mahmoudhamdyae.themoviedb.database.movies
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
