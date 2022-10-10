@@ -9,8 +9,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.mahmoudhamdyae.themoviedb.detail.reviews.ReviewsAdapter
 import com.mahmoudhamdyae.themoviedb.domain.Movie
-import com.mahmoudhamdyae.themoviedb.domain.Review
 import com.mahmoudhamdyae.themoviedb.movies.MoviesAdapter
+import com.mahmoudhamdyae.themoviedb.network.NetworkReview
 
 /**
  * When there is no Movie property data (data is null), hide the [RecyclerView], otherwise show it.
@@ -57,7 +57,7 @@ fun bindStatus(statusImageView: ImageView, status: MovieApiStatus?) {
 // Reviews
 
 @BindingAdapter("reviewsData")
-fun bindReviewsRecyclerView(recyclerView: RecyclerView, data: List<Review>?) {
+fun bindReviewsRecyclerView(recyclerView: RecyclerView, data: List<NetworkReview>?) {
     val adapter = recyclerView.adapter as ReviewsAdapter
     adapter.submitList(data)
 }

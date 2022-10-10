@@ -1,14 +1,10 @@
 package com.mahmoudhamdyae.themoviedb.database
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModelProvider
 import com.mahmoudhamdyae.themoviedb.database.movies.asDomainModel
 import com.mahmoudhamdyae.themoviedb.database.reviews.asDomainModel
 import com.mahmoudhamdyae.themoviedb.database.trailers.asDomainModel
-import com.mahmoudhamdyae.themoviedb.detail.reviews.ReviewsViewModel
-import com.mahmoudhamdyae.themoviedb.detail.reviews.ReviewsViewModelFactory
 import com.mahmoudhamdyae.themoviedb.domain.Movie
 import com.mahmoudhamdyae.themoviedb.domain.Review
 import com.mahmoudhamdyae.themoviedb.domain.Trailer
@@ -27,13 +23,11 @@ class MovieRepository(private val database: MoviesDatabase) {
             it.asDomainModel()
         }
 
-//    private var movieID : String = "718930"
     /**
     * A playlist of reviews that can be shown on the screen.
     */
     val reviews: LiveData<List<Review>> =
-        Transformations.map(database.reviewDao.getReviews(/*movieID*/)) {
-//            Log.i("Database","movieID $movieID ${database.reviewDao.getReviews(movieID).value?.get(0)?.author}")
+        Transformations.map(database.reviewDao.getReviews()) {
             it.asDomainModel()
         }
 
@@ -65,17 +59,16 @@ class MovieRepository(private val database: MoviesDatabase) {
 
     suspend fun refreshReviews(movieId: String) {
         withContext(Dispatchers.IO) {
-//            movieID = movieId
             val reviewsList = MovieApi.retrofitService.getReviewsAsync(movieId).await()
             database.reviewDao.insertAll(*reviewsList.asDatabaseModel())
         }
     }
 
-//    suspend fun refreshTrailers(movieId: String) {
-//        withContext(Dispatchers.IO) {
-//            val trailersList = MovieApi.retrofitService.getTrailersAsync(movieId).await()
-//            database.trailerDao.insertAll(*trailersList.asDatabaseModel())
-//        }
-//    }
+    suspend fun refreshTrailers(movieId: String) {
+        withContext(Dispatchers.IO) {
+            val trailersList = MovieApi.retrofitService.getTrailersAsync(movieId).await()
+            database.trailerDao.insertAll(*trailersList.asDatabaseModel())
+        }
+    }
 
 }
