@@ -5,8 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mahmoudhamdyae.themoviedb.MovieApiStatus
-import com.mahmoudhamdyae.themoviedb.database.MovieRepository
-import com.mahmoudhamdyae.themoviedb.database.getDatabase
 import com.mahmoudhamdyae.themoviedb.network.MovieApi
 import com.mahmoudhamdyae.themoviedb.network.NetworkReview
 import kotlinx.coroutines.CoroutineScope
@@ -20,12 +18,6 @@ class ReviewsViewModel(private val movieID: String, application: Application) : 
     val status: LiveData<MovieApiStatus>
         get() = _status
 
-    private val database =
-        getDatabase(application)
-    private val reviewsRepository =
-        MovieRepository(database)
-
-//    val reviewsList = reviewsRepository.reviews
     private val _reviewsList = MutableLiveData<List<NetworkReview>>()
     val reviewsList: LiveData<List<NetworkReview>>
         get() = _reviewsList
@@ -41,7 +33,6 @@ class ReviewsViewModel(private val movieID: String, application: Application) : 
         coroutineScope.launch {
             try {
                 _status.value = MovieApiStatus.LOADING
-                reviewsRepository.refreshReviews(movieID)
 
                 _reviewsList.value = MovieApi.retrofitService.getReviewsAsync(movieID).await().results
 

@@ -1,8 +1,6 @@
 package com.mahmoudhamdyae.themoviedb.network
 
 import com.mahmoudhamdyae.themoviedb.database.movies.MovieRoom
-import com.mahmoudhamdyae.themoviedb.database.reviews.ReviewsRoom
-import com.mahmoudhamdyae.themoviedb.database.trailers.TrailersRoom
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -53,16 +51,6 @@ data class NetworkReview(
     val content: String
 )
 
-fun NetworkReviewContainer.asDatabaseModel() : Array<ReviewsRoom> {
-    return results.map {
-        ReviewsRoom(
-            id = it.id,
-            author = it.author,
-            content = it.content
-        )
-    }.toTypedArray()
-}
-
 // Trailers
 
 @JsonClass(generateAdapter = true)
@@ -73,12 +61,3 @@ data class NetworkTrailer(
     val id: String,
     val key: String
 )
-
-fun NetworkTrailerContainer.asDatabaseModel() : Array<TrailersRoom> {
-    return results.map {
-        TrailersRoom(
-            id = it.id,
-            key = it.key
-        )
-    }.toTypedArray()
-}

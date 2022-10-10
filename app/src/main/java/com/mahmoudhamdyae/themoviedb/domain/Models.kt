@@ -12,14 +12,3 @@ class Movie(
     val userRating: String,
     val releaseDate: String
 ) : Parcelable
-
-class Review(
-    val id: String,
-    val author: String,
-    val content: String
-)
-
-class Trailer(
-    val id: String,
-    val key: String
-)
