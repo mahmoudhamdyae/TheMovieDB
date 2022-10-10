@@ -1,34 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="viewModel"
-            type="com.mahmoudhamdyae.themoviedb.detail.reviews.ReviewsViewModel" />
+
     </data>
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/status_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:contentDescription="@string/status_image_description"
-            app:movieApiStatus="@{viewModel.status}" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/reviews_list"
+        <TextView
+            android:id="@+id/review_id"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/movies_padding"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:reviewsData="@{viewModel.reviewsList}"
-            tools:listitem="@layout/review_view_item" />
-    </RelativeLayout>
-
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Reviews Fragment"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_size"
+            tools:ignore="HardcodedText" />
+    </ScrollView>
 </layout>

@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.mahmoudhamdyae.themoviedb.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb.database.MovieRepository
 import com.mahmoudhamdyae.themoviedb.database.getDatabase
 import com.mahmoudhamdyae.themoviedb.domain.Movie
@@ -12,6 +11,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+
+enum class MovieApiStatus { LOADING, ERROR, DONE }
 
 class MoviesViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -50,12 +51,14 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
             try {
                 _status.value = MovieApiStatus.LOADING
                 moviesRepository.refreshMovies()
-                _status.value = MovieApiStatus.DONE
-            } catch (e: Exception) {
-                if (moviesList.value.isNullOrEmpty())
-                    _status.value = MovieApiStatus.ERROR
-//                else
+//                if (moviesList.value?.isEmpty()!!)
+//                    _status.value = MovieApiStatus.ERROR
+//                else {
+                    _status.value = MovieApiStatus.DONE
 //                    _toastNetwork.value = R.string.network_not_available.toString()
+//                }
+            } catch (e: Exception) {
+                _status.value = MovieApiStatus.ERROR
             }
         }
     }
