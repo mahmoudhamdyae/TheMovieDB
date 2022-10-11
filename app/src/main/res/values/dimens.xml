@@ -16,4 +16,6 @@
     <dimen name="tab_indicator_height">@dimen/_3sdp</dimen>
 
     <dimen name="text_size">@dimen/_16ssp</dimen>
+
+    <dimen name="card_padding">@dimen/_8sdp</dimen>
 </resources>

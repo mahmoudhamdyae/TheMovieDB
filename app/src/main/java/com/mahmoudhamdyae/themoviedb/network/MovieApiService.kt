@@ -49,6 +49,7 @@ interface MovieApiService {
     @GET("movie/{movieId}/reviews?api_key=$API_KEY")
     fun getReviewsAsync(@Path("movieId") movieId: String): Deferred<NetworkReviewContainer>
 
+    // https://api.themoviedb.org/3/movie/760161/videos?api_key=308fc9935783b6199369f60243c21395
     @GET("movie/{movieId}/videos?api_key=$API_KEY")
     fun getTrailersAsync(@Path("movieId") movieId: String): Deferred<NetworkTrailerContainer>
 }

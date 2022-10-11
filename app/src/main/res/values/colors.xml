@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#43a047</color>
-    <color name="colorPrimaryDark">#00701a</color>
-    <color name="colorAccent">#000000</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#ffffff</color>
 
-    <color name="colorText">#000000</color>
+    <color name="colorText">#ffffff</color>
 
     <color name="windowBackground">#008577</color>
 
     <color name="ic_launcher_background">#008577</color>
+
+    <color name="card_background">#016359</color>
 
     <color name="tabIndicatorColor">#FFFFFF</color>
     <color name="tabSelectedTextColor">#FFFFFF</color>

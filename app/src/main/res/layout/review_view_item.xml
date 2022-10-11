@@ -8,32 +8,36 @@
             type="com.mahmoudhamdyae.themoviedb.network.NetworkReview" />
     </data>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/tabs_padding">
+        android:layout_margin="@dimen/card_padding"
+        android:background="#AAA54A">
 
-    <TextView
-        android:id="@+id/author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@{property.author}"
-        android:textColor="@color/colorText"
-        android:textStyle="bold"
-        tools:text="author" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/card_background"
+            android:padding="@dimen/tabs_padding">
 
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@{property.content}"
-        android:textColor="@color/colorText"
-        tools:text="content" />
+            <TextView
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{property.author}"
+                android:textColor="@color/colorText"
+                android:textStyle="bold"
+                tools:text="author" />
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/separator"
-        android:background="@color/colorAccent" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{property.content}"
+                android:textColor="@color/colorText"
+                tools:text="content" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 </layout>
