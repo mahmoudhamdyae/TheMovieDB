@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="property"
             type="com.mahmoudhamdyae.themoviedb.network.NetworkTrailer" />
@@ -16,14 +17,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/card_background"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:padding="@dimen/tabs_padding">
 
+            <View
+                android:layout_width="@dimen/play_video_dimension"
+                android:layout_height="@dimen/play_video_dimension"
+                android:background="@android:drawable/ic_media_play"
+                android:padding="@dimen/play_video_padding" />
+
             <TextView
-                android:id="@+id/author"
+                android:id="@+id/trailer_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{property.key}"
+                android:text="@{property.name}"
                 android:textColor="@color/colorText"
                 android:textStyle="bold" />
         </LinearLayout>

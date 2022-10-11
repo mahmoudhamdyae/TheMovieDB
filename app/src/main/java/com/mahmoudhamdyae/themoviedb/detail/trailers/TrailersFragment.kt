@@ -1,5 +1,7 @@
 package com.mahmoudhamdyae.themoviedb.detail.trailers
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentTrailersBinding
 
-class TrailersFragment(val movieID: String):Fragment() {
+
+class TrailersFragment(private val movieID: String):Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -21,7 +24,12 @@ class TrailersFragment(val movieID: String):Fragment() {
         val viewModel = ViewModelProvider(this, viewModelFactory)[TrailersViewModel::class.java]
         binding.viewModel = viewModel
 
-        binding.trailersList.adapter = TrailersAdapter()
+        binding.trailersList.adapter = TrailersAdapter(TrailersAdapter.OnClickListener{
+            val url = "https://www.youtube.com/watch?v=${it.key}"
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
+        })
 
         return binding.root
     }

@@ -59,5 +59,7 @@ data class NetworkTrailerContainer(val results: List<NetworkTrailer>)
 @JsonClass(generateAdapter = true)
 data class NetworkTrailer(
     val id: String,
-    val key: String
+    val name: String,
+    val key: String,
+    val site: String
 )

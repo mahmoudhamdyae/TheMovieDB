@@ -6,16 +6,21 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmoudhamdyae.themoviedb.databinding.TrailerViewItemBinding
+import com.mahmoudhamdyae.themoviedb.domain.Movie
 import com.mahmoudhamdyae.themoviedb.network.NetworkTrailer
 
 
-class TrailersAdapter : ListAdapter<NetworkTrailer,
-        TrailersAdapter.ViewHolder>(DiffCallback()) {
-            override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-                val item = getItem(position)
+class TrailersAdapter(val onClickListener: OnClickListener) :
+    ListAdapter<NetworkTrailer, TrailersAdapter.ViewHolder>(DiffCallback()) {
 
-                holder.bind(item)
-            }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val networkTrailer = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(networkTrailer)
+        }
+        holder.bind(networkTrailer)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             return ViewHolder.from(parent)
     }
@@ -38,6 +43,15 @@ class TrailersAdapter : ListAdapter<NetworkTrailer,
                 return ViewHolder(binding)
             }
         }
+    }
+
+    /**
+     * Custom listener that handles clicks on [RecyclerView] items.  Passes the [NetworkTrailer]
+     * associated with the current item to the [onClick] function.
+     * @param clickListener lambda that will be called with the current [Movie]
+     */
+    class OnClickListener(val clickListener: (networkTrailer: NetworkTrailer) -> Unit) {
+        fun onClick(networkTrailer: NetworkTrailer) = clickListener(networkTrailer)
     }
 }
 
