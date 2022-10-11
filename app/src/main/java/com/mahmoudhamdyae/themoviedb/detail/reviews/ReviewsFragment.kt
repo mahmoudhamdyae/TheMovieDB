@@ -16,6 +16,7 @@ class ReviewsFragment(val movieID: String): Fragment() {
     ): View {
         val binding = FragmentReviewsBinding.inflate(inflater)
         binding.lifecycleOwner = this
+
         val viewModelFactory = ReviewsViewModelFactory(movieID, requireActivity().application)
         val viewModel = ViewModelProvider(this, viewModelFactory)[ReviewsViewModel::class.java]
         binding.viewModel = viewModel

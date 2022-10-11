@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
             name="property"
-            type="com.mahmoudhamdyae.themoviedb.network.NetworkReview" />
+            type="com.mahmoudhamdyae.themoviedb.network.NetworkTrailer" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -16,26 +15,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:background="@color/card_background"
+            android:orientation="vertical"
             android:padding="@dimen/tabs_padding">
 
             <TextView
                 android:id="@+id/author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{property.author}"
+                android:text="@{property.key}"
                 android:textColor="@color/colorText"
-                android:textStyle="bold"
-                tools:text="author" />
-
-            <TextView
-                android:id="@+id/content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{property.content}"
-                android:textColor="@color/colorText"
-                tools:text="content" />
+                android:textStyle="bold" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

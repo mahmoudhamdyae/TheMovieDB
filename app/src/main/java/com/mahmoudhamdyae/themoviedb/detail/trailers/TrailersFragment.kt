@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentTrailersBinding
 
 class TrailersFragment(val movieID: String):Fragment() {
@@ -16,7 +17,11 @@ class TrailersFragment(val movieID: String):Fragment() {
         val binding = FragmentTrailersBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        binding.trailerId.text = movieID
+        val viewModelFactory = TrailersViewModelFactory(movieID, requireActivity().application)
+        val viewModel = ViewModelProvider(this, viewModelFactory)[TrailersViewModel::class.java]
+        binding.viewModel = viewModel
+
+        binding.trailersList.adapter = TrailersAdapter()
 
         return binding.root
     }

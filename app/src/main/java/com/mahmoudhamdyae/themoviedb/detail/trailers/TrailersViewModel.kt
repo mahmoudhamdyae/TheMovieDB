@@ -1,4 +1,4 @@
-package com.mahmoudhamdyae.themoviedb.detail.reviews
+package com.mahmoudhamdyae.themoviedb.detail.trailers
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -6,13 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mahmoudhamdyae.themoviedb.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb.network.MovieApi
-import com.mahmoudhamdyae.themoviedb.network.NetworkReview
+import com.mahmoudhamdyae.themoviedb.network.NetworkTrailer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class ReviewsViewModel(
+class TrailersViewModel(
     private val movieID: String, application: Application
 ) : AndroidViewModel(application) {
 
@@ -20,27 +20,27 @@ class ReviewsViewModel(
     val status: LiveData<MovieApiStatus>
         get() = _status
 
-    private val _reviewsList = MutableLiveData<List<NetworkReview>>()
-    val reviewsList: LiveData<List<NetworkReview>>
-        get() = _reviewsList
+    private val _trailersList = MutableLiveData<List<NetworkTrailer>>()
+    val trailersList: LiveData<List<NetworkTrailer>>
+        get() = _trailersList
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
 
     init {
-        getReviews()
+        getTrailers()
     }
 
-    private fun getReviews() {
+    private fun getTrailers() {
         coroutineScope.launch {
             try {
                 _status.value = MovieApiStatus.LOADING
 
-                _reviewsList.value = MovieApi.retrofitService.getReviewsAsync(movieID).await().results
+                _trailersList.value = MovieApi.retrofitService.getTrailersAsync(movieID).await().results
 
                 _status.value = MovieApiStatus.DONE
             } catch (e: Exception) {
-                if (_reviewsList.value.isNullOrEmpty())
+                if (_trailersList.value.isNullOrEmpty())
                     _status.value = MovieApiStatus.ERROR
             }
         }

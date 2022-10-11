@@ -12,14 +12,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/overview"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/tabs_padding"
-            android:text="@{viewModel.overview}"
-            android:textColor="@color/colorText"
-            android:textSize="@dimen/text_size" />
+            android:layout_margin="@dimen/card_padding">
+
+            <TextView
+                android:id="@+id/overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/card_background"
+                android:gravity="center"
+                android:text="@{viewModel.overview}"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/text_size" />
+        </androidx.cardview.widget.CardView>
+
+
     </ScrollView>
 </layout>
