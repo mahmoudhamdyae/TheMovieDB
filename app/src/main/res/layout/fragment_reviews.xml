@@ -29,6 +29,14 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:reviewsData="@{viewModel.reviewsList}"
             tools:listitem="@layout/review_view_item" />
+
+        <TextView
+            android:id="@+id/empty_reviews_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_centerInParent="true"
+            android:text="@string/review_empty"/>
     </RelativeLayout>
 
 </layout>

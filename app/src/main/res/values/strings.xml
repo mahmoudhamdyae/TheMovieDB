@@ -2,8 +2,7 @@
     <string name="app_name">TheMovieDB</string>
 
     <string name="vote_average">/10</string>
-
-    <string name="favourite_image_button_description">Favourite</string>
+    <string name="review_empty">There is no Reviews</string>
 
     <!-- Tabs -->
     <string name="summary_fragment">Summary</string>
@@ -13,6 +12,7 @@
     <!-- Content Descriptions -->
     <string name="movie_image_description"> Movie Image</string>
     <string name="status_image_description">Status Image</string>
+    <string name="favourite_image_button_description">Favourite</string>
 
     <!--<string name="network_not_available">Network is not available</string>-->
 </resources>

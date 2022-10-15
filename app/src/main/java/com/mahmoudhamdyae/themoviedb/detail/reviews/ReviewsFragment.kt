@@ -23,6 +23,12 @@ class ReviewsFragment(val movieID: String): Fragment() {
 
         binding.reviewsList.adapter = ReviewsAdapter()
 
+        viewModel.reviewIsEmpty.observe(viewLifecycleOwner) {
+            if (it)
+                binding.emptyReviewsTextView.visibility = View.VISIBLE
+        }
+        binding.emptyReviewsTextView.visibility
+
         return binding.root
     }
 }

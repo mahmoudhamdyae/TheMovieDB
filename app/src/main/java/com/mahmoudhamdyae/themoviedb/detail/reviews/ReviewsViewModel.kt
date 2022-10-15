@@ -24,6 +24,10 @@ class ReviewsViewModel(
     val reviewsList: LiveData<List<NetworkReview>>
         get() = _reviewsList
 
+    private val _reviewIsEmpty = MutableLiveData<Boolean>()
+    val reviewIsEmpty : LiveData<Boolean>
+        get() = _reviewIsEmpty
+
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
 
@@ -39,6 +43,9 @@ class ReviewsViewModel(
                 _reviewsList.value = MovieApi.retrofitService.getReviewsAsync(movieID).await().results
 
                 _status.value = MovieApiStatus.DONE
+
+                if (_reviewsList.value.isNullOrEmpty())
+                    _reviewIsEmpty.value = true
             } catch (e: Exception) {
                 if (_reviewsList.value.isNullOrEmpty())
                     _status.value = MovieApiStatus.ERROR
