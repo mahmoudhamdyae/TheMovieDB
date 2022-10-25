@@ -89,7 +89,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
                         android:background="@drawable/ic_heart"
-                        android:contentDescription="@string/favourite_image_button_description"/>
+                        android:contentDescription="@string/favourite_image_button_description"
+                        android:visibility="gone"/>
                 </RelativeLayout>
             </ScrollView>
 
@@ -99,8 +100,8 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
                 app:tabGravity="fill"
-                app:tabIndicatorHeight="@dimen/tab_indicator_height"
                 app:tabIndicatorColor="@color/tabIndicatorColor"
+                app:tabIndicatorHeight="@dimen/tab_indicator_height"
                 app:tabMode="fixed"
                 app:tabSelectedTextColor="@color/tabSelectedTextColor"
                 app:tabTextColor="@color/tabTextColor" />

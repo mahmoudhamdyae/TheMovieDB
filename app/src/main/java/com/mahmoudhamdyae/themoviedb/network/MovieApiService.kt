@@ -52,6 +52,18 @@ interface MovieApiService {
     // https://api.themoviedb.org/3/movie/760161/videos?api_key=308fc9935783b6199369f60243c21395
     @GET("movie/{movieId}/videos?api_key=$API_KEY")
     fun getTrailersAsync(@Path("movieId") movieId: String): Deferred<NetworkTrailerContainer>
+
+    // https://api.themoviedb.org/3/authentication/guest_session/new?api_key=308fc9935783b6199369f60243c21395
+//    @GET("authentication/guest_session/new?api_key=$API_KEY")
+//    fun createGuestSessionAsync(): Deferred<GuestSession>
+
+    // https://api.themoviedb.org/3/authentication/token/new?api_key=308fc9935783b6199369f60243c21395
+//    @GET("authentication/token/new?api_key=$API_KEY")
+//    fun createRequestTokenAsync(): Deferred<RequestToken>
+
+    // https://api.themoviedb.org/3/authentication/session/new?api_key=308fc9935783b6199369f60243c21395
+//    @POST("authentication/session/new?api_key=$API_KEY")
+//    fun createSessionAsync(): Deferred<Session>
 }
 
 /**

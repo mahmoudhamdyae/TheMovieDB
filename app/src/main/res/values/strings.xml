@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">TheMovieDB</string>
 
+    <string name="menu_log_in">Log in</string>
+
     <string name="vote_average">/10</string>
     <string name="review_empty">There is no Reviews</string>
 

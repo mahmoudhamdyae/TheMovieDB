@@ -1,7 +1,9 @@
 package com.mahmoudhamdyae.themoviedb.movies
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -49,13 +51,7 @@ class MoviesFragment : Fragment () {
             }
         }))
 
-        // TODO Handle Network is not available
-//        viewModel.toastNetwork.observe(viewLifecycleOwner, Observer {
-//            if (null != it) {
-//                Toast.makeText(context,it, Toast.LENGTH_SHORT).show()
-//                viewModel.clearToast()
-//            }
-//        })
+        binding.toolbar.menu
 
         return binding.root
     }
