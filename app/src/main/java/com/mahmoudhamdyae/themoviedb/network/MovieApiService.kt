@@ -32,9 +32,6 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-/**
- * A public interface that exposes the [getPopularMoviesAsync] method
- */
 interface MovieApiService {
     /**
      * Returns a Coroutine [List] of [MovieNetwork] which can be fetched with await() if in a Coroutine scope.
@@ -52,6 +49,10 @@ interface MovieApiService {
     // https://api.themoviedb.org/3/movie/760161/videos?api_key=308fc9935783b6199369f60243c21395
     @GET("movie/{movieId}/videos?api_key=$API_KEY")
     fun getTrailersAsync(@Path("movieId") movieId: String): Deferred<NetworkTrailerContainer>
+
+    // https://api.themoviedb.org/3/discover/tv?api_key=308fc9935783b6199369f60243c21395&sort_by=popularity.desc
+    @GET("discover/tv?api_key=$API_KEY&sort_by=popularity.desc")
+    fun getPopularTVShowsAsync() : Deferred<NetworkTVShowContainer>
 
     // https://api.themoviedb.org/3/authentication/guest_session/new?api_key=308fc9935783b6199369f60243c21395
 //    @GET("authentication/guest_session/new?api_key=$API_KEY")

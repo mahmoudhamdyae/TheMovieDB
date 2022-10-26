@@ -6,6 +6,10 @@
     <string name="vote_average">/10</string>
     <string name="review_empty">There is no Reviews</string>
 
+    <!-- Bottom Navigation -->
+    <string name="navigation_movies">Movies</string>
+    <string name="navigation_tv_shows">TV Shows</string>
+
     <!-- Tabs -->
     <string name="summary_fragment">Summary</string>
     <string name="reviews_fragment">Reviews</string>

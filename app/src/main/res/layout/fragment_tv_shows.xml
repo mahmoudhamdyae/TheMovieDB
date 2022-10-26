@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.mahmoudhamdyae.themoviedb.grid.movies.MoviesViewModel" />
+            type="com.mahmoudhamdyae.themoviedb.grid.tvshows.TVShowsViewModel" />
     </data>
 
     <LinearLayout
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:padding="@dimen/movies_padding"
-            app:moviesListData="@{viewModel.moviesList}"
+            app:TVShowsListData="@{viewModel.tvShowsList}"
             tools:listitem="@layout/movie_view_item" />
 
         <ImageView

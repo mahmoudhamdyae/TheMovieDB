@@ -1,6 +1,7 @@
 package com.mahmoudhamdyae.themoviedb.network
 
 import com.mahmoudhamdyae.themoviedb.database.movies.MovieRoom
+import com.mahmoudhamdyae.themoviedb.database.tvshows.TVShowsRoom
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -29,6 +30,32 @@ data class MovieNetwork (
 fun NetworkMovieContainer.asDatabaseModel() : Array<MovieRoom> {
     return results.map {
         MovieRoom(
+            id = it.id,
+            title = it.title,
+            posterPath = it.posterPath,
+            overview = it.overview,
+            userRating = it.userRating,
+            releaseDate = it.releaseDate
+        )
+    }.toTypedArray()
+}
+
+@JsonClass(generateAdapter = true)
+data class NetworkTVShowContainer(val results: List<TVShowNetwork>)
+
+@JsonClass(generateAdapter = true)
+data class TVShowNetwork (
+    val id: String,
+    @Json(name = "name") val title: String,
+    @Json(name = "poster_path") val posterPath: String,
+    val overview: String,
+    @Json(name = "vote_average") val userRating: String,
+    @Json(name= "release_date") val releaseDate: String =""
+)
+
+fun NetworkTVShowContainer.asDatabaseModel() : Array<TVShowsRoom> {
+    return results.map {
+        TVShowsRoom(
             id = it.id,
             title = it.title,
             posterPath = it.posterPath,

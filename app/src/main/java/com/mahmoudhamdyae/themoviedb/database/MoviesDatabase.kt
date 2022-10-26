@@ -6,10 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.mahmoudhamdyae.themoviedb.database.movies.MoviesDao
 import com.mahmoudhamdyae.themoviedb.database.movies.MovieRoom
+import com.mahmoudhamdyae.themoviedb.database.tvshows.TVShowDao
+import com.mahmoudhamdyae.themoviedb.database.tvshows.TVShowsRoom
 
 @Database(
     entities = [
-        MovieRoom::class,
+        MovieRoom::class, TVShowsRoom::class
     ], version = 1, exportSchema = false
 )
 abstract class MoviesDatabase : RoomDatabase() {
@@ -17,6 +19,7 @@ abstract class MoviesDatabase : RoomDatabase() {
      * Connects the database to the DAO.
      */
     abstract val movieDao: MoviesDao
+    abstract val tvShowsDao: TVShowDao
 }
 
 private lateinit var INSTANCE: MoviesDatabase

@@ -7,7 +7,7 @@
 
         <variable
             name="property"
-            type="com.mahmoudhamdyae.themoviedb.domain.Movie" />
+            type="com.mahmoudhamdyae.themoviedb.domain.TVShow" />
     </data>
 
     <ImageView
@@ -17,6 +17,6 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/movie_image_description"
         android:padding="@dimen/movies_padding"
-        app:imageUrl="@{property.posterPath}"
+        app:imageUrl ="@{property.posterPath}"
         tools:src="@tools:sample/backgrounds/scenic" />
 </layout>

@@ -1,21 +1,21 @@
-package com.mahmoudhamdyae.themoviedb.movies
+package com.mahmoudhamdyae.themoviedb.grid.movies
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mahmoudhamdyae.themoviedb.databinding.GridViewItemBinding
+import com.mahmoudhamdyae.themoviedb.databinding.MovieViewItemBinding
 import com.mahmoudhamdyae.themoviedb.domain.Movie
 
-class MoviesAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<Movie, MoviesAdapter.MoviePropertyViewHolder>(DiffCallback) {
+class MovieAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<Movie, MovieAdapter.MoviePropertyViewHolder>(DiffCallback) {
 
     /**
      * The MoviePropertyViewHolder constructor takes the binding variable from the associated
      * GridViewItem, which nicely gives it access to the full [Movie] information.
      */
-    class MoviePropertyViewHolder(private var binding: GridViewItemBinding):
+    class MoviePropertyViewHolder(private var binding: MovieViewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
             binding.property = movie
@@ -44,7 +44,7 @@ class MoviesAdapter(private val onClickListener: OnClickListener) :
      */
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): MoviePropertyViewHolder {
-        return MoviePropertyViewHolder(GridViewItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return MoviePropertyViewHolder(MovieViewItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     /**

@@ -3,7 +3,9 @@ package com.mahmoudhamdyae.themoviedb.database
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.mahmoudhamdyae.themoviedb.database.movies.asDomainModel
+import com.mahmoudhamdyae.themoviedb.database.tvshows.asDomainModel
 import com.mahmoudhamdyae.themoviedb.domain.Movie
+import com.mahmoudhamdyae.themoviedb.domain.TVShow
 import com.mahmoudhamdyae.themoviedb.network.MovieApi
 import com.mahmoudhamdyae.themoviedb.network.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +18,11 @@ class MovieRepository(private val database: MoviesDatabase) {
      */
     val movies: LiveData<List<Movie>> =
         Transformations.map(database.movieDao.getMovies()) {
+            it.asDomainModel()
+        }
+
+    val tvShows: LiveData<List<TVShow>> =
+        Transformations.map(database.tvShowsDao.getTVShows()) {
             it.asDomainModel()
         }
 
@@ -34,6 +41,15 @@ class MovieRepository(private val database: MoviesDatabase) {
             val moviesDao = database.movieDao
             moviesDao.clear()
             moviesDao.insertAll(*moviesList.asDatabaseModel())
+        }
+    }
+
+    suspend fun refreshTVShows() {
+        withContext(Dispatchers.IO) {
+            val tvShowsList = MovieApi.retrofitService.getPopularTVShowsAsync().await()
+            val tvShowsDao = database.tvShowsDao
+            tvShowsDao.clear()
+            tvShowsDao.insertAll(*tvShowsList.asDatabaseModel())
         }
     }
 }

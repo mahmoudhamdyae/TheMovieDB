@@ -1,4 +1,4 @@
-package com.mahmoudhamdyae.themoviedb.movies
+package com.mahmoudhamdyae.themoviedb.grid.movies
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,12 +14,19 @@ import com.mahmoudhamdyae.themoviedb.domain.Movie
 
 class MoviesFragment : Fragment () {
 
+    private var _binding: FragmentMoviesBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentMoviesBinding.inflate(inflater)
+//        val binding = FragmentMoviesBinding.inflate(inflater)
+        _binding = FragmentMoviesBinding.inflate(inflater, container, false)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
@@ -36,7 +43,7 @@ class MoviesFragment : Fragment () {
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our property is clicked
-        binding.photosGrid.adapter = MoviesAdapter(MoviesAdapter.OnClickListener {
+        binding.photosGrid.adapter = MovieAdapter(MovieAdapter.OnClickListener {
             viewModel.displayPropertyDetails(it)
         })
 
@@ -51,9 +58,12 @@ class MoviesFragment : Fragment () {
             }
         }))
 
-        binding.toolbar.menu
-
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun getNoOfColumns(): Int {
