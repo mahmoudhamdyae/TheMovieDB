@@ -39,5 +39,8 @@
         <argument
             android:name="selectedMovie"
             app:argType="com.mahmoudhamdyae.themoviedb.domain.Movie" />
+        <argument
+            android:name="isMovie"
+            app:argType="boolean" />
     </fragment>
 </navigation>

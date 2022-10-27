@@ -60,9 +60,9 @@ class TVShowsFragment : Fragment() {
                         tvShow.posterPath,
                         tvShow.overview,
                         tvShow.userRating,
-                        tvShow.releaseDate
-                    )
-                ))
+                        ""
+                    ),
+                    false))
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation
                 viewModel.displayPropertyDetailsComplete()
             }

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentReviewsBinding
 
-class ReviewsFragment(val movieID: String): Fragment() {
+class ReviewsFragment(val movieID: String, val isMovie: Boolean): Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -17,7 +17,7 @@ class ReviewsFragment(val movieID: String): Fragment() {
         val binding = FragmentReviewsBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        val viewModelFactory = ReviewsViewModelFactory(movieID, requireActivity().application)
+        val viewModelFactory = ReviewsViewModelFactory(movieID, isMovie, requireActivity().application)
         val viewModel = ViewModelProvider(this, viewModelFactory)[ReviewsViewModel::class.java]
         binding.viewModel = viewModel
 

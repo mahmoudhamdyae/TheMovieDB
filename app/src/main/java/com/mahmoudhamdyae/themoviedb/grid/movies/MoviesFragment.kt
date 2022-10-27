@@ -52,7 +52,7 @@ class MoviesFragment : Fragment () {
         // for another navigation event.
         viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer(fun(movie : Movie?) {
             if (null != movie) {
-                findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToDetailFragment(movie))
+                findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToDetailFragment(movie, true))
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation
                 viewModel.displayPropertyDetailsComplete()
             }

@@ -19,6 +19,5 @@ class TVShow(
     val title: String,
     val posterPath: String,
     val overview: String,
-    val userRating: String,
-    val releaseDate: String
+    val userRating: String
 ) : Parcelable

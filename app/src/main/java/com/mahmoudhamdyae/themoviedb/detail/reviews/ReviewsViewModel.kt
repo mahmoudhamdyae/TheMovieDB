@@ -13,7 +13,9 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class ReviewsViewModel(
-    private val movieID: String, application: Application
+    private val movieID: String,
+    private val isMovie: Boolean,
+    application: Application
 ) : AndroidViewModel(application) {
 
     private val _status = MutableLiveData<MovieApiStatus>()
@@ -40,7 +42,12 @@ class ReviewsViewModel(
             try {
                 _status.value = MovieApiStatus.LOADING
 
-                _reviewsList.value = MovieApi.retrofitService.getReviewsAsync(movieID).await().results
+                if (isMovie) {
+                    _reviewsList.value = MovieApi.retrofitService.getReviewsAsync(movieID).await().results
+                }
+                else {
+                    _reviewsList.value = MovieApi.retrofitService.getTVReviewsAsync(movieID).await().results
+                }
 
                 _status.value = MovieApiStatus.DONE
 

@@ -11,8 +11,7 @@ class TVShowsRoom (
     val title: String,
     val posterPath: String,
     val overview: String,
-    val userRating: String,
-    val releaseDate: String
+    val userRating: String
     )
 
 fun List<TVShowsRoom>.asDomainModel() : List<TVShow> {
@@ -22,8 +21,7 @@ fun List<TVShowsRoom>.asDomainModel() : List<TVShow> {
             title = it.title,
             posterPath = it.posterPath,
             overview = it.overview,
-            userRating = it.userRating,
-            releaseDate = it.releaseDate
+            userRating = it.userRating
         )
     }
 }

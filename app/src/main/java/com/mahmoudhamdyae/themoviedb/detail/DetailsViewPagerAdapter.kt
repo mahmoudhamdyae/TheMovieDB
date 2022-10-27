@@ -10,7 +10,7 @@ import com.mahmoudhamdyae.themoviedb.domain.Movie
 /**
  * The Adapter of the view pager
  */
-class DetailsViewPagerAdapter(fragment: Fragment, val movie: Movie) : FragmentStateAdapter(fragment) {
+class DetailsViewPagerAdapter(fragment: Fragment, val movie: Movie, val isMovie: Boolean) : FragmentStateAdapter(fragment) {
 
     /**
      * Counts total number of tabs
@@ -23,8 +23,8 @@ class DetailsViewPagerAdapter(fragment: Fragment, val movie: Movie) : FragmentSt
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> SummaryFragment(movie.overview)
-            1 -> ReviewsFragment(movie.id)
-            else -> TrailersFragment(movie.id)
+            1 -> ReviewsFragment(movie.id, isMovie)
+            else -> TrailersFragment(movie.id, isMovie)
         }
     }
 }

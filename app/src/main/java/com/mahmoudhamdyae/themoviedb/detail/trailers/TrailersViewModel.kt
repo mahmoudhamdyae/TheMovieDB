@@ -13,7 +13,9 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class TrailersViewModel(
-    private val movieID: String, application: Application
+    private val movieID: String,
+    private val isMovie: Boolean,
+    application: Application
 ) : AndroidViewModel(application) {
 
     private val _status = MutableLiveData<MovieApiStatus>()
@@ -36,7 +38,12 @@ class TrailersViewModel(
             try {
                 _status.value = MovieApiStatus.LOADING
 
-                _trailersList.value = MovieApi.retrofitService.getTrailersAsync(movieID).await().results
+                if (isMovie) {
+                    _trailersList.value = MovieApi.retrofitService.getTrailersAsync(movieID).await().results
+                }
+                else {
+                    _trailersList.value = MovieApi.retrofitService.getTVTrailersAsync(movieID).await().results
+                }
 
                 _status.value = MovieApiStatus.DONE
             } catch (e: Exception) {

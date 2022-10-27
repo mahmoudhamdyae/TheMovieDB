@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentTrailersBinding
 
 
-class TrailersFragment(private val movieID: String):Fragment() {
+class TrailersFragment(private val movieID: String, val isMovie: Boolean):Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -20,7 +20,7 @@ class TrailersFragment(private val movieID: String):Fragment() {
         val binding = FragmentTrailersBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        val viewModelFactory = TrailersViewModelFactory(movieID, requireActivity().application)
+        val viewModelFactory = TrailersViewModelFactory(movieID, isMovie, requireActivity().application)
         val viewModel = ViewModelProvider(this, viewModelFactory)[TrailersViewModel::class.java]
         binding.viewModel = viewModel
 

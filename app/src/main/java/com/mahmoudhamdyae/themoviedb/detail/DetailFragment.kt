@@ -22,6 +22,7 @@ class DetailFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val movie = DetailFragmentArgs.fromBundle(requireArguments()).selectedMovie
+        val isMovie = DetailFragmentArgs.fromBundle(requireArguments()).isMovie
         val viewModelFactory = DetailViewModelFactory(movie, requireActivity().application)
         val viewModel = ViewModelProvider(this, viewModelFactory)[DetailViewModel::class.java]
         binding.viewModel = viewModel
@@ -38,7 +39,7 @@ class DetailFragment : Fragment() {
         val tabLayout = binding.tabs
         val viewPager = binding.viewPager
 
-        val adapter = DetailsViewPagerAdapter(this, movie)
+        val adapter = DetailsViewPagerAdapter(this, movie, isMovie)
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->

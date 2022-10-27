@@ -49,8 +49,7 @@ data class TVShowNetwork (
     @Json(name = "name") val title: String,
     @Json(name = "poster_path") val posterPath: String,
     val overview: String,
-    @Json(name = "vote_average") val userRating: String,
-    @Json(name= "release_date") val releaseDate: String =""
+    @Json(name = "vote_average") val userRating: String
 )
 
 fun NetworkTVShowContainer.asDatabaseModel() : Array<TVShowsRoom> {
@@ -60,8 +59,7 @@ fun NetworkTVShowContainer.asDatabaseModel() : Array<TVShowsRoom> {
             title = it.title,
             posterPath = it.posterPath,
             overview = it.overview,
-            userRating = it.userRating,
-            releaseDate = it.releaseDate
+            userRating = it.userRating
         )
     }.toTypedArray()
 }
