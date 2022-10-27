@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
+import com.mahmoudhamdyae.themoviedb.MainActivity
 import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentDetailBinding
 
@@ -20,6 +21,8 @@ class DetailFragment : Fragment() {
     ): View {
         val binding = FragmentDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
+
+        (activity as MainActivity).makeBottomNavigationViewInvisible()
 
         val movie = DetailFragmentArgs.fromBundle(requireArguments()).selectedMovie
         val isMovie = DetailFragmentArgs.fromBundle(requireArguments()).isMovie

@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentTvShowsBinding
 import com.mahmoudhamdyae.themoviedb.domain.Movie
 import com.mahmoudhamdyae.themoviedb.domain.TVShow
@@ -26,7 +28,6 @@ class TVShowsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        val binding = FragmentTvShowsBinding.inflate(inflater)
         _binding = FragmentTvShowsBinding.inflate(inflater, container, false)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
@@ -69,6 +70,12 @@ class TVShowsFragment : Fragment() {
         }))
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val view = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
+        view.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {
