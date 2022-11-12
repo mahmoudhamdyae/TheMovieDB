@@ -13,7 +13,7 @@ import retrofit2.http.Path
 private const val BASE_URL = "https://api.themoviedb.org/3/"
 
 // API Key
-private const val API_KEY = BuildConfig.API_KEY//"308fc9935783b6199369f60243c21395"
+private const val API_KEY = BuildConfig.API_KEY
 
 /**
  * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
@@ -39,43 +39,43 @@ interface MovieApiService {
      * The @GET annotation indicates that the "getPopularMovies" endpoint will be requested with the GET
      * HTTP method
      */
-    // https://api.themoviedb.org/3/discover/movie?api_key=308fc9935783b6199369f60243c21395&sort_by=popularity.desc
+    // https://api.themoviedb.org/3/discover/movie?api_key=API_KEY&sort_by=popularity.desc
     @GET("discover/movie?api_key=$API_KEY&sort_by=popularity.desc")
     fun getPopularMoviesAsync(): Deferred<NetworkMovieContainer>
 
-    // https://api.themoviedb.org/3/movie/760161/reviews?api_key=308fc9935783b6199369f60243c21395
+    // https://api.themoviedb.org/3/movie/760161/reviews?api_key=API_KEY
     @GET("movie/{movieId}/reviews?api_key=$API_KEY")
     fun getReviewsAsync(@Path("movieId") movieId: String): Deferred<NetworkReviewContainer>
 
-    // https://api.themoviedb.org/3/movie/760161/videos?api_key=308fc9935783b6199369f60243c21395
+    // https://api.themoviedb.org/3/movie/760161/videos?api_key=API_KEY
     @GET("movie/{movieId}/videos?api_key=$API_KEY")
     fun getTrailersAsync(@Path("movieId") movieId: String): Deferred<NetworkTrailerContainer>
 
     // TV Shows
 
-    // https://api.themoviedb.org/3/discover/tv?api_key=308fc9935783b6199369f60243c21395&sort_by=popularity.desc
+    // https://api.themoviedb.org/3/discover/tv?api_key=API_KEY&sort_by=popularity.desc
     @GET("discover/tv?api_key=$API_KEY&sort_by=popularity.desc")
     fun getPopularTVShowsAsync() : Deferred<NetworkTVShowContainer>
 
-    // https://api.themoviedb.org/3/tv/760161/reviews?api_key=308fc9935783b6199369f60243c21395
+    // https://api.themoviedb.org/3/tv/760161/reviews?api_key=API_KEY
     @GET("tv/{movieId}/reviews?api_key=$API_KEY")
     fun getTVReviewsAsync(@Path("movieId") movieId: String): Deferred<NetworkReviewContainer>
 
-    // https://api.themoviedb.org/3/tv/760161/videos?api_key=308fc9935783b6199369f60243c21395
+    // https://api.themoviedb.org/3/tv/760161/videos?api_key=API_KEY
     @GET("tv/{movieId}/videos?api_key=$API_KEY")
     fun getTVTrailersAsync(@Path("movieId") movieId: String): Deferred<NetworkTrailerContainer>
 
     // Authentication
 
-    // https://api.themoviedb.org/3/authentication/guest_session/new?api_key=308fc9935783b6199369f60243c21395
+    // https://api.themoviedb.org/3/authentication/guest_session/new?api_key=API_KEY
 //    @GET("authentication/guest_session/new?api_key=$API_KEY")
 //    fun createGuestSessionAsync(): Deferred<GuestSession>
 
-    // https://api.themoviedb.org/3/authentication/token/new?api_key=308fc9935783b6199369f60243c21395
+    // https://api.themoviedb.org/3/authentication/token/new?api_key=API_KEY
 //    @GET("authentication/token/new?api_key=$API_KEY")
 //    fun createRequestTokenAsync(): Deferred<RequestToken>
 
-    // https://api.themoviedb.org/3/authentication/session/new?api_key=308fc9935783b6199369f60243c21395
+    // https://api.themoviedb.org/3/authentication/session/new?api_key=API_KEY
 //    @POST("authentication/session/new?api_key=$API_KEY")
 //    fun createSessionAsync(): Deferred<Session>
 }
