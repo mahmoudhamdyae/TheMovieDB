@@ -1,6 +1,7 @@
 package com.mahmoudhamdyae.themoviedb.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.mahmoudhamdyae.themoviedb.BuildConfig
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
@@ -12,7 +13,7 @@ import retrofit2.http.Path
 private const val BASE_URL = "https://api.themoviedb.org/3/"
 
 // API Key
-private const val API_KEY = "308fc9935783b6199369f60243c21395"
+private const val API_KEY = BuildConfig.API_KEY//"308fc9935783b6199369f60243c21395"
 
 /**
  * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
