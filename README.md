@@ -14,7 +14,7 @@ An Android app that show popular movies and their details
 
 ## Demo
 <p>
-  <img src="Screenshots/Vid.m4v" height="500" width="250">
+  <img src="Screenshots/Vid.mp4" height="500" width="250">
 </p>
 
 ## APK Download
