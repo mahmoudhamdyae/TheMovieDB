@@ -3,7 +3,7 @@ An Android app that show popular movies and their details
 
 ## Screenshots
 <p align="center">
-  <img src="Screenshots/Mob1.jpg" height="1080" width="2340">
+  <img src="Screenshots/Mob1.jpg" height="450" width="220">
   <img src="Screenshots/Mob2.jpg" height="450" width="220">
   <img src="Screenshots/Mob3.jpg" height="450" width="220">
   <img src="Screenshots/Mob4.jpg" height="450" width="220">
