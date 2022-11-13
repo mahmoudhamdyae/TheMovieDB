@@ -16,4 +16,4 @@ An Android app that show popular movies and their details
 
   - [Movie API](https://www.themoviedb.org/documentation/api)
   
-  - [Android Developer Site] (https://developer.android.com/)
+  - [Android Developer Site] (https://developer.android.com)
