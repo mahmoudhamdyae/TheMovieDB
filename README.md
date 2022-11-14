@@ -17,8 +17,8 @@ An Android app that show popular movies and their details
   <img src="Screenshots/Vid.gif" height="500" width="250">
 </p>
 
-## APK Download
-[Click here](https://drive.google.com/file/d/1S-ihmG-1T9eQ89OtrSjmKUi-PrLMa0js/view?usp=sharing)
+## Google Play
+[Click here](https://play.google.com/store/apps/details?id=com.mahmoudhamdyae.themoviedb)
 
 ## Resources
 
