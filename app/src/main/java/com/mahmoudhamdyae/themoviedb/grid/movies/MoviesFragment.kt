@@ -33,7 +33,8 @@ class MoviesFragment : Fragment () {
         binding.lifecycleOwner = this
 
         // Initialize [MoviesViewModel].
-        val viewModel : MoviesViewModel = ViewModelProvider(this)[MoviesViewModel::class.java]
+        val viewModelFactory = MoviesViewModelFactory(1, requireActivity().application)
+        val viewModel : MoviesViewModel = ViewModelProvider(this, viewModelFactory)[MoviesViewModel::class.java]
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
@@ -59,7 +60,27 @@ class MoviesFragment : Fragment () {
             }
         }))
 
+        setPage(viewModel)
+
         return binding.root
+    }
+
+    private fun setPage(viewModel: MoviesViewModel) {
+        binding.firstButton.setOnClickListener {
+            viewModel.getMovies(1)
+        }
+        binding.secondButton.setOnClickListener {
+            viewModel.getMovies(2)
+        }
+        binding.thirdButton.setOnClickListener {
+            viewModel.getMovies(3)
+        }
+        binding.fourthButton.setOnClickListener {
+            viewModel.getMovies(4)
+        }
+        binding.fifthButton.setOnClickListener {
+            viewModel.getMovies(5)
+        }
     }
 
     override fun onResume() {

@@ -9,6 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.themoviedb.org/3/"
 
@@ -39,9 +40,9 @@ interface MovieApiService {
      * The @GET annotation indicates that the "getPopularMovies" endpoint will be requested with the GET
      * HTTP method
      */
-    // https://api.themoviedb.org/3/discover/movie?api_key=API_KEY&sort_by=popularity.desc
+    // https://api.themoviedb.org/3/discover/movie?api_key=API_KEY&sort_by=popularity.desc&page=1
     @GET("discover/movie?api_key=$API_KEY&sort_by=popularity.desc")
-    fun getPopularMoviesAsync(): Deferred<NetworkMovieContainer>
+    fun getPopularMoviesAsync(@Query("page") page: String): Deferred<NetworkMovieContainer>
 
     // https://api.themoviedb.org/3/movie/760161/reviews?api_key=API_KEY
     @GET("movie/{movieId}/reviews?api_key=$API_KEY")
@@ -53,9 +54,9 @@ interface MovieApiService {
 
     // TV Shows
 
-    // https://api.themoviedb.org/3/discover/tv?api_key=API_KEY&sort_by=popularity.desc
+    // https://api.themoviedb.org/3/discover/tv?api_key=API_KEY&sort_by=popularity.desc&page=1
     @GET("discover/tv?api_key=$API_KEY&sort_by=popularity.desc")
-    fun getPopularTVShowsAsync() : Deferred<NetworkTVShowContainer>
+    fun getPopularTVShowsAsync(@Query("page") page: String) : Deferred<NetworkTVShowContainer>
 
     // https://api.themoviedb.org/3/tv/760161/reviews?api_key=API_KEY
     @GET("tv/{movieId}/reviews?api_key=$API_KEY")

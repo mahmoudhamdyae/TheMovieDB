@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class TVShowsViewModel(application: Application) : AndroidViewModel(application) {
+class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(application) {
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
     private val _navigateToSelectedTVShow = MutableLiveData<TVShow?>()
@@ -37,14 +37,14 @@ class TVShowsViewModel(application: Application) : AndroidViewModel(application)
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
 
     init {
-        getTVShows()
+        getTVShows(page)
     }
 
-    private fun getTVShows() {
+    fun getTVShows(page: Int) {
         coroutineScope.launch {
             try {
                 _status.value = MovieApiStatus.LOADING
-                tvShowsRepository.refreshTVShows()
+                tvShowsRepository.refreshTVShows(page.toString())
                 _status.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (tvShowsList.value.isNullOrEmpty())

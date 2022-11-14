@@ -35,18 +35,18 @@ class MovieRepository(private val database: MoviesDatabase) {
      *
      * To actually load the movies for use, observe [movies]
      */
-    suspend fun refreshMovies() {
+    suspend fun refreshMovies(page: String) {
         withContext(Dispatchers.IO) {
-            val moviesList = MovieApi.retrofitService.getPopularMoviesAsync().await()
+            val moviesList = MovieApi.retrofitService.getPopularMoviesAsync(page).await()
             val moviesDao = database.movieDao
             moviesDao.clear()
             moviesDao.insertAll(*moviesList.asDatabaseModel())
         }
     }
 
-    suspend fun refreshTVShows() {
+    suspend fun refreshTVShows(page: String) {
         withContext(Dispatchers.IO) {
-            val tvShowsList = MovieApi.retrofitService.getPopularTVShowsAsync().await()
+            val tvShowsList = MovieApi.retrofitService.getPopularTVShowsAsync(page).await()
             val tvShowsDao = database.tvShowsDao
             tvShowsDao.clear()
             tvShowsDao.insertAll(*tvShowsList.asDatabaseModel())

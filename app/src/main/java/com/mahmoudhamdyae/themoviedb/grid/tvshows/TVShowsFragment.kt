@@ -34,7 +34,8 @@ class TVShowsFragment : Fragment() {
         binding.lifecycleOwner = this
 
         // Initialize [MoviesViewModel].
-        val viewModel : TVShowsViewModel = ViewModelProvider(this)[TVShowsViewModel::class.java]
+        val viewModelFactory = TVShowsViewModelFactory(1, requireActivity().application)
+        val viewModel : TVShowsViewModel = ViewModelProvider(this, viewModelFactory)[TVShowsViewModel::class.java]
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
@@ -69,7 +70,27 @@ class TVShowsFragment : Fragment() {
             }
         }))
 
+        setPage(viewModel)
+
         return binding.root
+    }
+
+    private fun setPage(viewModel: TVShowsViewModel) {
+        binding.firstButton.setOnClickListener {
+            viewModel.getTVShows(1)
+        }
+        binding.secondButton.setOnClickListener {
+            viewModel.getTVShows(2)
+        }
+        binding.thirdButton.setOnClickListener {
+            viewModel.getTVShows(3)
+        }
+        binding.fourthButton.setOnClickListener {
+            viewModel.getTVShows(4)
+        }
+        binding.fifthButton.setOnClickListener {
+            viewModel.getTVShows(5)
+        }
     }
 
     override fun onResume() {

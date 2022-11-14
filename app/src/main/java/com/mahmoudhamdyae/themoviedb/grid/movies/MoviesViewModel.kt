@@ -8,12 +8,9 @@ import com.mahmoudhamdyae.themoviedb.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb.database.MovieRepository
 import com.mahmoudhamdyae.themoviedb.database.getDatabase
 import com.mahmoudhamdyae.themoviedb.domain.Movie
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
-class MoviesViewModel(application: Application) : AndroidViewModel(application) {
+class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(application) {
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
     private val _navigateToSelectedMovie = MutableLiveData<Movie?>()
@@ -42,14 +39,14 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
 
     init {
-        getMovies()
+        getMovies(page)
     }
 
-    private fun getMovies() {
+    fun getMovies(page : Int) {
         coroutineScope.launch {
             try {
                 _status.value = MovieApiStatus.LOADING
-                moviesRepository.refreshMovies()
+                moviesRepository.refreshMovies(page.toString())
                 _status.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (moviesList.value.isNullOrEmpty())
