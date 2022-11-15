@@ -1,4 +1,4 @@
-package com.mahmoudhamdyae.themoviedb.overview.movies
+package com.mahmoudhamdyae.themoviedb.overview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

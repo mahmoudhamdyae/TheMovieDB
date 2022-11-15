@@ -17,6 +17,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_overview_to_allFragment"
+            app:destination="@id/allFragment" />
     </fragment>
 
     <fragment
@@ -47,8 +50,10 @@
         <argument
             android:name="selectedMovie"
             app:argType="com.mahmoudhamdyae.themoviedb.database.network.Movie" />
-        <argument
-            android:name="isMovie"
-            app:argType="boolean" />
     </fragment>
+    <fragment
+        android:id="@+id/allFragment"
+        android:name="com.mahmoudhamdyae.themoviedb.all.AllFragment"
+        android:label="AllFragment"
+        tools:layout="@layout/fragment_all"/>
 </navigation>

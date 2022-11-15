@@ -7,11 +7,16 @@
 
     </data>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="haha" />
+
+    <!--<androidx.recyclerview.widget.RecyclerView
         android:id="@+id/photos_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:padding="@dimen/movies_padding"
-        tools:listitem="@layout/movie_view_item" />
+        tools:listitem="@layout/movie_view_item" />-->
 </layout>

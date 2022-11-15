@@ -9,11 +9,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
+import com.mahmoudhamdyae.themoviedb.overview.MovieAdapter
 import com.mahmoudhamdyae.themoviedb.overview.OverviewFragmentDirections
 
 class MoviesFragment : Fragment () {
@@ -57,11 +57,15 @@ class MoviesFragment : Fragment () {
         // for another navigation event.
         viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer(fun(movie : Movie?) {
             if (null != movie) {
-                findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(movie, true))
+                findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(movie))
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation
                 viewModel.displayPropertyDetailsComplete()
             }
         }))
+
+        binding.viewAllButton.setOnClickListener {
+            findNavController().navigate(OverviewFragmentDirections.actionNavigationOverviewToAllFragment())
+        }
 
         return binding.root
     }

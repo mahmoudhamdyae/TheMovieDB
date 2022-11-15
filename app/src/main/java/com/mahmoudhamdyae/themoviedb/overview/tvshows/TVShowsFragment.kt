@@ -14,6 +14,7 @@ import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentTvShowsBinding
 import com.mahmoudhamdyae.themoviedb.overview.OverviewFragmentDirections
+import com.mahmoudhamdyae.themoviedb.overview.MovieAdapter
 
 class TVShowsFragment : Fragment() {
 
@@ -46,7 +47,7 @@ class TVShowsFragment : Fragment() {
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our property is clicked
-        binding.photosGrid.adapter = TVShowAdapter(TVShowAdapter.OnClickListener {
+        binding.photosGrid.adapter = MovieAdapter(MovieAdapter.OnClickListener {
             viewModel.displayPropertyDetails(it)
         })
 
@@ -55,17 +56,7 @@ class TVShowsFragment : Fragment() {
         // for another navigation event.
         viewModel.navigateToSelectedTVShow.observe(viewLifecycleOwner, Observer(fun(tvShow : Movie?) {
             if (null != tvShow) {
-                findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(
-                    Movie(
-                        tvShow.id,
-                        tvShow.name,
-                        tvShow.name,
-                        tvShow.posterPath,
-                        tvShow.overview,
-                        tvShow.userRating,
-                        ""
-                    ),
-                    false))
+                findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(tvShow))
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation
                 viewModel.displayPropertyDetailsComplete()
             }

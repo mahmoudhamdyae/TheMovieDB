@@ -6,6 +6,14 @@
     <string name="vote_average">/10</string>
     <string name="review_empty">There is no Reviews</string>
 
+    <!-- Main /-->
+    <string name="popular_movies">Popular Movies</string>
+    <string name="top_rated_movies">Top Rated Movies</string>
+    <string name="view_all">View All</string>
+
+    <string name="popular_tv_shows">Popular TV Shows</string>
+    <string name="top_rated_tv_shows">Top Rated TV Shows</string>
+
     <!-- Tabs -->
     <string name="tab_movies">Movies</string>
     <string name="tab_tv_shows">TV Shows</string>

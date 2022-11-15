@@ -25,14 +25,14 @@ class DetailFragment : Fragment() {
         (activity as MainActivity).makeBottomNavigationViewInvisible()
 
         val movie = DetailFragmentArgs.fromBundle(requireArguments()).selectedMovie
-        val isMovie = DetailFragmentArgs.fromBundle(requireArguments()).isMovie
+        val isMovie = movie.title != ""
         val viewModelFactory = DetailViewModelFactory(movie, requireActivity().application)
         val viewModel = ViewModelProvider(this, viewModelFactory)[DetailViewModel::class.java]
         binding.viewModel = viewModel
 
         // Navigate Up
         val toolbar = binding.toolbar
-        toolbar.title = movie.title
+        toolbar.title = if (isMovie) movie.title else movie.name
         toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
