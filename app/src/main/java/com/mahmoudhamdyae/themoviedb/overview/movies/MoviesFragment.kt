@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -40,11 +41,16 @@ class MoviesFragment : Fragment () {
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
-        binding.photosGrid.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.photosGridPopular.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our property is clicked
-        binding.photosGrid.adapter = MovieAdapter(MovieAdapter.OnClickListener {
+        binding.photosGridPopular.adapter = MovieAdapter(MovieAdapter.OnClickListener {
+            viewModel.displayPropertyDetails(it)
+        })
+
+        binding.photosGridTopRated.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.photosGridTopRated.adapter = MovieAdapter(MovieAdapter.OnClickListener {
             viewModel.displayPropertyDetails(it)
         })
 
@@ -59,8 +65,15 @@ class MoviesFragment : Fragment () {
             }
         }))
 
-        binding.viewAllButton.setOnClickListener {
-            viewModel.list.observe(viewLifecycleOwner) {
+        binding.viewAllButtonPopular.setOnClickListener {
+            viewModel.listOfPopularContainer.observe(viewLifecycleOwner) {
+                findNavController().navigate(OverviewFragmentDirections.actionNavigationOverviewToAllFragment(it))
+            }
+        }
+
+        binding.viewAllButtonTopRated.setOnClickListener {
+            viewModel.listOfTopRatedContainer.observe(viewLifecycleOwner) {
+                Toast.makeText(context, "haha", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(OverviewFragmentDirections.actionNavigationOverviewToAllFragment(it))
             }
         }

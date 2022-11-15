@@ -25,23 +25,53 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/top_rated_movies" />
+                android:text="@string/popular_tv_shows" />
 
             <Button
-                android:id="@+id/view_all_button"
+                android:id="@+id/view_all_button_popular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/view_all" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/photos_grid"
+            android:id="@+id/photos_grid_popular"
             android:layout_width="match_parent"
             android:layout_below="@+id/popular"
             android:layout_height="@dimen/details_movie_image_height"
             android:clipToPadding="false"
             android:padding="@dimen/movies_padding"
-            app:moviesListData="@{viewModel.tvShowsList}"
+            app:moviesListData="@{viewModel.tvShowsListPopular}"
+            tools:listitem="@layout/movie_view_item" />
+
+        <LinearLayout
+            android:id="@+id/top_rated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/photos_grid_popular"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/top_rated_tv_shows" />
+
+            <Button
+                android:id="@+id/view_all_button_top_rated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/view_all" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/photos_grid_top_rated"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/top_rated"
+            android:layout_height="@dimen/details_movie_image_height"
+            android:clipToPadding="false"
+            android:padding="@dimen/movies_padding"
+            app:moviesListData="@{viewModel.tvShowsListTopRated}"
             tools:listitem="@layout/movie_view_item" />
 
         <ImageView

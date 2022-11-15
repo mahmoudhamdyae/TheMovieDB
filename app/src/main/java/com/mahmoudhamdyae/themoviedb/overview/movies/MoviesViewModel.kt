@@ -23,13 +23,21 @@ class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(ap
     val status: LiveData<MovieApiStatus>
         get() = _status
 
-    private val _moviesList = MutableLiveData<List<Movie>>()
-    val moviesList: LiveData<List<Movie>>
-        get() = _moviesList
+    private val _moviesListPopular = MutableLiveData<List<Movie>>()
+    val moviesListPopular: LiveData<List<Movie>>
+        get() = _moviesListPopular
 
-    private val _list = MutableLiveData<NetworkMovieContainer>()
-    val list: LiveData<NetworkMovieContainer>
-        get() = _list
+    private val _moviesListTopRated = MutableLiveData<List<Movie>>()
+    val moviesListTopRated: LiveData<List<Movie>>
+        get() = _moviesListTopRated
+
+    private val _listOfPopularContainer = MutableLiveData<NetworkMovieContainer>()
+    val listOfPopularContainer: LiveData<NetworkMovieContainer>
+        get() = _listOfPopularContainer
+
+    private val _listOfTopRatedContainer = MutableLiveData<NetworkMovieContainer>()
+    val listOfTopRatedContainer: LiveData<NetworkMovieContainer>
+        get() = _listOfTopRatedContainer
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
@@ -42,11 +50,15 @@ class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(ap
         coroutineScope.launch {
             try {
                 _status.value = MovieApiStatus.LOADING
-                _list.value = MovieApi.retrofitService.getPopularMoviesAsync(page.toString()).await()
-                _moviesList.value = MovieApi.retrofitService.getPopularMoviesAsync(page.toString()).await().results
+
+                _listOfPopularContainer.value = MovieApi.retrofitService.getPopularMoviesAsync(page.toString()).await()
+                _listOfTopRatedContainer.value = MovieApi.retrofitService.getTopRatedMoviesAsync().await()
+                _moviesListPopular.value = MovieApi.retrofitService.getPopularMoviesAsync(page.toString()).await().results
+                _moviesListTopRated.value = MovieApi.retrofitService.getTopRatedMoviesAsync().await().results
+
                 _status.value = MovieApiStatus.DONE
             } catch (e: Exception) {
-                if (_moviesList.value.isNullOrEmpty())
+                if (_moviesListPopular.value.isNullOrEmpty())
                     _status.value = MovieApiStatus.ERROR
             }
         }

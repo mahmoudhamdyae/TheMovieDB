@@ -44,6 +44,10 @@ interface MovieApiService {
     @GET("discover/movie?api_key=$API_KEY&sort_by=popularity.desc")
     fun getPopularMoviesAsync(@Query("page") page: String): Deferred<NetworkMovieContainer>
 
+    // https://api.themoviedb.org/3/movie/top_rated?api_key=$API_KEY
+    @GET("movie/top_rated?api_key=$API_KEY")
+    fun getTopRatedMoviesAsync(): Deferred<NetworkMovieContainer>
+
     // https://api.themoviedb.org/3/movie/760161/reviews?api_key=API_KEY
     @GET("movie/{movieId}/reviews?api_key=$API_KEY")
     fun getReviewsAsync(@Path("movieId") movieId: String): Deferred<NetworkReviewContainer>
@@ -57,6 +61,10 @@ interface MovieApiService {
     // https://api.themoviedb.org/3/discover/tv?api_key=API_KEY&sort_by=popularity.desc&page=1
     @GET("discover/tv?api_key=$API_KEY&sort_by=popularity.desc")
     fun getPopularTVShowsAsync(@Query("page") page: String) : Deferred<NetworkMovieContainer>
+
+    // https://api.themoviedb.org/3/movie/top_rated?api_key=$API_KEY
+    @GET("tv/top_rated?api_key=$API_KEY")
+    fun getTopRatedTVShowsAsync() : Deferred<NetworkMovieContainer>
 
     // https://api.themoviedb.org/3/tv/760161/reviews?api_key=API_KEY
     @GET("tv/{movieId}/reviews?api_key=$API_KEY")
