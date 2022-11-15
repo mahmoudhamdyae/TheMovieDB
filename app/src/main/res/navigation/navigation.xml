@@ -18,6 +18,27 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.mahmoudhamdyae.themoviedb.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_favourite">
+        <action
+            android:id="@+id/action_searchFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_favourite"
+        android:name="com.mahmoudhamdyae.themoviedb.favourite.FavouriteFragment"
+        android:label="FavouriteFragment"
+        tools:layout="@layout/fragment_favourite">
+        <action
+            android:id="@+id/action_favouriteFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.mahmoudhamdyae.themoviedb.detail.DetailFragment"

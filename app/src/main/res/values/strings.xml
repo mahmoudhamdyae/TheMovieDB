@@ -13,7 +13,7 @@
     <!-- Bottom Navigation -->
     <string name="navigation_movies">Movies</string>
     <string name="navigation_search">Search</string>
-    <string name="navigation_favourites">Favourites</string>
+    <string name="navigation_favourite">Favourites</string>
 
     <!-- Tabs -->
     <string name="summary_fragment">Summary</string>
