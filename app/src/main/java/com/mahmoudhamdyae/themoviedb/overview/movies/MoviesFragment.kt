@@ -8,13 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.mahmoudhamdyae.themoviedb.R
-import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
-import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.MovieAdapter
-import com.mahmoudhamdyae.themoviedb.getNoOfColumns
+import com.mahmoudhamdyae.themoviedb.R
+import com.mahmoudhamdyae.themoviedb.database.network.Movie
+import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
 import com.mahmoudhamdyae.themoviedb.overview.OverviewFragmentDirections
 
 class MoviesFragment : Fragment () {
@@ -41,10 +40,7 @@ class MoviesFragment : Fragment () {
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
-        // Calculate number of columns
-        val noOfColumns = getNoOfColumns(requireContext())
-        binding.photosGrid.layoutManager = GridLayoutManager(context, noOfColumns)
-//        binding.photosGrid.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.photosGrid.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our property is clicked

@@ -10,12 +10,13 @@
             type="com.mahmoudhamdyae.themoviedb.overview.tvshows.TVShowsViewModel" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/popular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -24,7 +25,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/popular_movies" />
+                android:text="@string/top_rated_movies" />
 
             <Button
                 android:id="@+id/view_all_button"
@@ -36,7 +37,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/photos_grid"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_below="@+id/popular"
+            android:layout_height="@dimen/details_movie_image_height"
             android:clipToPadding="false"
             android:padding="@dimen/movies_padding"
             app:moviesListData="@{viewModel.tvShowsList}"
@@ -45,10 +47,10 @@
         <ImageView
             android:id="@+id/status_image"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:contentDescription="@string/status_image_description"
             app:movieApiStatus="@{viewModel.status}"
-            tools:src="@drawable/ic_launcher_foreground" />
-    </LinearLayout>
+            tools:src="@drawable/loading_animation" />
+    </RelativeLayout>
 </layout>

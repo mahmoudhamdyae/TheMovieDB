@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/movie_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/details_movie_image_width"
+        android:layout_height="@dimen/details_movie_image_height"
         android:adjustViewBounds="true"
         android:contentDescription="@string/movie_image_description"
         android:padding="@dimen/movies_padding"
