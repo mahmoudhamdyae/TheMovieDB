@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.mahmoudhamdyae.themoviedb.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.database.network.MovieApi
+import com.mahmoudhamdyae.themoviedb.database.network.NetworkMovieContainer
 import kotlinx.coroutines.*
 
 class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(application) {
@@ -22,14 +23,13 @@ class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(ap
     val status: LiveData<MovieApiStatus>
         get() = _status
 
-    // Handle Network is not available
-//    private val _toastNetwork = MutableLiveData<String?>()
-//    val toastNetwork: LiveData<String?>
-//        get() = _toastNetwork
-
     private val _moviesList = MutableLiveData<List<Movie>>()
     val moviesList: LiveData<List<Movie>>
         get() = _moviesList
+
+    private val _list = MutableLiveData<NetworkMovieContainer>()
+    val list: LiveData<NetworkMovieContainer>
+        get() = _list
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
@@ -42,13 +42,12 @@ class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(ap
         coroutineScope.launch {
             try {
                 _status.value = MovieApiStatus.LOADING
+                _list.value = MovieApi.retrofitService.getPopularMoviesAsync(page.toString()).await()
                 _moviesList.value = MovieApi.retrofitService.getPopularMoviesAsync(page.toString()).await().results
                 _status.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (_moviesList.value.isNullOrEmpty())
                     _status.value = MovieApiStatus.ERROR
-//                else
-//                    _toastNetwork.value = R.string.network_not_available.toString()
             }
         }
     }
@@ -67,10 +66,6 @@ class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(ap
     fun displayPropertyDetailsComplete() {
         _navigateToSelectedMovie.value = null
     }
-
-//    fun clearToast() {
-//        _toastNetwork.value = null
-//    }
 
     override fun onCleared() {
         super.onCleared()

@@ -55,5 +55,9 @@
         android:id="@+id/allFragment"
         android:name="com.mahmoudhamdyae.themoviedb.all.AllFragment"
         android:label="AllFragment"
-        tools:layout="@layout/fragment_all"/>
+        tools:layout="@layout/fragment_all">
+        <argument
+            android:name="movies"
+            app:argType="com.mahmoudhamdyae.themoviedb.database.network.NetworkMovieContainer" />
+    </fragment>
 </navigation>

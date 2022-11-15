@@ -14,8 +14,9 @@ import kotlinx.parcelize.Parcelize
  *   "results": []
  * }
  */
+@Parcelize
 @JsonClass(generateAdapter = true)
-data class NetworkMovieContainer(val results: List<Movie>)
+data class NetworkMovieContainer(val results: List<Movie>) : Parcelable
 
 @Parcelize
 @JsonClass(generateAdapter = true)
@@ -28,9 +29,6 @@ data class Movie (
     @Json(name = "vote_average") val userRating: String,
     @Json(name= "release_date") val releaseDate: String = ""
     ) : Parcelable
-
-@JsonClass(generateAdapter = true)
-data class NetworkTVShowContainer(val results: List<Movie>)
 
 // Reviews
 

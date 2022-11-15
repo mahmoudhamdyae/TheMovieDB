@@ -56,7 +56,7 @@ interface MovieApiService {
 
     // https://api.themoviedb.org/3/discover/tv?api_key=API_KEY&sort_by=popularity.desc&page=1
     @GET("discover/tv?api_key=$API_KEY&sort_by=popularity.desc")
-    fun getPopularTVShowsAsync(@Query("page") page: String) : Deferred<NetworkTVShowContainer>
+    fun getPopularTVShowsAsync(@Query("page") page: String) : Deferred<NetworkMovieContainer>
 
     // https://api.themoviedb.org/3/tv/760161/reviews?api_key=API_KEY
     @GET("tv/{movieId}/reviews?api_key=$API_KEY")

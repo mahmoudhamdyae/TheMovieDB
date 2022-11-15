@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.mahmoudhamdyae.themoviedb.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.database.network.MovieApi
+import com.mahmoudhamdyae.themoviedb.database.network.NetworkMovieContainer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -29,6 +30,10 @@ class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(a
     val tvShowsList: LiveData<List<Movie>>
         get() = _tvShowsList
 
+    private val _list = MutableLiveData<NetworkMovieContainer>()
+    val list: LiveData<NetworkMovieContainer>
+        get() = _list
+
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
 
@@ -40,6 +45,7 @@ class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(a
         coroutineScope.launch {
             try {
                 _status.value = MovieApiStatus.LOADING
+                _list.value = MovieApi.retrofitService.getPopularTVShowsAsync(page.toString()).await()
                 _tvShowsList.value = MovieApi.retrofitService.getPopularTVShowsAsync(page.toString()).await().results
                 _status.value = MovieApiStatus.DONE
             } catch (e: Exception) {

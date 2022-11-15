@@ -62,6 +62,12 @@ class TVShowsFragment : Fragment() {
             }
         }))
 
+        binding.viewAllButton.setOnClickListener {
+            viewModel.list.observe(viewLifecycleOwner) {
+                findNavController().navigate(OverviewFragmentDirections.actionNavigationOverviewToAllFragment(it))
+            }
+        }
+
         return binding.root
     }
 

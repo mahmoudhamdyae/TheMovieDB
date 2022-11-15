@@ -17,6 +17,14 @@ class AllFragment: Fragment() {
         val binding = FragmentAllBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
+        val movies = AllFragmentArgs.fromBundle(requireArguments()).movies.results
+
+        var text = ""
+        for (movie in movies) {
+            text += movie.name + movie.title + "\n\n\n\n\n\n"
+        }
+        binding.textView.text = text
+
         return binding.root
     }
 }

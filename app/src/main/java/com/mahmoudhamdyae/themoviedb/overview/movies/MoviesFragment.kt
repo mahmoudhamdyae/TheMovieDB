@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
+import com.mahmoudhamdyae.themoviedb.database.network.NetworkMovieContainer
 import com.mahmoudhamdyae.themoviedb.overview.MovieAdapter
 import com.mahmoudhamdyae.themoviedb.overview.OverviewFragmentDirections
 
@@ -20,8 +21,7 @@ class MoviesFragment : Fragment () {
 
     private var _binding: FragmentMoviesBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -64,7 +64,9 @@ class MoviesFragment : Fragment () {
         }))
 
         binding.viewAllButton.setOnClickListener {
-            findNavController().navigate(OverviewFragmentDirections.actionNavigationOverviewToAllFragment())
+            viewModel.list.observe(viewLifecycleOwner) {
+                findNavController().navigate(OverviewFragmentDirections.actionNavigationOverviewToAllFragment(it))
+            }
         }
 
         return binding.root
