@@ -1,4 +1,4 @@
-package com.mahmoudhamdyae.themoviedb.grid.movies
+package com.mahmoudhamdyae.themoviedb.overview.tvshows
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,17 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb.R
-import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
+import com.mahmoudhamdyae.themoviedb.databinding.FragmentTvShowsBinding
 import com.mahmoudhamdyae.themoviedb.domain.Movie
+import com.mahmoudhamdyae.themoviedb.domain.TVShow
+import com.mahmoudhamdyae.themoviedb.overview.OverviewFragmentDirections
 
-class MoviesFragment : Fragment () {
+class TVShowsFragment : Fragment() {
 
-    private var _binding: FragmentMoviesBinding? = null
+    private var _binding: FragmentTvShowsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -27,14 +29,14 @@ class MoviesFragment : Fragment () {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMoviesBinding.inflate(inflater, container, false)
+        _binding = FragmentTvShowsBinding.inflate(inflater, container, false)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
         // Initialize [MoviesViewModel].
-        val viewModelFactory = MoviesViewModelFactory(1, requireActivity().application)
-        val viewModel : MoviesViewModel = ViewModelProvider(this, viewModelFactory)[MoviesViewModel::class.java]
+        val viewModelFactory = TVShowsViewModelFactory(1, requireActivity().application)
+        val viewModel : TVShowsViewModel = ViewModelProvider(this, viewModelFactory)[TVShowsViewModel::class.java]
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
@@ -45,16 +47,25 @@ class MoviesFragment : Fragment () {
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our property is clicked
-        binding.photosGrid.adapter = MovieAdapter(MovieAdapter.OnClickListener {
+        binding.photosGrid.adapter = TVShowAdapter(TVShowAdapter.OnClickListener {
             viewModel.displayPropertyDetails(it)
         })
 
         // Observe the navigateToSelectedProperty LiveData and Navigate when it isn't null
         // After navigating, call displayPropertyDetailsComplete() so that the ViewModel is ready
         // for another navigation event.
-        viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer(fun(movie : Movie?) {
-            if (null != movie) {
-                findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToDetailFragment(movie, true))
+        viewModel.navigateToSelectedTVShow.observe(viewLifecycleOwner, Observer(fun(tvShow : TVShow?) {
+            if (null != tvShow) {
+                findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(
+                    Movie(
+                        tvShow.id,
+                        tvShow.title,
+                        tvShow.posterPath,
+                        tvShow.overview,
+                        tvShow.userRating,
+                        ""
+                    ),
+                    false))
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation
                 viewModel.displayPropertyDetailsComplete()
             }

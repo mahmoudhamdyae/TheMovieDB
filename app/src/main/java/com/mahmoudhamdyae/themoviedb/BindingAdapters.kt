@@ -7,12 +7,12 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.mahmoudhamdyae.themoviedb.grid.tvshows.TVShowAdapter
+import com.mahmoudhamdyae.themoviedb.overview.tvshows.TVShowAdapter
 import com.mahmoudhamdyae.themoviedb.detail.reviews.ReviewsAdapter
 import com.mahmoudhamdyae.themoviedb.detail.trailers.TrailersAdapter
 import com.mahmoudhamdyae.themoviedb.domain.Movie
 import com.mahmoudhamdyae.themoviedb.domain.TVShow
-import com.mahmoudhamdyae.themoviedb.grid.movies.MovieAdapter
+import com.mahmoudhamdyae.themoviedb.overview.movies.MovieAdapter
 import com.mahmoudhamdyae.themoviedb.network.NetworkReview
 import com.mahmoudhamdyae.themoviedb.network.NetworkTrailer
 

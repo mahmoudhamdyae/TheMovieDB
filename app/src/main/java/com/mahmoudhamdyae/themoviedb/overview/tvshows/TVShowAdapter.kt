@@ -1,4 +1,4 @@
-package com.mahmoudhamdyae.themoviedb.grid.tvshows
+package com.mahmoudhamdyae.themoviedb.overview.tvshows
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

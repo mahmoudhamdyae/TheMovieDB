@@ -7,23 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.mahmoudhamdyae.themoviedb.grid.movies.MoviesViewModel" />
+            type="com.mahmoudhamdyae.themoviedb.overview.movies.MoviesViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:titleTextColor="@color/colorText"
-            android:elevation="@dimen/toolbar_elevation"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:title="@string/navigation_movies" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/photos_grid"
