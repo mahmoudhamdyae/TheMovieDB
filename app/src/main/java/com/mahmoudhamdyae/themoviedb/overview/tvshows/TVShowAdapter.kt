@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmoudhamdyae.themoviedb.databinding.TvShowViewItemBinding
-import com.mahmoudhamdyae.themoviedb.domain.TVShow
+import com.mahmoudhamdyae.themoviedb.database.network.TVShow
 
 class TVShowAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<TVShow, TVShowAdapter.MoviePropertyViewHolder>(DiffCallback) {

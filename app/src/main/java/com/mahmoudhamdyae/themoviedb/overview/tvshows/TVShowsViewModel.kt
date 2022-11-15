@@ -5,9 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mahmoudhamdyae.themoviedb.MovieApiStatus
-import com.mahmoudhamdyae.themoviedb.database.MovieRepository
-import com.mahmoudhamdyae.themoviedb.database.getDatabase
-import com.mahmoudhamdyae.themoviedb.domain.TVShow
+import com.mahmoudhamdyae.themoviedb.database.network.MovieApi
+import com.mahmoudhamdyae.themoviedb.database.network.TVShow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -26,12 +25,9 @@ class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(a
     val status: LiveData<MovieApiStatus>
         get() = _status
 
-    private val database =
-        getDatabase(application)
-    private val tvShowsRepository =
-        MovieRepository(database)
-
-    val tvShowsList = tvShowsRepository.tvShows
+    private val _tvShowsList = MutableLiveData<List<TVShow>>()
+    val tvShowsList: LiveData<List<TVShow>>
+        get() = _tvShowsList
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
@@ -40,11 +36,11 @@ class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(a
         getTVShows(page)
     }
 
-    fun getTVShows(page: Int) {
+    private fun getTVShows(page: Int) {
         coroutineScope.launch {
             try {
                 _status.value = MovieApiStatus.LOADING
-                tvShowsRepository.refreshTVShows(page.toString())
+                _tvShowsList.value = MovieApi.retrofitService.getPopularTVShowsAsync(page.toString()).await().results
                 _status.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (tvShowsList.value.isNullOrEmpty())

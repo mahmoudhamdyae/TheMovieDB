@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
-import com.mahmoudhamdyae.themoviedb.domain.Movie
+import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.overview.OverviewFragmentDirections
 
 class MoviesFragment : Fragment () {

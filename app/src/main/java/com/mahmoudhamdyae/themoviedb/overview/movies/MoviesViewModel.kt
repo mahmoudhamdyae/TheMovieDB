@@ -5,9 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mahmoudhamdyae.themoviedb.MovieApiStatus
-import com.mahmoudhamdyae.themoviedb.database.MovieRepository
-import com.mahmoudhamdyae.themoviedb.database.getDatabase
-import com.mahmoudhamdyae.themoviedb.domain.Movie
+import com.mahmoudhamdyae.themoviedb.database.network.Movie
+import com.mahmoudhamdyae.themoviedb.database.network.MovieApi
 import kotlinx.coroutines.*
 
 class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(application) {
@@ -28,12 +27,9 @@ class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(ap
 //    val toastNetwork: LiveData<String?>
 //        get() = _toastNetwork
 
-    private val database =
-        getDatabase(application)
-    private val moviesRepository =
-        MovieRepository(database)
-
-    val moviesList = moviesRepository.movies
+    private val _moviesList = MutableLiveData<List<Movie>>()
+    val moviesList: LiveData<List<Movie>>
+        get() = _moviesList
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
@@ -42,14 +38,14 @@ class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(ap
         getMovies(page)
     }
 
-    fun getMovies(page : Int) {
+    private fun getMovies(page : Int) {
         coroutineScope.launch {
             try {
                 _status.value = MovieApiStatus.LOADING
-                moviesRepository.refreshMovies(page.toString())
+                _moviesList.value = MovieApi.retrofitService.getPopularMoviesAsync(page.toString()).await().results
                 _status.value = MovieApiStatus.DONE
             } catch (e: Exception) {
-                if (moviesList.value.isNullOrEmpty())
+                if (_moviesList.value.isNullOrEmpty())
                     _status.value = MovieApiStatus.ERROR
 //                else
 //                    _toastNetwork.value = R.string.network_not_available.toString()

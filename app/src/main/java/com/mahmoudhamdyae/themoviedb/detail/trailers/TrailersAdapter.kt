@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmoudhamdyae.themoviedb.databinding.TrailerViewItemBinding
-import com.mahmoudhamdyae.themoviedb.domain.Movie
-import com.mahmoudhamdyae.themoviedb.network.NetworkTrailer
+import com.mahmoudhamdyae.themoviedb.database.network.NetworkTrailer
 
 
-class TrailersAdapter(val onClickListener: OnClickListener) :
+class TrailersAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<NetworkTrailer, TrailersAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -45,11 +44,6 @@ class TrailersAdapter(val onClickListener: OnClickListener) :
         }
     }
 
-    /**
-     * Custom listener that handles clicks on [RecyclerView] items.  Passes the [NetworkTrailer]
-     * associated with the current item to the [onClick] function.
-     * @param clickListener lambda that will be called with the current [Movie]
-     */
     class OnClickListener(val clickListener: (networkTrailer: NetworkTrailer) -> Unit) {
         fun onClick(networkTrailer: NetworkTrailer) = clickListener(networkTrailer)
     }

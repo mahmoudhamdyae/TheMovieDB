@@ -5,7 +5,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mahmoudhamdyae.themoviedb.detail.reviews.ReviewsFragment
 import com.mahmoudhamdyae.themoviedb.detail.summary.SummaryFragment
 import com.mahmoudhamdyae.themoviedb.detail.trailers.TrailersFragment
-import com.mahmoudhamdyae.themoviedb.domain.Movie
+import com.mahmoudhamdyae.themoviedb.database.network.Movie
 
 /**
  * The Adapter of the view pager

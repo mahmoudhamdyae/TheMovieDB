@@ -3,7 +3,7 @@ package com.mahmoudhamdyae.themoviedb.detail
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mahmoudhamdyae.themoviedb.domain.Movie
+import com.mahmoudhamdyae.themoviedb.database.network.Movie
 
 /**
  * Simple ViewModel factory that provides the Movie and context to the ViewModel.

@@ -1,9 +1,9 @@
-package com.mahmoudhamdyae.themoviedb.network
+package com.mahmoudhamdyae.themoviedb.database.network
 
-import com.mahmoudhamdyae.themoviedb.database.movies.MovieRoom
-import com.mahmoudhamdyae.themoviedb.database.tvshows.TVShowsRoom
+import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
 /**
  * MovieHolder holds a list of Movies.
@@ -15,54 +15,30 @@ import com.squareup.moshi.JsonClass
  * }
  */
 @JsonClass(generateAdapter = true)
-data class NetworkMovieContainer(val results: List<MovieNetwork>)
+data class NetworkMovieContainer(val results: List<Movie>)
 
+@Parcelize
 @JsonClass(generateAdapter = true)
-data class MovieNetwork (
+data class Movie (
     val id: String,
     val title: String,
     @Json(name = "poster_path") val posterPath: String,
     val overview: String,
     @Json(name = "vote_average") val userRating: String,
     @Json(name= "release_date") val releaseDate: String
-    )
-
-fun NetworkMovieContainer.asDatabaseModel() : Array<MovieRoom> {
-    return results.map {
-        MovieRoom(
-            id = it.id,
-            title = it.title,
-            posterPath = it.posterPath,
-            overview = it.overview,
-            userRating = it.userRating,
-            releaseDate = it.releaseDate
-        )
-    }.toTypedArray()
-}
+    ) : Parcelable
 
 @JsonClass(generateAdapter = true)
-data class NetworkTVShowContainer(val results: List<TVShowNetwork>)
+data class NetworkTVShowContainer(val results: List<TVShow>)
 
 @JsonClass(generateAdapter = true)
-data class TVShowNetwork (
+data class TVShow (
     val id: String,
     @Json(name = "name") val title: String,
     @Json(name = "poster_path") val posterPath: String,
     val overview: String,
     @Json(name = "vote_average") val userRating: String
 )
-
-fun NetworkTVShowContainer.asDatabaseModel() : Array<TVShowsRoom> {
-    return results.map {
-        TVShowsRoom(
-            id = it.id,
-            title = it.title,
-            posterPath = it.posterPath,
-            overview = it.overview,
-            userRating = it.userRating
-        )
-    }.toTypedArray()
-}
 
 // Reviews
 

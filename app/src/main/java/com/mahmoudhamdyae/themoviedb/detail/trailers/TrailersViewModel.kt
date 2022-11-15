@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mahmoudhamdyae.themoviedb.MovieApiStatus
-import com.mahmoudhamdyae.themoviedb.network.MovieApi
-import com.mahmoudhamdyae.themoviedb.network.NetworkTrailer
+import com.mahmoudhamdyae.themoviedb.database.network.MovieApi
+import com.mahmoudhamdyae.themoviedb.database.network.NetworkTrailer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

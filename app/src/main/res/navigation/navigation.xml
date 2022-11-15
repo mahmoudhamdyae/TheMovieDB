@@ -46,7 +46,7 @@
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="selectedMovie"
-            app:argType="com.mahmoudhamdyae.themoviedb.domain.Movie" />
+            app:argType="com.mahmoudhamdyae.themoviedb.database.network.Movie" />
         <argument
             android:name="isMovie"
             app:argType="boolean" />
