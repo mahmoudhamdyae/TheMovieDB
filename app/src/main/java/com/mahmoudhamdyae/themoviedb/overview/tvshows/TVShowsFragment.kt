@@ -13,7 +13,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentTvShowsBinding
-import com.mahmoudhamdyae.themoviedb.database.network.TVShow
 import com.mahmoudhamdyae.themoviedb.overview.OverviewFragmentDirections
 
 class TVShowsFragment : Fragment() {
@@ -54,12 +53,13 @@ class TVShowsFragment : Fragment() {
         // Observe the navigateToSelectedProperty LiveData and Navigate when it isn't null
         // After navigating, call displayPropertyDetailsComplete() so that the ViewModel is ready
         // for another navigation event.
-        viewModel.navigateToSelectedTVShow.observe(viewLifecycleOwner, Observer(fun(tvShow : TVShow?) {
+        viewModel.navigateToSelectedTVShow.observe(viewLifecycleOwner, Observer(fun(tvShow : Movie?) {
             if (null != tvShow) {
                 findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(
                     Movie(
                         tvShow.id,
-                        tvShow.title,
+                        tvShow.name,
+                        tvShow.name,
                         tvShow.posterPath,
                         tvShow.overview,
                         tvShow.userRating,

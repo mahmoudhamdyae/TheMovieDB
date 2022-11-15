@@ -5,7 +5,7 @@
 
         <variable
             name="property"
-            type="com.mahmoudhamdyae.themoviedb.database.network.NetworkTrailer" />
+            type="com.mahmoudhamdyae.themoviedb.database.network.Trailer" />
     </data>
 
     <androidx.cardview.widget.CardView

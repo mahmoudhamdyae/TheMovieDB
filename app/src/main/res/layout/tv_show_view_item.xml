@@ -7,7 +7,7 @@
 
         <variable
             name="property"
-            type="com.mahmoudhamdyae.themoviedb.database.network.TVShow" />
+            type="com.mahmoudhamdyae.themoviedb.database.network.Movie" />
     </data>
 
     <ImageView

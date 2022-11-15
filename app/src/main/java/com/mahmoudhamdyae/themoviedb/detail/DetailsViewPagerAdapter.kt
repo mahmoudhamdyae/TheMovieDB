@@ -10,7 +10,7 @@ import com.mahmoudhamdyae.themoviedb.database.network.Movie
 /**
  * The Adapter of the view pager
  */
-class DetailsViewPagerAdapter(fragment: Fragment, val movie: Movie, val isMovie: Boolean) : FragmentStateAdapter(fragment) {
+class DetailsViewPagerAdapter(fragment: Fragment, val movie: Movie, private val isMovie: Boolean) : FragmentStateAdapter(fragment) {
 
     /**
      * Counts total number of tabs

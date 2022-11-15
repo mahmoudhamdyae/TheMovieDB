@@ -12,9 +12,8 @@ import com.mahmoudhamdyae.themoviedb.overview.tvshows.TVShowAdapter
 import com.mahmoudhamdyae.themoviedb.detail.reviews.ReviewsAdapter
 import com.mahmoudhamdyae.themoviedb.detail.trailers.TrailersAdapter
 import com.mahmoudhamdyae.themoviedb.overview.movies.MovieAdapter
-import com.mahmoudhamdyae.themoviedb.database.network.NetworkReview
-import com.mahmoudhamdyae.themoviedb.database.network.NetworkTrailer
-import com.mahmoudhamdyae.themoviedb.database.network.TVShow
+import com.mahmoudhamdyae.themoviedb.database.network.Review
+import com.mahmoudhamdyae.themoviedb.database.network.Trailer
 
 /**
  * When there is no Movie property data (data is null), hide the [RecyclerView], otherwise show it.
@@ -26,7 +25,7 @@ fun bindMoviesRecyclerView(recyclerView: RecyclerView, data: List<Movie>?) {
 }
 
 @BindingAdapter("TVShowsListData")
-fun bindTVShowsRecyclerView(recyclerView: RecyclerView, data: List<TVShow>?) {
+fun bindTVShowsRecyclerView(recyclerView: RecyclerView, data: List<Movie>?) {
     val adapter = recyclerView.adapter as TVShowAdapter
     adapter.submitList(data)
 }
@@ -67,7 +66,7 @@ fun bindStatus(statusImageView: ImageView, status: MovieApiStatus?) {
 // Reviews
 
 @BindingAdapter("reviewsData")
-fun bindReviewsRecyclerView(recyclerView: RecyclerView, data: List<NetworkReview>?) {
+fun bindReviewsRecyclerView(recyclerView: RecyclerView, data: List<Review>?) {
     val adapter = recyclerView.adapter as ReviewsAdapter
     adapter.submitList(data)
 }
@@ -75,7 +74,7 @@ fun bindReviewsRecyclerView(recyclerView: RecyclerView, data: List<NetworkReview
 // Trailers
 
 @BindingAdapter("trailersData")
-fun bindTrailersRecyclerView(recyclerView: RecyclerView, data: List<NetworkTrailer>?) {
+fun bindTrailersRecyclerView(recyclerView: RecyclerView, data: List<Trailer>?) {
     val adapter = recyclerView.adapter as TrailersAdapter
     adapter.submitList(data)
 }

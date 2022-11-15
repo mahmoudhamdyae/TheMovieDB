@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mahmoudhamdyae.themoviedb.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb.database.network.MovieApi
-import com.mahmoudhamdyae.themoviedb.database.network.NetworkReview
+import com.mahmoudhamdyae.themoviedb.database.network.Review
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -22,8 +22,8 @@ class ReviewsViewModel(
     val status: LiveData<MovieApiStatus>
         get() = _status
 
-    private val _reviewsList = MutableLiveData<List<NetworkReview>>()
-    val reviewsList: LiveData<List<NetworkReview>>
+    private val _reviewsList = MutableLiveData<List<Review>>()
+    val reviewsList: LiveData<List<Review>>
         get() = _reviewsList
 
     private val _reviewIsEmpty = MutableLiveData<Boolean>()

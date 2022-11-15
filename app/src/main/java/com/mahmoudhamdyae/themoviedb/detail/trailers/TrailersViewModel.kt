@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mahmoudhamdyae.themoviedb.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb.database.network.MovieApi
-import com.mahmoudhamdyae.themoviedb.database.network.NetworkTrailer
+import com.mahmoudhamdyae.themoviedb.database.network.Trailer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -22,8 +22,8 @@ class TrailersViewModel(
     val status: LiveData<MovieApiStatus>
         get() = _status
 
-    private val _trailersList = MutableLiveData<List<NetworkTrailer>>()
-    val trailersList: LiveData<List<NetworkTrailer>>
+    private val _trailersList = MutableLiveData<List<Trailer>>()
+    val trailersList: LiveData<List<Trailer>>
         get() = _trailersList
 
     private var viewModelJob = Job()

@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmoudhamdyae.themoviedb.databinding.ReviewViewItemBinding
-import com.mahmoudhamdyae.themoviedb.database.network.NetworkReview
+import com.mahmoudhamdyae.themoviedb.database.network.Review
 
-class ReviewsAdapter : ListAdapter<NetworkReview,
+class ReviewsAdapter : ListAdapter<Review,
         ReviewsAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -24,7 +24,7 @@ class ReviewsAdapter : ListAdapter<NetworkReview,
     class ViewHolder private constructor(val binding: ReviewViewItemBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(review: NetworkReview) {
+        fun bind(review: Review) {
             binding.property = review
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
@@ -48,12 +48,12 @@ class ReviewsAdapter : ListAdapter<NetworkReview,
  * Used by ListAdapter to calculate the minimum number of changes between and old list and a new
  * list that's been passed to `submitList`.
  */
-class DiffCallback : DiffUtil.ItemCallback<NetworkReview>() {
-    override fun areItemsTheSame(oldItem: NetworkReview, newItem: NetworkReview): Boolean {
+class DiffCallback : DiffUtil.ItemCallback<Review>() {
+    override fun areItemsTheSame(oldItem: Review, newItem: Review): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: NetworkReview, newItem: NetworkReview): Boolean {
+    override fun areContentsTheSame(oldItem: Review, newItem: Review): Boolean {
         return oldItem.id == newItem.id
     }
 }

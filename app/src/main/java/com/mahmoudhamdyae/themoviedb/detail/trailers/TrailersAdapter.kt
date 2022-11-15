@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mahmoudhamdyae.themoviedb.databinding.TrailerViewItemBinding
-import com.mahmoudhamdyae.themoviedb.database.network.NetworkTrailer
+import com.mahmoudhamdyae.themoviedb.database.network.Trailer
 
 
 class TrailersAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<NetworkTrailer, TrailersAdapter.ViewHolder>(DiffCallback()) {
+    ListAdapter<Trailer, TrailersAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val networkTrailer = getItem(position)
@@ -27,7 +27,7 @@ class TrailersAdapter(private val onClickListener: OnClickListener) :
     class ViewHolder private constructor(val binding: TrailerViewItemBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(trailer: NetworkTrailer) {
+        fun bind(trailer: Trailer) {
             binding.property = trailer
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
@@ -44,8 +44,8 @@ class TrailersAdapter(private val onClickListener: OnClickListener) :
         }
     }
 
-    class OnClickListener(val clickListener: (networkTrailer: NetworkTrailer) -> Unit) {
-        fun onClick(networkTrailer: NetworkTrailer) = clickListener(networkTrailer)
+    class OnClickListener(val clickListener: (networkTrailer: Trailer) -> Unit) {
+        fun onClick(networkTrailer: Trailer) = clickListener(networkTrailer)
     }
 }
 
@@ -55,12 +55,12 @@ class TrailersAdapter(private val onClickListener: OnClickListener) :
  * Used by ListAdapter to calculate the minimum number of changes between and old list and a new
  * list that's been passed to `submitList`.
  */
-class DiffCallback : DiffUtil.ItemCallback<NetworkTrailer>() {
-    override fun areItemsTheSame(oldItem: NetworkTrailer, newItem: NetworkTrailer): Boolean {
+class DiffCallback : DiffUtil.ItemCallback<Trailer>() {
+    override fun areItemsTheSame(oldItem: Trailer, newItem: Trailer): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: NetworkTrailer, newItem: NetworkTrailer): Boolean {
+    override fun areContentsTheSame(oldItem: Trailer, newItem: Trailer): Boolean {
         return oldItem.id == newItem.id
     }
 }

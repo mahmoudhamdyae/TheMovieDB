@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mahmoudhamdyae.themoviedb.MovieApiStatus
+import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.database.network.MovieApi
-import com.mahmoudhamdyae.themoviedb.database.network.TVShow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -15,9 +15,9 @@ import kotlinx.coroutines.launch
 class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(application) {
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
-    private val _navigateToSelectedTVShow = MutableLiveData<TVShow?>()
+    private val _navigateToSelectedTVShow = MutableLiveData<Movie?>()
     // The external immutable LiveData for the navigation property
-    val navigateToSelectedTVShow: MutableLiveData<TVShow?>
+    val navigateToSelectedTVShow: MutableLiveData<Movie?>
         get() = _navigateToSelectedTVShow
 
     // The external immutable LiveData for the request status
@@ -25,8 +25,8 @@ class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(a
     val status: LiveData<MovieApiStatus>
         get() = _status
 
-    private val _tvShowsList = MutableLiveData<List<TVShow>>()
-    val tvShowsList: LiveData<List<TVShow>>
+    private val _tvShowsList = MutableLiveData<List<Movie>>()
+    val tvShowsList: LiveData<List<Movie>>
         get() = _tvShowsList
 
     private var viewModelJob = Job()
@@ -51,9 +51,9 @@ class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(a
 
     /**
      * When the property is clicked, set the [_navigateToSelectedTVShow] [MutableLiveData]
-     * @param tvShow The [TVShow] that was clicked on.
+     * @param tvShow The [Movie] that was clicked on.
      */
-    fun displayPropertyDetails(tvShow: TVShow) {
+    fun displayPropertyDetails(tvShow: Movie) {
         _navigateToSelectedTVShow.value = tvShow
     }
 

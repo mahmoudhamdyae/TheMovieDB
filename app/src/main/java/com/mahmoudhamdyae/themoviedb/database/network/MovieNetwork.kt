@@ -21,32 +21,24 @@ data class NetworkMovieContainer(val results: List<Movie>)
 @JsonClass(generateAdapter = true)
 data class Movie (
     val id: String,
-    val title: String,
+    @Json(name = "title") val title: String = "", // Movie's Title
+    @Json(name = "name") val name: String = "", // TV Show's Name
     @Json(name = "poster_path") val posterPath: String,
     val overview: String,
     @Json(name = "vote_average") val userRating: String,
-    @Json(name= "release_date") val releaseDate: String
+    @Json(name= "release_date") val releaseDate: String = ""
     ) : Parcelable
 
 @JsonClass(generateAdapter = true)
-data class NetworkTVShowContainer(val results: List<TVShow>)
-
-@JsonClass(generateAdapter = true)
-data class TVShow (
-    val id: String,
-    @Json(name = "name") val title: String,
-    @Json(name = "poster_path") val posterPath: String,
-    val overview: String,
-    @Json(name = "vote_average") val userRating: String
-)
+data class NetworkTVShowContainer(val results: List<Movie>)
 
 // Reviews
 
 @JsonClass(generateAdapter = true)
-data class NetworkReviewContainer(val results: List<NetworkReview>)
+data class NetworkReviewContainer(val results: List<Review>)
 
 @JsonClass(generateAdapter = true)
-data class NetworkReview(
+data class Review(
     val id: String,
     val author: String,
     val content: String
@@ -55,10 +47,10 @@ data class NetworkReview(
 // Trailers
 
 @JsonClass(generateAdapter = true)
-data class NetworkTrailerContainer(val results: List<NetworkTrailer>)
+data class NetworkTrailerContainer(val results: List<Trailer>)
 
 @JsonClass(generateAdapter = true)
-data class NetworkTrailer(
+data class Trailer(
     val id: String,
     val name: String,
     val key: String,
