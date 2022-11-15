@@ -4,20 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.mahmoudhamdyae.themoviedb.all.AllViewModel" />
     </data>
 
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="haha" />
-
-    <!--<androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/photos_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:padding="@dimen/movies_padding"
-        tools:listitem="@layout/movie_view_item" />-->
+        app:moviesListData="@{viewModel.moviesList}"
+        tools:listitem="@layout/movie_view_item" />
 </layout>

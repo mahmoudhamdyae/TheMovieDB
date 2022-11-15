@@ -10,7 +10,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.detail.reviews.ReviewsAdapter
 import com.mahmoudhamdyae.themoviedb.detail.trailers.TrailersAdapter
-import com.mahmoudhamdyae.themoviedb.overview.MovieAdapter
 import com.mahmoudhamdyae.themoviedb.database.network.Review
 import com.mahmoudhamdyae.themoviedb.database.network.Trailer
 

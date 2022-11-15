@@ -1,4 +1,4 @@
-package com.mahmoudhamdyae.themoviedb.overview
+package com.mahmoudhamdyae.themoviedb
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -66,5 +66,4 @@ class MovieAdapter(private val onClickListener: OnClickListener) :
     class OnClickListener(val clickListener: (movie:Movie) -> Unit) {
         fun onClick(movie:Movie) = clickListener(movie)
     }
-
 }

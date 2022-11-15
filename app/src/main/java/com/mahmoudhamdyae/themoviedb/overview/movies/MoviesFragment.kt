@@ -13,8 +13,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
-import com.mahmoudhamdyae.themoviedb.database.network.NetworkMovieContainer
-import com.mahmoudhamdyae.themoviedb.overview.MovieAdapter
+import com.mahmoudhamdyae.themoviedb.MovieAdapter
+import com.mahmoudhamdyae.themoviedb.getNoOfColumns
 import com.mahmoudhamdyae.themoviedb.overview.OverviewFragmentDirections
 
 class MoviesFragment : Fragment () {
@@ -42,7 +42,7 @@ class MoviesFragment : Fragment () {
         binding.viewModel = viewModel
 
         // Calculate number of columns
-        val noOfColumns = getNoOfColumns()
+        val noOfColumns = getNoOfColumns(requireContext())
         binding.photosGrid.layoutManager = GridLayoutManager(context, noOfColumns)
 //        binding.photosGrid.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
@@ -81,11 +81,5 @@ class MoviesFragment : Fragment () {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun getNoOfColumns(): Int {
-        val displayMetrics = requireContext().resources.displayMetrics
-        val screenWidthDp = displayMetrics.widthPixels / displayMetrics.density
-        return kotlin.math.ceil(screenWidthDp / 185f).toInt()
     }
 }

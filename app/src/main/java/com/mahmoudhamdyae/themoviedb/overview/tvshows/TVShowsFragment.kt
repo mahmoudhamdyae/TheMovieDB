@@ -14,7 +14,7 @@ import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentTvShowsBinding
 import com.mahmoudhamdyae.themoviedb.overview.OverviewFragmentDirections
-import com.mahmoudhamdyae.themoviedb.overview.MovieAdapter
+import com.mahmoudhamdyae.themoviedb.MovieAdapter
 
 class TVShowsFragment : Fragment() {
 
