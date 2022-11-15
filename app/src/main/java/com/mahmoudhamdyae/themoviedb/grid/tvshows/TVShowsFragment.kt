@@ -70,27 +70,7 @@ class TVShowsFragment : Fragment() {
             }
         }))
 
-        setPage(viewModel)
-
         return binding.root
-    }
-
-    private fun setPage(viewModel: TVShowsViewModel) {
-        binding.firstButton.setOnClickListener {
-            viewModel.getTVShows(1)
-        }
-        binding.secondButton.setOnClickListener {
-            viewModel.getTVShows(2)
-        }
-        binding.thirdButton.setOnClickListener {
-            viewModel.getTVShows(3)
-        }
-        binding.fourthButton.setOnClickListener {
-            viewModel.getTVShows(4)
-        }
-        binding.fifthButton.setOnClickListener {
-            viewModel.getTVShows(5)
-        }
     }
 
     override fun onResume() {
