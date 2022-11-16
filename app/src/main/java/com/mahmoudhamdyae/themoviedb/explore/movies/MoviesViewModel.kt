@@ -44,7 +44,7 @@ class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(ap
         get() = _listOfTopRatedContainer
 
     private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
         getMoviesPopular(page)

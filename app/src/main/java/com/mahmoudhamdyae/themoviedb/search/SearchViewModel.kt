@@ -35,10 +35,6 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    init {
-//        getSearchedMovies()
-    }
-
     fun getSearchedMovies(query: String) {
         coroutineScope.launch {
             try {

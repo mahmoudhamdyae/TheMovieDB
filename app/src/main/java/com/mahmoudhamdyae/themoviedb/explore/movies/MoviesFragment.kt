@@ -9,9 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb.explore.MovieExploreAdapter
-import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
 import com.mahmoudhamdyae.themoviedb.explore.ExploreFragmentDirections
