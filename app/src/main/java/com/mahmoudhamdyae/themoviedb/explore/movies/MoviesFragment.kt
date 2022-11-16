@@ -79,12 +79,6 @@ class MoviesFragment : Fragment () {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        val view = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
-        view.visibility = View.VISIBLE
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.mahmoudhamdyae.themoviedb.search.SearchViewModel" />
@@ -22,30 +23,77 @@
             <EditText
                 android:id="@+id/search_edit_text"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                android:imeOptions="actionSearch"
+                android:inputType="textCapSentences|textAutoCorrect"
+                android:hint="@string/search_edit_text_hint"
+                android:textColor="@color/colorText"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/colorText"
+                android:layout_weight="1" />
 
             <ImageButton
                 android:id="@+id/search_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_search_24"/>
+                android:src="@drawable/ic_baseline_search_24" />
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/status_image_top_rated"
+        <LinearLayout
+            android:id="@+id/linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/status_image_description"
-            app:movieApiStatus="@{viewModel.status}"
-            tools:src="@drawable/loading_animation" />
+            android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/search_recycler_view"
-            android:layout_width="match_parent"
-            app:moviesListData="@{viewModel.movies}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_height="match_parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tab_movies"
+                    android:textColor="@color/colorText" />
+
+                <Button
+                    android:id="@+id/view_all_button_movies"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_all" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_recycler_view_movies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:moviesListData="@{viewModel.movies}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tab_tv_shows"
+                    android:textColor="@color/colorText" />
+
+                <Button
+                    android:id="@+id/view_all_button_tv_shows"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_all" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_recycler_view_tv_shows"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:moviesListData="@{viewModel.tvShows}" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

@@ -74,6 +74,14 @@ interface MovieApiService {
     @GET("tv/{movieId}/videos?api_key=$API_KEY")
     fun getTVTrailersAsync(@Path("movieId") movieId: String): Deferred<NetworkTrailerContainer>
 
+    // https://api.themoviedb.org/3/search/movie?api_key=$API_KEY&query=dragon
+    @GET("search/movie?api_key=$API_KEY")
+    fun getMovieSearchAsync(@Query("query") query : String): Deferred<NetworkMovieContainer>
+
+    // https://api.themoviedb.org/3/search/tv?api_key=$API_KEY&query=dragon
+    @GET("search/tv?api_key=$API_KEY")
+    fun getTVShowSearchAsync(@Query("query") query : String): Deferred<NetworkMovieContainer>
+
     // Authentication
 
     // https://api.themoviedb.org/3/authentication/guest_session/new?api_key=API_KEY

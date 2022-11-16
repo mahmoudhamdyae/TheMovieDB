@@ -14,7 +14,7 @@
     <string name="popular_tv_shows">Popular TV Shows</string>
     <string name="top_rated_tv_shows">Top Rated TV Shows</string>
 
-    <!-- Tabs -->
+    <!-- Explore Tabs -->
     <string name="tab_movies">Movies</string>
     <string name="tab_tv_shows">TV Shows</string>
 
@@ -23,10 +23,13 @@
     <string name="navigation_search">Search</string>
     <string name="navigation_favourite">Favourites</string>
 
-    <!-- Tabs -->
+    <!-- Details Tabs -->
     <string name="summary_fragment">Summary</string>
     <string name="reviews_fragment">Reviews</string>
     <string name="trailers_fragment">Trailers</string>
+
+    <!-- Search Fragment -->
+    <string name="search_edit_text_hint">Search in movies or TV shows</string>
 
     <!-- Content Descriptions -->
     <string name="movie_image_description"> Movie Image</string>

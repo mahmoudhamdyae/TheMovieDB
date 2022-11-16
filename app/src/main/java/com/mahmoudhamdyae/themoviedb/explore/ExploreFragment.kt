@@ -3,6 +3,7 @@ package com.mahmoudhamdyae.themoviedb.explore
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentExploreBinding
@@ -47,5 +48,11 @@ class ExploreFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.bottom_nav_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val view = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
+        view.visibility = View.VISIBLE
     }
 }
