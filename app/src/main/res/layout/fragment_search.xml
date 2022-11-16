@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -31,6 +32,14 @@
                 android:src="@drawable/ic_baseline_search_24"/>
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/status_image_top_rated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/status_image_description"
+            app:movieApiStatus="@{viewModel.status}"
+            tools:src="@drawable/loading_animation" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_recycler_view"
