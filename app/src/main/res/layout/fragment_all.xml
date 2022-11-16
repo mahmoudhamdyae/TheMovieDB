@@ -16,5 +16,5 @@
         android:clipToPadding="false"
         android:padding="@dimen/movies_padding"
         app:moviesListData="@{viewModel.moviesList}"
-        tools:listitem="@layout/movie_view_item" />
+        tools:listitem="@layout/movie_explore_view_item" />
 </layout>

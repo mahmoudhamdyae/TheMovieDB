@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.mahmoudhamdyae.themoviedb.MovieAdapter
+import com.mahmoudhamdyae.themoviedb.explore.MovieExploreAdapter
 import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
@@ -45,12 +44,12 @@ class MoviesFragment : Fragment () {
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our property is clicked
-        binding.photosGridPopular.adapter = MovieAdapter(MovieAdapter.OnClickListener {
+        binding.photosGridPopular.adapter = MovieExploreAdapter(MovieExploreAdapter.OnClickListener {
             viewModel.displayPropertyDetails(it)
         })
 
         binding.photosGridTopRated.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.photosGridTopRated.adapter = MovieAdapter(MovieAdapter.OnClickListener {
+        binding.photosGridTopRated.adapter = MovieExploreAdapter(MovieExploreAdapter.OnClickListener {
             viewModel.displayPropertyDetails(it)
         })
 
@@ -73,7 +72,6 @@ class MoviesFragment : Fragment () {
 
         binding.viewAllButtonTopRated.setOnClickListener {
             viewModel.listOfTopRatedContainer.observe(viewLifecycleOwner) {
-                Toast.makeText(context, "haha", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(ExploreFragmentDirections.actionNavigationExploreToAllFragment(it))
             }
         }

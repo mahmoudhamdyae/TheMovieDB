@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentAllBinding
-import com.mahmoudhamdyae.themoviedb.MovieAdapter
+import com.mahmoudhamdyae.themoviedb.explore.MovieExploreAdapter
 import com.mahmoudhamdyae.themoviedb.getNoOfColumns
 
 class AllFragment: Fragment() {
@@ -30,7 +30,7 @@ class AllFragment: Fragment() {
         // Calculate number of columns
         val noOfColumns = getNoOfColumns(requireContext())
         binding.photosGrid.layoutManager = GridLayoutManager(context, noOfColumns)
-        binding.photosGrid.adapter = MovieAdapter(MovieAdapter.OnClickListener {
+        binding.photosGrid.adapter = MovieExploreAdapter(MovieExploreAdapter.OnClickListener {
             findNavController().navigate(AllFragmentDirections.actionAllFragmentToDetailFragment(it))
         })
 

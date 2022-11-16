@@ -12,13 +12,14 @@ import com.mahmoudhamdyae.themoviedb.detail.reviews.ReviewsAdapter
 import com.mahmoudhamdyae.themoviedb.detail.trailers.TrailersAdapter
 import com.mahmoudhamdyae.themoviedb.database.network.Review
 import com.mahmoudhamdyae.themoviedb.database.network.Trailer
+import com.mahmoudhamdyae.themoviedb.explore.MovieExploreAdapter
 
 /**
  * When there is no Movie property data (data is null), hide the [RecyclerView], otherwise show it.
  */
 @BindingAdapter("moviesListData")
 fun bindMoviesRecyclerView(recyclerView: RecyclerView, data: List<Movie>?) {
-    val adapter = recyclerView.adapter as MovieAdapter
+    val adapter = recyclerView.adapter as MovieExploreAdapter
     adapter.submitList(data)
 }
 

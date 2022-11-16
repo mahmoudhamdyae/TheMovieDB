@@ -10,88 +10,93 @@
             type="com.mahmoudhamdyae.themoviedb.explore.movies.MoviesViewModel" />
     </data>
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/popular"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/popular"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/popular_movies" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/view_all_button_popular"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/popular_movies" />
+
+                <Button
+                    android:id="@+id/view_all_button_popular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_all" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_grid_popular"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/details_movie_image_height"
+                android:layout_below="@+id/popular"
+                android:clipToPadding="false"
+                android:padding="@dimen/movies_padding"
+                app:moviesListData="@{viewModel.moviesListPopular}"
+                tools:listitem="@layout/movie_explore_view_item" />
+
+            <LinearLayout
+                android:id="@+id/top_rated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photos_grid_popular"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/top_rated_movies" />
+
+                <Button
+                    android:id="@+id/view_all_button_top_rated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/view_all" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/photos_grid_top_rated"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/details_movie_image_height"
+                android:layout_below="@+id/top_rated"
+                android:clipToPadding="false"
+                android:padding="@dimen/movies_padding"
+                app:moviesListData="@{viewModel.moviesListTopRated}"
+                tools:listitem="@layout/movie_explore_view_item" />
+
+            <ImageView
+                android:id="@+id/status_image_popular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/view_all" />
-        </LinearLayout>
+                android:layout_below="@id/popular"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/status_image_description"
+                app:movieApiStatus="@{viewModel.statusPopular}"
+                tools:src="@drawable/loading_animation" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/photos_grid_popular"
-            android:layout_below="@+id/popular"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/details_movie_image_height"
-            android:clipToPadding="false"
-            android:padding="@dimen/movies_padding"
-            app:moviesListData="@{viewModel.moviesListPopular}"
-            tools:listitem="@layout/movie_view_item" />
-
-        <LinearLayout
-            android:id="@+id/top_rated"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/photos_grid_popular"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/top_rated_movies" />
-
-            <Button
-                android:id="@+id/view_all_button_top_rated"
+            <ImageView
+                android:id="@+id/status_image_top_rated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/view_all" />
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/photos_grid_top_rated"
-            android:layout_below="@+id/top_rated"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/details_movie_image_height"
-            android:clipToPadding="false"
-            android:padding="@dimen/movies_padding"
-            app:moviesListData="@{viewModel.moviesListTopRated}"
-            tools:listitem="@layout/movie_view_item" />
-
-        <ImageView
-            android:id="@+id/status_image_popular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/popular"
-            android:layout_centerHorizontal="true"
-            android:contentDescription="@string/status_image_description"
-            app:movieApiStatus="@{viewModel.statusPopular}"
-            tools:src="@drawable/loading_animation" />
-
-        <ImageView
-            android:id="@+id/status_image_top_rated"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/top_rated"
-            android:layout_centerHorizontal="true"
-            android:contentDescription="@string/status_image_description"
-            app:movieApiStatus="@{viewModel.statusTopRated}"
-            tools:src="@drawable/loading_animation" />
-    </RelativeLayout>
+                android:layout_below="@id/top_rated"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/status_image_description"
+                app:movieApiStatus="@{viewModel.statusTopRated}"
+                tools:src="@drawable/loading_animation" />
+        </RelativeLayout>
+    </ScrollView>
 </layout>

@@ -13,7 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentTvShowsBinding
-import com.mahmoudhamdyae.themoviedb.MovieAdapter
+import com.mahmoudhamdyae.themoviedb.explore.MovieExploreAdapter
 import com.mahmoudhamdyae.themoviedb.explore.ExploreFragmentDirections
 
 class TVShowsFragment : Fragment() {
@@ -45,12 +45,12 @@ class TVShowsFragment : Fragment() {
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our property is clicked
-        binding.photosGridPopular.adapter = MovieAdapter(MovieAdapter.OnClickListener {
+        binding.photosGridPopular.adapter = MovieExploreAdapter(MovieExploreAdapter.OnClickListener {
             viewModel.displayPropertyDetails(it)
         })
 
         binding.photosGridTopRated.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.photosGridTopRated.adapter = MovieAdapter(MovieAdapter.OnClickListener {
+        binding.photosGridTopRated.adapter = MovieExploreAdapter(MovieExploreAdapter.OnClickListener {
             viewModel.displayPropertyDetails(it)
         })
 
