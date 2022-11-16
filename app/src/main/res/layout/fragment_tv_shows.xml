@@ -75,12 +75,23 @@
             tools:listitem="@layout/movie_view_item" />
 
         <ImageView
-            android:id="@+id/status_image"
+            android:id="@+id/status_image_popular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_below="@id/popular"
+            android:layout_centerHorizontal="true"
             android:contentDescription="@string/status_image_description"
-            app:movieApiStatus="@{viewModel.status}"
+            app:movieApiStatus="@{viewModel.statusPopular}"
+            tools:src="@drawable/loading_animation" />
+
+        <ImageView
+            android:id="@+id/status_image_top_rated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top_rated"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/status_image_description"
+            app:movieApiStatus="@{viewModel.statusTopRated}"
             tools:src="@drawable/loading_animation" />
     </RelativeLayout>
 </layout>

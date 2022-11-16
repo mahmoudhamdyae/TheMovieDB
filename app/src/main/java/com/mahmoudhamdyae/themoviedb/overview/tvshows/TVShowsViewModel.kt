@@ -22,9 +22,13 @@ class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(a
         get() = _navigateToSelectedTVShow
 
     // The external immutable LiveData for the request status
-    private val _status = MutableLiveData<MovieApiStatus>()
-    val status: LiveData<MovieApiStatus>
-        get() = _status
+    private val _statusPopular = MutableLiveData<MovieApiStatus>()
+    val statusPopular: LiveData<MovieApiStatus>
+        get() = _statusPopular
+
+    private val _statusTopRated = MutableLiveData<MovieApiStatus>()
+    val statusTopRated: LiveData<MovieApiStatus>
+        get() = _statusTopRated
 
     private val _tvShowsListPopular = MutableLiveData<List<Movie>>()
     val tvShowsListPopular: LiveData<List<Movie>>
@@ -46,23 +50,38 @@ class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(a
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
 
     init {
-        getTVShows(page)
+        getTVShowsPopular(page)
+        getTVShowsTopRated(page)
     }
 
-    private fun getTVShows(page: Int) {
+    private fun getTVShowsPopular(page: Int) {
         coroutineScope.launch {
             try {
-                _status.value = MovieApiStatus.LOADING
+                _statusPopular.value = MovieApiStatus.LOADING
 
                 _listOfPopularContainer.value = MovieApi.retrofitService.getPopularTVShowsAsync(page.toString()).await()
-                _listOfTopRatedContainer.value = MovieApi.retrofitService.getTopRatedTVShowsAsync().await()
                 _tvShowsListPopular.value = MovieApi.retrofitService.getPopularTVShowsAsync(page.toString()).await().results
-                _tvShowsListTopRated.value = MovieApi.retrofitService.getTopRatedTVShowsAsync().await().results
 
-                _status.value = MovieApiStatus.DONE
+                _statusPopular.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (tvShowsListPopular.value.isNullOrEmpty())
-                    _status.value = MovieApiStatus.ERROR
+                    _statusPopular.value = MovieApiStatus.ERROR
+            }
+        }
+    }
+
+    private fun getTVShowsTopRated(page: Int) {
+        coroutineScope.launch {
+            try {
+                _statusTopRated.value = MovieApiStatus.LOADING
+
+                _listOfTopRatedContainer.value = MovieApi.retrofitService.getTopRatedTVShowsAsync().await()
+                _tvShowsListTopRated.value = MovieApi.retrofitService.getTopRatedTVShowsAsync().await().results
+
+                _statusTopRated.value = MovieApiStatus.DONE
+            } catch (e: Exception) {
+                if (tvShowsListPopular.value.isNullOrEmpty())
+                    _statusTopRated.value = MovieApiStatus.ERROR
             }
         }
     }
