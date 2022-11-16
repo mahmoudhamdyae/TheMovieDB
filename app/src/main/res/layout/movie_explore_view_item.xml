@@ -42,7 +42,7 @@
                     android:layout_below="@+id/movie_image"
                     android:layout_centerHorizontal="true"
                     android:maxLines="1"
-                    android:text="@{property.title}"
+                    android:text="@{property.realName}"
                     android:textColor="@color/colorText"
                     tools:text="@string/popular_movies" />
             </RelativeLayout>
