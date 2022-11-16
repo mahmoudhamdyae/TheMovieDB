@@ -30,6 +30,9 @@ class AllFragment: Fragment() {
         // Calculate number of columns
         val noOfColumns = getNoOfColumns(requireContext())
         binding.photosGrid.layoutManager = GridLayoutManager(context, noOfColumns)
+//        binding.photosGrid.adapter = AllAdapter(AllAdapter.OnClickListener {
+//            findNavController().navigate(AllFragmentDirections.actionAllFragmentToDetailFragment(it))
+//        })
         binding.photosGrid.adapter = MovieExploreAdapter(MovieExploreAdapter.OnClickListener {
             findNavController().navigate(AllFragmentDirections.actionAllFragmentToDetailFragment(it))
         })

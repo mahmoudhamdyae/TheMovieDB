@@ -14,13 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/popular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -29,7 +28,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/popular_movies" />
+                    android:text="@string/popular_movies"
+                    android:textColor="@color/colorText" />
 
                 <Button
                     android:id="@+id/view_all_button_popular"
@@ -41,25 +41,31 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_grid_popular"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/details_movie_image_height"
-                android:layout_below="@+id/popular"
+                android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:padding="@dimen/movies_padding"
                 app:moviesListData="@{viewModel.moviesListPopular}"
                 tools:listitem="@layout/movie_explore_view_item" />
 
-            <LinearLayout
-                android:id="@+id/top_rated"
+            <ImageView
+                android:id="@+id/status_image_popular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/photos_grid_popular"
+                android:contentDescription="@string/status_image_description"
+                app:movieApiStatus="@{viewModel.statusPopular}"
+                tools:src="@drawable/loading_animation" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/top_rated_movies" />
+                    android:text="@string/top_rated_movies"
+                    android:textColor="@color/colorText" />
 
                 <Button
                     android:id="@+id/view_all_button_top_rated"
@@ -71,32 +77,19 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_grid_top_rated"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/details_movie_image_height"
-                android:layout_below="@+id/top_rated"
-                android:clipToPadding="false"
+                android:layout_height="wrap_content"
+                android:clipToPadding="true"
                 android:padding="@dimen/movies_padding"
                 app:moviesListData="@{viewModel.moviesListTopRated}"
                 tools:listitem="@layout/movie_explore_view_item" />
 
             <ImageView
-                android:id="@+id/status_image_popular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/popular"
-                android:layout_centerHorizontal="true"
-                android:contentDescription="@string/status_image_description"
-                app:movieApiStatus="@{viewModel.statusPopular}"
-                tools:src="@drawable/loading_animation" />
-
-            <ImageView
                 android:id="@+id/status_image_top_rated"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/top_rated"
-                android:layout_centerHorizontal="true"
                 android:contentDescription="@string/status_image_description"
                 app:movieApiStatus="@{viewModel.statusTopRated}"
                 tools:src="@drawable/loading_animation" />
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 </layout>

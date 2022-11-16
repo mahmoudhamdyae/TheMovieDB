@@ -10,13 +10,43 @@
             type="com.mahmoudhamdyae.themoviedb.database.network.Movie" />
     </data>
 
-    <ImageView
-        android:id="@+id/movie_image"
-        android:layout_width="@dimen/details_movie_image_width"
-        android:layout_height="@dimen/details_movie_image_height"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/movie_image_description"
-        android:padding="@dimen/movies_padding"
-        app:imageUrl ="@{property.posterPath}"
-        tools:src="@tools:sample/backgrounds/scenic" />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/movies_padding"
+            app:cardCornerRadius="@dimen/explore_card_view_corner_radius">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circular_background"
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/movie_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/movie_image_description"
+                    app:imageUrl="@{property.posterPath}"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+                <TextView
+                    android:id="@+id/movie_name"
+                    android:layout_width="@dimen/explore_movie_image_text_width"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/movie_image"
+                    android:layout_centerHorizontal="true"
+                    android:maxLines="1"
+                    android:text="@{property.title}"
+                    android:textColor="@color/colorText"
+                    tools:text="@string/popular_movies" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
 </layout>

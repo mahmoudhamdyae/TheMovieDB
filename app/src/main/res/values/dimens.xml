@@ -3,6 +3,9 @@
     <!--<dimen name="activity_horizontal_margin">@dimen/_16sdp</dimen>
     <dimen name="activity_vertical_margin">@dimen/_16sdp</dimen>
 
+    <dimen name="explore_movie_image_text_width">_100sdp</dimen>
+    <dimen name="explore_card_view_corner_radius">_10sdp</dimen>
+
     <dimen name="toolbar_elevation">@dimen/_8sdp</dimen>
 
     <dimen name="movies_padding">@dimen/_4sdp</dimen>
@@ -23,6 +26,9 @@
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="explore_movie_image_text_width">100dp</dimen>
+    <dimen name="explore_card_view_corner_radius">10dp</dimen>
 
     <dimen name="toolbar_elevation">8dp</dimen>
 
