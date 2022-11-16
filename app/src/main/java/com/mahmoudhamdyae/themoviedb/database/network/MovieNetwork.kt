@@ -24,6 +24,7 @@ data class Movie (
     val id: String,
     @Json(name = "title") val title: String = "", // Movie's Title
     @Json(name = "name") val name: String = "", // TV Show's Name
+    val realName: String = title + name,
     @Json(name = "poster_path") val posterPath: String,
     val overview: String,
     @Json(name = "vote_average") val userRating: String,

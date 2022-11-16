@@ -25,14 +25,13 @@ class DetailFragment : Fragment() {
         (activity as MainActivity).makeBottomNavigationViewInvisible()
 
         val movie = DetailFragmentArgs.fromBundle(requireArguments()).selectedMovie
-        val isMovie = movie.title != ""
         val viewModelFactory = DetailViewModelFactory(movie, requireActivity().application)
         val viewModel = ViewModelProvider(this, viewModelFactory)[DetailViewModel::class.java]
         binding.viewModel = viewModel
 
         // Navigate Up
         val toolbar = binding.toolbar
-        toolbar.title = if (isMovie) movie.title else movie.name
+        toolbar.title = movie.realName
         toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
@@ -42,7 +41,7 @@ class DetailFragment : Fragment() {
         val tabLayout = binding.tabs
         val viewPager = binding.viewPager
 
-        val adapter = DetailsViewPagerAdapter(this, movie, isMovie)
+        val adapter = DetailsViewPagerAdapter(this, movie, movie.title != "")
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
