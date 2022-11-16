@@ -1,4 +1,4 @@
-package com.mahmoudhamdyae.themoviedb.overview.movies
+package com.mahmoudhamdyae.themoviedb.explore.movies
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

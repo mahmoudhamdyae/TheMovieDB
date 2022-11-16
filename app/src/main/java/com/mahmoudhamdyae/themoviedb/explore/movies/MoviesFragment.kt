@@ -1,4 +1,4 @@
-package com.mahmoudhamdyae.themoviedb.overview.movies
+package com.mahmoudhamdyae.themoviedb.explore.movies
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ import com.mahmoudhamdyae.themoviedb.MovieAdapter
 import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
-import com.mahmoudhamdyae.themoviedb.overview.OverviewFragmentDirections
+import com.mahmoudhamdyae.themoviedb.explore.ExploreFragmentDirections
 
 class MoviesFragment : Fragment () {
 
@@ -59,7 +59,7 @@ class MoviesFragment : Fragment () {
         // for another navigation event.
         viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer(fun(movie : Movie?) {
             if (null != movie) {
-                findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(movie))
+                findNavController().navigate(ExploreFragmentDirections.actionExploreFragmentToDetailFragment(movie))
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation
                 viewModel.displayPropertyDetailsComplete()
             }
@@ -67,14 +67,14 @@ class MoviesFragment : Fragment () {
 
         binding.viewAllButtonPopular.setOnClickListener {
             viewModel.listOfPopularContainer.observe(viewLifecycleOwner) {
-                findNavController().navigate(OverviewFragmentDirections.actionNavigationOverviewToAllFragment(it))
+                findNavController().navigate(ExploreFragmentDirections.actionNavigationExploreToAllFragment(it))
             }
         }
 
         binding.viewAllButtonTopRated.setOnClickListener {
             viewModel.listOfTopRatedContainer.observe(viewLifecycleOwner) {
                 Toast.makeText(context, "haha", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(OverviewFragmentDirections.actionNavigationOverviewToAllFragment(it))
+                findNavController().navigate(ExploreFragmentDirections.actionNavigationExploreToAllFragment(it))
             }
         }
 

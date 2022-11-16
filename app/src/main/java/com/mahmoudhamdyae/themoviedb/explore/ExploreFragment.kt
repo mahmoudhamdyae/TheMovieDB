@@ -1,17 +1,17 @@
-package com.mahmoudhamdyae.themoviedb.overview
+package com.mahmoudhamdyae.themoviedb.explore
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mahmoudhamdyae.themoviedb.R
-import com.mahmoudhamdyae.themoviedb.databinding.FragmentOverviewBinding
+import com.mahmoudhamdyae.themoviedb.databinding.FragmentExploreBinding
 
 @Suppress("DEPRECATION")
-class OverviewFragment : Fragment() {
+class ExploreFragment : Fragment() {
 
     /**
-     * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
+     * Inflates the layout with Data Binding, sets its lifecycle owner to the ExploreFragment
      * to enable Data Binding to observe LiveData, and sets up the RecyclerView with an adapter.
      */
     override fun onCreateView(
@@ -19,14 +19,14 @@ class OverviewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentOverviewBinding.inflate(inflater)
+        val binding = FragmentExploreBinding.inflate(inflater)
 
         // Tabs
 
         val tabLayout = binding.tabs
         val viewPager = binding.viewPager
 
-        val adapter = OverviewViewPageAdapter(this)
+        val adapter = ExploreViewPageAdapter(this)
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->

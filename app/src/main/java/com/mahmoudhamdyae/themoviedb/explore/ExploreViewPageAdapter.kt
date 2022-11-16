@@ -1,14 +1,14 @@
-package com.mahmoudhamdyae.themoviedb.overview
+package com.mahmoudhamdyae.themoviedb.explore
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.mahmoudhamdyae.themoviedb.overview.movies.MoviesFragment
-import com.mahmoudhamdyae.themoviedb.overview.tvshows.TVShowsFragment
+import com.mahmoudhamdyae.themoviedb.explore.movies.MoviesFragment
+import com.mahmoudhamdyae.themoviedb.explore.tvshows.TVShowsFragment
 
 /**
  * The Adapter of the view pager
  */
-class OverviewViewPageAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class ExploreViewPageAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     /**
      * Counts total number of tabs

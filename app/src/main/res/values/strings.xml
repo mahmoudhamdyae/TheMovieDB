@@ -19,7 +19,7 @@
     <string name="tab_tv_shows">TV Shows</string>
 
     <!-- Bottom Navigation -->
-    <string name="navigation_movies">Movies</string>
+    <string name="navigation_explore">Explore</string>
     <string name="navigation_search">Search</string>
     <string name="navigation_favourite">Favourites</string>
 
