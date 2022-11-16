@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.mahmoudhamdyae.themoviedb.all.AllViewModel" />
@@ -15,6 +16,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:padding="@dimen/movies_padding"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:moviesListData="@{viewModel.moviesList}"
         tools:listitem="@layout/movie_explore_view_item" />
 </layout>

@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:padding="@dimen/movies_padding"
-                app:moviesListData="@{viewModel.tvShowsListPopular}"
+                app:moviesExploreListData="@{viewModel.tvShowsListPopular}"
                 tools:listitem="@layout/movie_explore_view_item" />
 
             <ImageView
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:padding="@dimen/movies_padding"
-                app:moviesListData="@{viewModel.tvShowsListTopRated}"
+                app:moviesExploreListData="@{viewModel.tvShowsListTopRated}"
                 tools:listitem="@layout/movie_explore_view_item" />
 
             <ImageView

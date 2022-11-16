@@ -47,7 +47,7 @@ class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(a
         get() = _listOfTopRatedContainer
 
     private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
         getTVShowsPopular(page)
