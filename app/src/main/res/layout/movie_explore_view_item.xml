@@ -45,6 +45,15 @@
                     android:text="@{property.realName}"
                     android:textColor="@color/colorText"
                     tools:text="@string/popular_movies" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="@{property.userRating}"
+                    android:textColor="@color/colorText"
+                    tools:ignore="RelativeOverlap"
+                    tools:text="8.2" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 

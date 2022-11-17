@@ -24,86 +24,103 @@
             app:title="@string/navigation_search"
             app:titleTextColor="@color/colorText" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/search_edit_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/search_edit_text_hint"
-                android:imeOptions="actionSearch"
-                android:inputType="textCapSentences|textAutoCorrect"
-                android:textColor="@color/colorText"
-                android:textColorHint="@color/colorText" />
-
-            <ImageButton
-                android:id="@+id/search_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_search_24"
-                android:contentDescription="@string/search_button_description" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/tab_movies"
-                    android:textColor="@color/colorText" />
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/activity_padding"
+                    android:paddingEnd="@dimen/activity_padding">
 
-                <Button
-                    android:id="@+id/view_all_button_movies"
-                    android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/search_edit_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/search_edit_text_hint"
+                        android:imeOptions="actionSearch"
+                        android:inputType="textCapSentences|textAutoCorrect"
+                        android:textColor="@color/colorText"
+                        android:textColorHint="@color/colorText" />
+
+                    <ImageButton
+                        android:id="@+id/search_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/search_button_description"
+                        android:src="@drawable/ic_baseline_search_24" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/view_all" />
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/activity_padding"
+                        android:paddingEnd="@dimen/activity_padding">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/tab_movies"
+                            android:textColor="@color/colorText" />
+
+                        <Button
+                            android:id="@+id/view_all_button_movies"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/view_all" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/search_recycler_view_movies"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:moviesListData="@{viewModel.movies}" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/activity_padding"
+                        android:paddingEnd="@dimen/activity_padding">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/tab_tv_shows"
+                            android:textColor="@color/colorText" />
+
+                        <Button
+                            android:id="@+id/view_all_button_tv_shows"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/view_all" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/search_recycler_view_tv_shows"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:moviesListData="@{viewModel.tvShows}" />
+                </LinearLayout>
             </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/search_recycler_view_movies"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:moviesListData="@{viewModel.movies}" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/tab_tv_shows"
-                    android:textColor="@color/colorText" />
-
-                <Button
-                    android:id="@+id/view_all_button_tv_shows"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/view_all" />
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/search_recycler_view_tv_shows"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:moviesListData="@{viewModel.tvShows}" />
-        </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>

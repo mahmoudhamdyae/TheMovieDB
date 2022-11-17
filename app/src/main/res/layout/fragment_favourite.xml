@@ -24,55 +24,69 @@
             app:title="@string/navigation_favourite"
             app:titleTextColor="@color/colorText" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/tab_movies"
-                android:textColor="@color/colorText" />
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/view_all_button_movies"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/view_all" />
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/activity_padding"
+                    android:paddingEnd="@dimen/activity_padding">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_movies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:moviesExploreListData="@{viewModel.movies}" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/tab_movies"
+                        android:textColor="@color/colorText" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/view_all_button_movies"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/view_all" />
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/tab_tv_shows"
-                android:textColor="@color/colorText" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_movies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:moviesExploreListData="@{viewModel.movies}" />
 
-            <Button
-                android:id="@+id/view_all_button_tv_shows"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/view_all" />
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/activity_padding"
+                    android:paddingEnd="@dimen/activity_padding">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_tv_shows"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:moviesExploreListData="@{viewModel.tvShows}" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/tab_tv_shows"
+                        android:textColor="@color/colorText" />
 
+                    <Button
+                        android:id="@+id/view_all_button_tv_shows"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/view_all" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_tv_shows"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:moviesExploreListData="@{viewModel.tvShows}" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>
