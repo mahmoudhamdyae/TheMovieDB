@@ -52,4 +52,8 @@
     <dimen name="card_padding">8dp</dimen>
     <dimen name="play_video_padding">8dp</dimen>
     <dimen name="play_video_dimension">16dp</dimen>
+
+    <!-- All Fragment -->
+    <dimen name="all_image_width">150dp</dimen>
+    <dimen name="all_image_height">150dp</dimen>
 </resources>

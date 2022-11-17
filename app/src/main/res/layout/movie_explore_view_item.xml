@@ -23,9 +23,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/circular_background"
-                android:orientation="vertical"
-                tools:ignore="UseCompoundDrawables">
+                android:background="@drawable/circular_background">
 
                 <ImageView
                     android:id="@+id/movie_image"
@@ -52,17 +50,19 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:orientation="horizontal"
-                    android:padding="@dimen/movie_card_rate_padding">
+                    android:padding="@dimen/movie_card_rate_padding"
+                    tools:ignore="RelativeOverlap">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/circular_rate"
+                        android:drawablePadding="@dimen/movie_card_rate_padding"
                         android:padding="@dimen/movie_card_rate_padding"
                         android:text="@{property.userRating}"
                         android:textColor="@color/colorText"
-                        tools:text="8.2"
-                        app:drawableStartCompat="@drawable/ic_baseline_star_rate_24" />
+                        app:drawableStartCompat="@drawable/ic_baseline_star_rate_24"
+                        tools:text="8.2" />
                 </LinearLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
