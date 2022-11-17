@@ -14,7 +14,6 @@ import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.database.network.NetworkMovieContainer
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentFavouriteBinding
 import com.mahmoudhamdyae.themoviedb.explore.MovieExploreAdapter
-import kotlinx.coroutines.flow.observeOn
 
 class FavouriteFragment: Fragment() {
 
@@ -31,6 +30,10 @@ class FavouriteFragment: Fragment() {
         viewModel = ViewModelProvider(this)[FavouriteViewModel::class.java]
         binding.viewModel = viewModel
 
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
         binding.recyclerViewMovies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerViewMovies.adapter = MovieExploreAdapter(MovieExploreAdapter.OnClickListener {
             findNavController().navigate(FavouriteFragmentDirections.actionFavouriteFragmentToDetailFragment(it))
@@ -43,11 +46,11 @@ class FavouriteFragment: Fragment() {
 
         binding.viewAllButtonMovies.setOnClickListener {
             val movies = NetworkMovieContainer(viewModel.movies.value)
-            findNavController().navigate(FavouriteFragmentDirections.actionNavigationFavouriteToAllFragment(movies))
+            findNavController().navigate(FavouriteFragmentDirections.actionNavigationFavouriteToAllFragment(movies, getString(R.string.toolbar_favourite_movies)))
         }
         binding.viewAllButtonTvShows.setOnClickListener {
             val tvShows = NetworkMovieContainer(viewModel.tvShows.value)
-            findNavController().navigate(FavouriteFragmentDirections.actionNavigationFavouriteToAllFragment(tvShows))
+            findNavController().navigate(FavouriteFragmentDirections.actionNavigationFavouriteToAllFragment(tvShows, getString(R.string.toolbar_favourite_tv_shows)))
         }
 
         viewModel.test.observe(viewLifecycleOwner) {

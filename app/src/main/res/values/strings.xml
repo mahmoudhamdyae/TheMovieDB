@@ -35,6 +35,17 @@
     <string name="movie_image_description"> Movie Image</string>
     <string name="status_image_description">Status Image</string>
     <string name="favourite_image_button_description">Favourite</string>
+    <string name="search_button_description">Search</string>
+
+    <!-- All Fragment Toolbar -->
+    <string name="toolbar_popular_movies">Popular Movies</string>
+    <string name="toolbar_top_rated_movies">Top Rated Movies</string>
+    <string name="toolbar_popular_tv_shows">Popular TV Shows</string>
+    <string name="toolbar_top_rated_tv_shows">Top Rated TV Shows</string>
+    <string name="toolbar_search_movies">Movies</string>
+    <string name="toolbar_search_tv_shows">TV Shows</string>
+    <string name="toolbar_favourite_movies">Favourite Movies</string>
+    <string name="toolbar_favourite_tv_shows">Favourite TV Shows</string>
 
     <!--<string name="network_not_available">Network is not available</string>-->
 </resources>

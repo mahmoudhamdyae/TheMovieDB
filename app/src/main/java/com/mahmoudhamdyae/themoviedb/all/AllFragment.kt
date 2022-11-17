@@ -24,6 +24,11 @@ class AllFragment: Fragment() {
         val viewModel = ViewModelProvider(this, viewModelFactory)[AllViewModel::class.java]
         binding.viewModel = viewModel
 
+        binding.toolbar.title = AllFragmentArgs.fromBundle(requireArguments()).toolbarText
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
         binding.photosGrid.adapter = AllAdapter(AllAdapter.OnClickListener {
             findNavController().navigate(AllFragmentDirections.actionAllFragmentToDetailFragment(it))
         })

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -15,6 +14,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="@dimen/toolbar_elevation"
+            app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+            app:title="@string/navigation_search"
+            app:titleTextColor="@color/colorText" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,19 +32,20 @@
             <EditText
                 android:id="@+id/search_edit_text"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/search_edit_text_hint"
                 android:imeOptions="actionSearch"
                 android:inputType="textCapSentences|textAutoCorrect"
-                android:hint="@string/search_edit_text_hint"
                 android:textColor="@color/colorText"
-                android:layout_height="wrap_content"
-                android:textColorHint="@color/colorText"
-                android:layout_weight="1" />
+                android:textColorHint="@color/colorText" />
 
             <ImageButton
                 android:id="@+id/search_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_search_24" />
+                android:src="@drawable/ic_baseline_search_24"
+                android:contentDescription="@string/search_button_description" />
 
         </LinearLayout>
 

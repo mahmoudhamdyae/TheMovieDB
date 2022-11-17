@@ -10,13 +10,28 @@
             type="com.mahmoudhamdyae.themoviedb.all.AllViewModel" />
     </data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/photos_grid"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:padding="@dimen/movies_padding"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:moviesListData="@{viewModel.moviesList}"
-        tools:listitem="@layout/movie_explore_view_item" />
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="@dimen/toolbar_elevation"
+            app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+            app:titleTextColor="@color/colorText" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/photos_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:padding="@dimen/movies_padding"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:moviesListData="@{viewModel.moviesList}"
+            tools:listitem="@layout/movie_explore_view_item" />
+    </LinearLayout>
 </layout>

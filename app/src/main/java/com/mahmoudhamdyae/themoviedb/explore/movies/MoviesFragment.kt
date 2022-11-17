@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.explore.MovieExploreAdapter
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentMoviesBinding
@@ -64,13 +65,13 @@ class MoviesFragment : Fragment () {
 
         binding.viewAllButtonPopular.setOnClickListener {
             viewModel.listOfPopularContainer.observe(viewLifecycleOwner) {
-                findNavController().navigate(ExploreFragmentDirections.actionNavigationExploreToAllFragment(it))
+                findNavController().navigate(ExploreFragmentDirections.actionNavigationExploreToAllFragment(it, getString(R.string.toolbar_popular_movies)))
             }
         }
 
         binding.viewAllButtonTopRated.setOnClickListener {
             viewModel.listOfTopRatedContainer.observe(viewLifecycleOwner) {
-                findNavController().navigate(ExploreFragmentDirections.actionNavigationExploreToAllFragment(it))
+                findNavController().navigate(ExploreFragmentDirections.actionNavigationExploreToAllFragment(it, getString(R.string.toolbar_top_rated_movies)))
             }
         }
 

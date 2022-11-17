@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.all.AllAdapter
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentSearchBinding
 
@@ -29,6 +30,10 @@ class SearchFragment : Fragment() {
 
         val viewModel = ViewModelProvider(this)[SearchViewModel::class.java]
         binding.viewModel = viewModel
+
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
 
         binding.searchRecyclerViewMovies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.searchRecyclerViewMovies.adapter = AllAdapter(AllAdapter.OnClickListener {
@@ -70,13 +75,13 @@ class SearchFragment : Fragment() {
 
         binding.viewAllButtonMovies.setOnClickListener {
             viewModel.moviesContainer.observe(viewLifecycleOwner) {
-                findNavController().navigate(SearchFragmentDirections.actionNavigationSearchToAllFragment(it))
+                findNavController().navigate(SearchFragmentDirections.actionNavigationSearchToAllFragment(it, getString(R.string.toolbar_search_movies)))
             }
         }
 
         binding.viewAllButtonTvShows.setOnClickListener {
             viewModel.tvShowsContainer.observe(viewLifecycleOwner) {
-                findNavController().navigate(SearchFragmentDirections.actionNavigationSearchToAllFragment(it))
+                findNavController().navigate(SearchFragmentDirections.actionNavigationSearchToAllFragment(it, getString(R.string.toolbar_search_tv_shows)))
             }
         }
 
@@ -104,7 +109,7 @@ class SearchFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        val view = requireActivity().findViewById<BottomNavigationView>(com.mahmoudhamdyae.themoviedb.R.id.nav_view)
+        val view = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
         view.visibility = View.VISIBLE
     }
 }
