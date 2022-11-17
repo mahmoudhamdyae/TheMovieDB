@@ -5,24 +5,25 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
-import com.bumptech.glide.Glide.init
 import com.mahmoudhamdyae.themoviedb.database.local.MoviesDatabase
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
-import com.mahmoudhamdyae.themoviedb.database.network.MovieApi
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class FavouriteViewModel(application: Application): AndroidViewModel(application) {
 
-    private val _movies = MutableLiveData<List<Movie>>()
-    val movies: LiveData<List<Movie>>
+    private val _movies = MutableStateFlow<List<Movie>>(listOf())
+    val movies: MutableStateFlow<List<Movie>>
         get() = _movies
+
+    private val _test = MutableLiveData<String>()
+    val test: LiveData<String>
+        get() = _test
+
 
     private val db = Room.databaseBuilder(
     application,
-    MoviesDatabase::class.java, "database-name"
+    MoviesDatabase::class.java, "movies"
     ).build()
     private val dao = db.movieDao()
 
@@ -30,9 +31,19 @@ class FavouriteViewModel(application: Application): AndroidViewModel(application
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
+        getFavourites()
+    }
+
+    fun getFavourites() {
         coroutineScope.launch {
-//            _movies.value = dao.getMovies()
-            _movies.value = MovieApi.retrofitService.getTopRatedMoviesAsync().await().results
+            try {
+                dao.getMovies().collect {
+                    _movies.value = it
+                    _movies.value = _movies.value.reversed()
+                }
+            } catch (e: Exception) {
+                _test.value = e.toString()
+            }
         }
     }
 

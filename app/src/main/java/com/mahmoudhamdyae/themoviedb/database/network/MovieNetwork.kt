@@ -1,6 +1,8 @@
 package com.mahmoudhamdyae.themoviedb.database.network
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
@@ -20,7 +22,9 @@ data class NetworkMovieContainer(val results: List<Movie>) : Parcelable
 
 @Parcelize
 @JsonClass(generateAdapter = true)
+@Entity
 data class Movie (
+    @PrimaryKey
     val id: String,
     @Json(name = "title") val title: String = "", // Movie's Title
     @Json(name = "name") val name: String = "", // TV Show's Name

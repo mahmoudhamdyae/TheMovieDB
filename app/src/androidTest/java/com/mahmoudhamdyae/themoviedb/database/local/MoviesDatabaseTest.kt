@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -32,7 +33,7 @@ class MoviesDatabaseTest {
 
     @Test
     fun writeAndReadMovies() {
-        val movie = MovieEntity(
+        val movie = Movie(
             "1",
             "title1",
             "name1",
@@ -49,7 +50,7 @@ class MoviesDatabaseTest {
 
     @Test
     fun delMovie() {
-        val movie = MovieEntity(
+        val movie = Movie(
             "1",
             "title1",
             "name1",

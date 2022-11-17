@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -34,6 +35,18 @@ class DetailFragment : Fragment() {
         toolbar.title = movie.realName
         toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
+        }
+
+        binding.favouriteButton.setOnClickListener {
+            if (viewModel.isFavourite(movie)) {
+                viewModel.delMovie(movie)
+            } else {
+                viewModel.insertMovie(movie)
+            }
+        }
+
+        viewModel.test.observe(viewLifecycleOwner) {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         }
 
         // Tabs
