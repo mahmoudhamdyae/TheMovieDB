@@ -81,14 +81,15 @@
                             tools:text="2019-10-11" />
                     </LinearLayout>
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/favourite_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:background="@drawable/ic_heart"
-                        android:contentDescription="@string/favourite_image_button_description"/>
+                        android:background="@color/windowBackground"
+                        android:contentDescription="@string/favourite_image_button_description"
+                        tools:src="@drawable/ic_heart" />
                 </RelativeLayout>
             </ScrollView>
 

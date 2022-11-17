@@ -6,12 +6,8 @@
     android:viewportHeight="56">
 
     <path
-        android:name="empty"
+        android:name="full"
         android:fillColor="#D50000"
-        android:pathData="@string/heart_empty_path" />
-
-    <clip-path
-        android:name="clip"
-        android:pathData="@string/heart_clip_hidden" />
+        android:pathData="@string/heart_full_path" />
 
 </vector>
