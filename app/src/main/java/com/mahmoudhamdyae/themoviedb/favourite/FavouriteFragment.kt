@@ -11,8 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb.R
+import com.mahmoudhamdyae.themoviedb.database.network.NetworkMovieContainer
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentFavouriteBinding
 import com.mahmoudhamdyae.themoviedb.explore.MovieExploreAdapter
+import kotlinx.coroutines.flow.observeOn
 
 class FavouriteFragment: Fragment() {
 
@@ -29,10 +31,24 @@ class FavouriteFragment: Fragment() {
         viewModel = ViewModelProvider(this)[FavouriteViewModel::class.java]
         binding.viewModel = viewModel
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.recyclerView.adapter = MovieExploreAdapter(MovieExploreAdapter.OnClickListener {
+        binding.recyclerViewMovies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewMovies.adapter = MovieExploreAdapter(MovieExploreAdapter.OnClickListener {
             findNavController().navigate(FavouriteFragmentDirections.actionFavouriteFragmentToDetailFragment(it))
         })
+
+        binding.recyclerViewTvShows.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewTvShows.adapter = MovieExploreAdapter(MovieExploreAdapter.OnClickListener {
+            findNavController().navigate(FavouriteFragmentDirections.actionFavouriteFragmentToDetailFragment(it))
+        })
+
+        binding.viewAllButtonMovies.setOnClickListener {
+            val movies = NetworkMovieContainer(viewModel.movies.value)
+            findNavController().navigate(FavouriteFragmentDirections.actionNavigationFavouriteToAllFragment(movies))
+        }
+        binding.viewAllButtonTvShows.setOnClickListener {
+            val tvShows = NetworkMovieContainer(viewModel.tvShows.value)
+            findNavController().navigate(FavouriteFragmentDirections.actionNavigationFavouriteToAllFragment(tvShows))
+        }
 
         viewModel.test.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()

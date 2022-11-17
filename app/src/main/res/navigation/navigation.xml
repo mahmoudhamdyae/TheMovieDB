@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_favouriteFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_navigation_favourite_to_allFragment"
+            app:destination="@id/allFragment" />
     </fragment>
 
     <fragment

@@ -16,6 +16,10 @@ class FavouriteViewModel(application: Application): AndroidViewModel(application
     val movies: MutableStateFlow<List<Movie>>
         get() = _movies
 
+    private val _tvShows = MutableStateFlow<List<Movie>>(listOf())
+    val tvShows: MutableStateFlow<List<Movie>>
+        get() = _tvShows
+
     private val _test = MutableLiveData<String>()
     val test: LiveData<String>
         get() = _test
@@ -38,8 +42,19 @@ class FavouriteViewModel(application: Application): AndroidViewModel(application
         coroutineScope.launch {
             try {
                 dao.getMovies().collect {
-                    _movies.value = it
+                    _movies.value = listOf()
+                    _tvShows.value = listOf()
+                    it.forEach {movie : Movie ->
+                        if (movie.title != "") {
+                            // Movie
+                            _movies.value = _movies.value + movie
+                        } else {
+                            // TV Show
+                            _tvShows.value = _tvShows.value + movie
+                        }
+                    }
                     _movies.value = _movies.value.reversed()
+                    _tvShows.value = _tvShows.value.reversed()
                 }
             } catch (e: Exception) {
                 _test.value = e.toString()
