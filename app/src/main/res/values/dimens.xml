@@ -47,6 +47,7 @@
     <dimen name="tab_indicator_height">3dp</dimen>
 
     <dimen name="text_size">16sp</dimen>
+    <dimen name="favourite_empty_view_text">16sp</dimen>
 
     <dimen name="card_padding">8dp</dimen>
     <dimen name="play_video_padding">8dp</dimen>

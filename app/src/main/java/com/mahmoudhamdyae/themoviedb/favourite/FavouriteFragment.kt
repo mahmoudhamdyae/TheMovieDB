@@ -18,13 +18,14 @@ import com.mahmoudhamdyae.themoviedb.explore.MovieExploreAdapter
 class FavouriteFragment: Fragment() {
 
     private lateinit var viewModel : FavouriteViewModel
+    private lateinit var binding: FragmentFavouriteBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentFavouriteBinding.inflate(inflater)
+        binding = FragmentFavouriteBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
         viewModel = ViewModelProvider(this)[FavouriteViewModel::class.java]
@@ -64,6 +65,31 @@ class FavouriteFragment: Fragment() {
         super.onResume()
 
         viewModel.getFavourites()
+
+        val moviesIsEmpty = viewModel.movies.value.isEmpty()
+        val tvShowsIsEmpty = viewModel.tvShows.value.isEmpty()
+
+        if (moviesIsEmpty) {
+            binding.linearlayoutMovies.visibility = View.GONE
+            binding.recyclerViewMovies.visibility = View.GONE
+        } else {
+            binding.linearlayoutMovies.visibility = View.VISIBLE
+            binding.recyclerViewMovies.visibility = View.VISIBLE
+        }
+
+        if (tvShowsIsEmpty) {
+            binding.linearlayoutTvShows.visibility = View.GONE
+            binding.recyclerViewTvShows.visibility = View.GONE
+        } else {
+            binding.linearlayoutTvShows.visibility = View.VISIBLE
+            binding.recyclerViewTvShows.visibility = View.VISIBLE
+        }
+
+        if (moviesIsEmpty && tvShowsIsEmpty) {
+            binding.emptyView.visibility = View.VISIBLE
+        } else {
+            binding.emptyView.visibility = View.GONE
+        }
 
         // Hide Bottom Navigation View
         val view = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)

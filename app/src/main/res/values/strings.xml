@@ -47,5 +47,8 @@
     <string name="toolbar_favourite_movies">Favourite Movies</string>
     <string name="toolbar_favourite_tv_shows">Favourite TV Shows</string>
 
+    <!-- Favourite Fragment -->
+    <string name="favourite_empty_view">There is no favourites added</string>
+
     <!--<string name="network_not_available">Network is not available</string>-->
 </resources>
