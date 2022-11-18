@@ -24,41 +24,45 @@
             app:title="@string/navigation_search"
             app:titleTextColor="@color/colorText" />
 
-        <ScrollView
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_margin="@dimen/movies_padding"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/activity_padding"
+                android:paddingEnd="@dimen/activity_padding">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <EditText
+                    android:id="@+id/search_edit_text"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingStart="@dimen/activity_padding"
-                    android:paddingEnd="@dimen/activity_padding">
+                    android:layout_weight="1"
+                    android:hint="@string/search_edit_text_hint"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textCapSentences|textAutoCorrect"
+                    android:textColor="@color/colorText"
+                    android:textColorHint="@color/colorText" />
 
-                    <EditText
-                        android:id="@+id/search_edit_text"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/search_edit_text_hint"
-                        android:imeOptions="actionSearch"
-                        android:inputType="textCapSentences|textAutoCorrect"
-                        android:textColor="@color/colorText"
-                        android:textColorHint="@color/colorText" />
+                <ImageButton
+                    android:id="@+id/search_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryDark"
+                    android:contentDescription="@string/search_button_description"
+                    android:padding="@dimen/search_button_padding"
+                    android:src="@drawable/ic_baseline_search_24" />
 
-                    <ImageButton
-                        android:id="@+id/search_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/search_button_description"
-                        android:src="@drawable/ic_baseline_search_24" />
+            </LinearLayout>
 
-                </LinearLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:id="@+id/linear_layout"
@@ -120,7 +124,7 @@
                         android:layout_height="wrap_content"
                         app:moviesExploreListData="@{viewModel.tvShows}" />
                 </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
+            </ScrollView>
+        </LinearLayout>
     </LinearLayout>
 </layout>

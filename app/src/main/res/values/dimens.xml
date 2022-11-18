@@ -55,4 +55,7 @@
 
     <!-- All Fragment -->
     <dimen name="all_image_height">150dp</dimen>
+
+    <!-- Search Fragment -->
+    <dimen name="search_button_padding">8dp</dimen>
 </resources>
