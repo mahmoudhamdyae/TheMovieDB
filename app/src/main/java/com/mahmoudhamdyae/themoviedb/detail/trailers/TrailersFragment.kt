@@ -31,6 +31,11 @@ class TrailersFragment(private val movieID: String, private val isMovie: Boolean
             startActivity(i)
         })
 
+        viewModel.trailersList.observe(viewLifecycleOwner) {
+            if (it.isEmpty())
+                binding.emptyTrailersTextView.visibility = View.VISIBLE
+        }
+
         return binding.root
     }
 }

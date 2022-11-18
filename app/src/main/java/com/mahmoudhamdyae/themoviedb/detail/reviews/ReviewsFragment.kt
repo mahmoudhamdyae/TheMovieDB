@@ -23,11 +23,10 @@ class ReviewsFragment(private val movieID: String, private val isMovie: Boolean)
 
         binding.reviewsList.adapter = ReviewsAdapter()
 
-        viewModel.reviewIsEmpty.observe(viewLifecycleOwner) {
-            if (it)
+        viewModel.reviewsList.observe(viewLifecycleOwner) {
+            if (it.isEmpty())
                 binding.emptyReviewsTextView.visibility = View.VISIBLE
         }
-        binding.emptyReviewsTextView.visibility
 
         return binding.root
     }

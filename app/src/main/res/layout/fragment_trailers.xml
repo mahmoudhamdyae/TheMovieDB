@@ -29,9 +29,15 @@
             android:padding="@dimen/movies_padding"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:trailersData="@{viewModel.trailersList}"
-            tools:listitem="@layout/trailer_view_item">
+            tools:listitem="@layout/trailer_view_item"/>
 
-        </androidx.recyclerview.widget.RecyclerView>
+        <TextView
+            android:id="@+id/empty_trailers_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_centerInParent="true"
+            android:text="@string/trailer_empty"/>
     </RelativeLayout>
 
 </layout>
