@@ -14,9 +14,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb.R
-import com.mahmoudhamdyae.themoviedb.all.AllAdapter
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentSearchBinding
-
+import com.mahmoudhamdyae.themoviedb.explore.MovieExploreAdapter
 
 class SearchFragment : Fragment() {
 
@@ -36,12 +35,12 @@ class SearchFragment : Fragment() {
         }
 
         binding.searchRecyclerViewMovies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.searchRecyclerViewMovies.adapter = AllAdapter(AllAdapter.OnClickListener {
+        binding.searchRecyclerViewMovies.adapter = MovieExploreAdapter(MovieExploreAdapter.OnClickListener {
             findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(it))
         })
 
         binding.searchRecyclerViewTvShows.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.searchRecyclerViewTvShows.adapter = AllAdapter(AllAdapter.OnClickListener {
+        binding.searchRecyclerViewTvShows.adapter = MovieExploreAdapter(MovieExploreAdapter.OnClickListener {
             findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(it))
         })
 

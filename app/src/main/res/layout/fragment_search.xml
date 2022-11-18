@@ -91,7 +91,7 @@
                         android:id="@+id/search_recycler_view_movies"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:moviesListData="@{viewModel.movies}" />
+                        app:moviesExploreListData="@{viewModel.movies}" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -118,7 +118,7 @@
                         android:id="@+id/search_recycler_view_tv_shows"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:moviesListData="@{viewModel.tvShows}" />
+                        app:moviesExploreListData="@{viewModel.tvShows}" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
