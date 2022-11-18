@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import com.mahmoudhamdyae.themoviedb.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.database.network.MovieApi
-import com.mahmoudhamdyae.themoviedb.database.network.NetworkMovieContainer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -38,30 +37,19 @@ class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(a
     val tvShowsListTopRated: LiveData<List<Movie>>
         get() = _tvShowsListTopRated
 
-    private val _listOfPopularContainer = MutableLiveData<NetworkMovieContainer>()
-    val listOfPopularContainer: LiveData<NetworkMovieContainer>
-        get() = _listOfPopularContainer
-
-    private val _listOfTopRatedContainer = MutableLiveData<NetworkMovieContainer>()
-    val listOfTopRatedContainer: LiveData<NetworkMovieContainer>
-        get() = _listOfTopRatedContainer
-
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
         getTVShowsPopular(page)
-        getTVShowsTopRated(page)
+        getTVShowsTopRated()
     }
 
     private fun getTVShowsPopular(page: Int) {
         coroutineScope.launch {
             try {
                 _statusPopular.value = MovieApiStatus.LOADING
-
-                _listOfPopularContainer.value = MovieApi.retrofitService.getPopularTVShowsAsync(page.toString()).await()
                 _tvShowsListPopular.value = MovieApi.retrofitService.getPopularTVShowsAsync(page.toString()).await().results
-
                 _statusPopular.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (tvShowsListPopular.value.isNullOrEmpty())
@@ -70,14 +58,11 @@ class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(a
         }
     }
 
-    private fun getTVShowsTopRated(page: Int) {
+    private fun getTVShowsTopRated() {
         coroutineScope.launch {
             try {
                 _statusTopRated.value = MovieApiStatus.LOADING
-
-                _listOfTopRatedContainer.value = MovieApi.retrofitService.getTopRatedTVShowsAsync().await()
                 _tvShowsListTopRated.value = MovieApi.retrofitService.getTopRatedTVShowsAsync().await().results
-
                 _statusTopRated.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (tvShowsListPopular.value.isNullOrEmpty())

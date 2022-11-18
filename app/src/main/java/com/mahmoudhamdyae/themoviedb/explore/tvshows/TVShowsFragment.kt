@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
+import com.mahmoudhamdyae.themoviedb.database.network.NetworkMovieContainer
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentTvShowsBinding
 import com.mahmoudhamdyae.themoviedb.explore.MovieExploreAdapter
 import com.mahmoudhamdyae.themoviedb.explore.ExploreFragmentDirections
@@ -65,14 +66,16 @@ class TVShowsFragment : Fragment() {
         }))
 
         binding.viewAllButtonPopular.setOnClickListener {
-            viewModel.listOfPopularContainer.observe(viewLifecycleOwner) {
-                findNavController().navigate(ExploreFragmentDirections.actionNavigationExploreToAllFragment(it, getString(R.string.toolbar_popular_tv_shows)))
+            viewModel.tvShowsListPopular.observe(viewLifecycleOwner) {
+                findNavController().navigate(ExploreFragmentDirections.actionNavigationExploreToAllFragment(
+                    NetworkMovieContainer(it), getString(R.string.toolbar_popular_tv_shows)))
             }
         }
 
         binding.viewAllButtonTopRated.setOnClickListener {
-            viewModel.listOfTopRatedContainer.observe(viewLifecycleOwner) {
-                findNavController().navigate(ExploreFragmentDirections.actionNavigationExploreToAllFragment(it, getString(R.string.toolbar_top_rated_tv_shows)))
+            viewModel.tvShowsListTopRated.observe(viewLifecycleOwner) {
+                findNavController().navigate(ExploreFragmentDirections.actionNavigationExploreToAllFragment(
+                    NetworkMovieContainer(it), getString(R.string.toolbar_top_rated_tv_shows)))
             }
         }
 

@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import com.mahmoudhamdyae.themoviedb.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb.database.network.Movie
 import com.mahmoudhamdyae.themoviedb.database.network.MovieApi
-import com.mahmoudhamdyae.themoviedb.database.network.NetworkMovieContainer
 import kotlinx.coroutines.*
 
 class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(application) {
@@ -35,30 +34,19 @@ class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(ap
     val moviesListTopRated: LiveData<List<Movie>>
         get() = _moviesListTopRated
 
-    private val _listOfPopularContainer = MutableLiveData<NetworkMovieContainer>()
-    val listOfPopularContainer: LiveData<NetworkMovieContainer>
-        get() = _listOfPopularContainer
-
-    private val _listOfTopRatedContainer = MutableLiveData<NetworkMovieContainer>()
-    val listOfTopRatedContainer: LiveData<NetworkMovieContainer>
-        get() = _listOfTopRatedContainer
-
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
         getMoviesPopular(page)
-        getMoviesTopRated(page)
+        getMoviesTopRated()
     }
 
     private fun getMoviesPopular(page : Int) {
         coroutineScope.launch {
             try {
                 _statusPopular.value = MovieApiStatus.LOADING
-
-                _listOfPopularContainer.value = MovieApi.retrofitService.getPopularMoviesAsync(page.toString()).await()
                 _moviesListPopular.value = MovieApi.retrofitService.getPopularMoviesAsync(page.toString()).await().results
-
                 _statusPopular.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (_moviesListPopular.value.isNullOrEmpty())
@@ -67,14 +55,11 @@ class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(ap
         }
     }
 
-    private fun getMoviesTopRated(page : Int) {
+    private fun getMoviesTopRated() {
         coroutineScope.launch {
             try {
                 _statusTopRated.value = MovieApiStatus.LOADING
-
-                _listOfTopRatedContainer.value = MovieApi.retrofitService.getTopRatedMoviesAsync().await()
                 _moviesListTopRated.value = MovieApi.retrofitService.getTopRatedMoviesAsync().await().results
-
                 _statusTopRated.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (_moviesListTopRated.value.isNullOrEmpty())

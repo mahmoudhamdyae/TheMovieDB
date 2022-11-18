@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb.R
+import com.mahmoudhamdyae.themoviedb.database.network.NetworkMovieContainer
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentSearchBinding
 import com.mahmoudhamdyae.themoviedb.explore.MovieExploreAdapter
 
@@ -73,14 +74,16 @@ class SearchFragment : Fragment() {
             })
 
         binding.viewAllButtonMovies.setOnClickListener {
-            viewModel.moviesContainer.observe(viewLifecycleOwner) {
-                findNavController().navigate(SearchFragmentDirections.actionNavigationSearchToAllFragment(it, getString(R.string.toolbar_search_movies)))
+            viewModel.movies.observe(viewLifecycleOwner) {
+                findNavController().navigate(SearchFragmentDirections.actionNavigationSearchToAllFragment(
+                    NetworkMovieContainer(it), getString(R.string.toolbar_search_movies)))
             }
         }
 
         binding.viewAllButtonTvShows.setOnClickListener {
-            viewModel.tvShowsContainer.observe(viewLifecycleOwner) {
-                findNavController().navigate(SearchFragmentDirections.actionNavigationSearchToAllFragment(it, getString(R.string.toolbar_search_tv_shows)))
+            viewModel.tvShows.observe(viewLifecycleOwner) {
+                findNavController().navigate(SearchFragmentDirections.actionNavigationSearchToAllFragment(
+                    NetworkMovieContainer(it), getString(R.string.toolbar_search_tv_shows)))
             }
         }
 

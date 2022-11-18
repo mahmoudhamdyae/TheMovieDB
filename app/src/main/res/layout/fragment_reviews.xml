@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.mahmoudhamdyae.themoviedb.detail.reviews.ReviewsViewModel" />
@@ -34,9 +35,12 @@
             android:id="@+id/empty_reviews_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
             android:layout_centerInParent="true"
-            android:text="@string/review_empty"/>
+            android:text="@string/review_empty"
+            android:textColor="@color/colorText"
+            android:visibility="invisible"
+            tools:text="There is no Reviews"
+            tools:visibility="visible" />
     </RelativeLayout>
 
 </layout>
