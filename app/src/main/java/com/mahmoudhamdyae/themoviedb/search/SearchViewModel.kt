@@ -21,6 +21,10 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
     val tvShows : LiveData<List<Movie>>
         get() = _tvShows
 
+    private val _error = MutableLiveData<String>()
+    val error : LiveData<String>
+        get() = _error
+
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
@@ -29,7 +33,8 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
             try {
                 _movies.value = listOf()
                 _movies.value = MovieApi.retrofitService.getMovieSearchAsync(query).await().results
-            } catch (_: Exception) {
+            } catch (e: Exception) {
+                _error.value = e.toString()
             }
         }
     }
@@ -39,7 +44,8 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
             try {
                 _tvShows.value = listOf()
                 _tvShows.value = MovieApi.retrofitService.getTVShowSearchAsync(query).await().results
-            } catch (_: Exception) {
+            } catch (e: Exception) {
+                _error.value = e.toString()
             }
         }
     }

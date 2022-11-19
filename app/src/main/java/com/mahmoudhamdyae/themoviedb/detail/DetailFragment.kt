@@ -1,7 +1,6 @@
 package com.mahmoudhamdyae.themoviedb.detail
 
 import android.graphics.drawable.AnimatedVectorDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.mahmoudhamdyae.themoviedb.MainActivity
 import com.mahmoudhamdyae.themoviedb.R
 import com.mahmoudhamdyae.themoviedb.databinding.FragmentDetailBinding
-
 
 class DetailFragment : Fragment() {
 
@@ -58,7 +56,7 @@ class DetailFragment : Fragment() {
             }
         }
 
-        viewModel.test.observe(viewLifecycleOwner) {
+        viewModel.error.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         }
 

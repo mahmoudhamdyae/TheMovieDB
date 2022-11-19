@@ -16,9 +16,9 @@ class DetailViewModel(movie: Movie, app: Application) : AndroidViewModel(app) {
     val selectedProperty: LiveData<Movie>
         get() = _selectedProperty
 
-    private val _test = MutableLiveData<String>()
-    val test: LiveData<String>
-        get() = _test
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
 
     private val db = Room.databaseBuilder(
         app,
@@ -34,7 +34,7 @@ class DetailViewModel(movie: Movie, app: Application) : AndroidViewModel(app) {
     }
 
     fun isFavourite(movie: Movie): Boolean {
-        var ret = true
+        var ret: Boolean
         runBlocking {
             ret = dao.getMovies().first().contains(movie)
         }
@@ -48,7 +48,7 @@ class DetailViewModel(movie: Movie, app: Application) : AndroidViewModel(app) {
                     dao.deleteMovie(movie)
                 }
             } catch (e: Exception) {
-                _test.value = e.toString()
+                _error.value = e.toString()
             }
         }
     }
@@ -60,7 +60,7 @@ class DetailViewModel(movie: Movie, app: Application) : AndroidViewModel(app) {
                     dao.insertMovie(movie)
                 }
             } catch (e: Exception) {
-                _test.value = e.toString()
+                _error.value = e.toString()
             }
         }
     }

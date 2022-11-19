@@ -32,8 +32,8 @@ fun bindMoviesRecyclerView(recyclerView: RecyclerView, data: List<Movie>?) {
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
-    imgUrl?.let {
-        val imgUrlFull = "http://image.tmdb.org/t/p/w342/$imgUrl"
+    imgUrl.let {
+        val imgUrlFull  = "http://image.tmdb.org/t/p/w342/${imgUrl ?: ""}"
         val imgUri = imgUrlFull.toUri().buildUpon().scheme("https").build()
         Glide.with(imgView.context)
             .load(imgUri)

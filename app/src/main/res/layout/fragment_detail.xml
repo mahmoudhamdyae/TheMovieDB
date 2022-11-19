@@ -89,6 +89,7 @@
                         android:layout_alignParentBottom="true"
                         android:background="@color/windowBackground"
                         android:contentDescription="@string/favourite_image_button_description"
+                        android:src="@drawable/ic_heart"
                         tools:src="@drawable/ic_heart" />
                 </RelativeLayout>
             </ScrollView>
