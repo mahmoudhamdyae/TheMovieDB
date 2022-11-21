@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.mahmoudhamdyae.themoviedb.detail.trailers.TrailersViewModel" />
+            type="com.mahmoudhamdyae.themoviedb1.detail.trailers.TrailersViewModel" />
     </data>
 
     <RelativeLayout

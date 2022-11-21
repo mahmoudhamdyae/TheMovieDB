@@ -6,7 +6,7 @@
 
         <variable
             name="property"
-            type="com.mahmoudhamdyae.themoviedb.database.network.Trailer" />
+            type="com.mahmoudhamdyae.themoviedb1.database.network.Trailer" />
     </data>
 
     <LinearLayout

@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.mahmoudhamdyae.themoviedb.favourite.FavouriteViewModel" />
+            type="com.mahmoudhamdyae.themoviedb1.favourite.FavouriteViewModel" />
     </data>
 
     <RelativeLayout

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.mahmoudhamdyae.themoviedb.explore.movies.MoviesViewModel" />
+            type="com.mahmoudhamdyae.themoviedb1.explore.movies.MoviesViewModel" />
     </data>
 
     <ScrollView

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_explore"
-        android:name="com.mahmoudhamdyae.themoviedb.explore.ExploreFragment"
+        android:name="com.mahmoudhamdyae.themoviedb1.explore.ExploreFragment"
         android:label="ExploreFragment"
         tools:layout="@layout/fragment_explore">
         <action
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.mahmoudhamdyae.themoviedb.search.SearchFragment"
+        android:name="com.mahmoudhamdyae.themoviedb1.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_favourite">
         <action
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/navigation_favourite"
-        android:name="com.mahmoudhamdyae.themoviedb.favourite.FavouriteFragment"
+        android:name="com.mahmoudhamdyae.themoviedb1.favourite.FavouriteFragment"
         android:label="FavouriteFragment"
         tools:layout="@layout/fragment_favourite">
         <action
@@ -50,21 +50,21 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.mahmoudhamdyae.themoviedb.detail.DetailFragment"
+        android:name="com.mahmoudhamdyae.themoviedb1.detail.DetailFragment"
         android:label="DetailFragment"
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="selectedMovie"
-            app:argType="com.mahmoudhamdyae.themoviedb.database.network.Movie" />
+            app:argType="com.mahmoudhamdyae.themoviedb1.database.network.Movie" />
     </fragment>
     <fragment
         android:id="@+id/allFragment"
-        android:name="com.mahmoudhamdyae.themoviedb.all.AllFragment"
+        android:name="com.mahmoudhamdyae.themoviedb1.all.AllFragment"
         android:label="AllFragment"
         tools:layout="@layout/fragment_all">
         <argument
             android:name="movies"
-            app:argType="com.mahmoudhamdyae.themoviedb.database.network.NetworkMovieContainer" />
+            app:argType="com.mahmoudhamdyae.themoviedb1.database.network.NetworkMovieContainer" />
         <action
             android:id="@+id/action_allFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
