@@ -1,11 +1,11 @@
-package com.mahmoudhamdyae.themoviedb1.network
+package com.mahmoudhamdyae.themoviedb1.data.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.mahmoudhamdyae.themoviedb1.BuildConfig
-import com.mahmoudhamdyae.themoviedb1.models.Movie
-import com.mahmoudhamdyae.themoviedb1.models.NetworkMovieContainer
-import com.mahmoudhamdyae.themoviedb1.models.NetworkReviewContainer
-import com.mahmoudhamdyae.themoviedb1.models.NetworkTrailerContainer
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
+import com.mahmoudhamdyae.themoviedb1.data.models.NetworkMovieContainer
+import com.mahmoudhamdyae.themoviedb1.data.models.NetworkReviewContainer
+import com.mahmoudhamdyae.themoviedb1.data.models.NetworkTrailerContainer
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred

@@ -3,7 +3,7 @@ package com.mahmoudhamdyae.themoviedb1.viewmodelsfactory
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mahmoudhamdyae.themoviedb1.models.Movie
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.viewmodels.DetailViewModel
 
 /**

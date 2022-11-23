@@ -1,7 +1,7 @@
-package com.mahmoudhamdyae.themoviedb1.room
+package com.mahmoudhamdyae.themoviedb1.data.room
 
 import androidx.room.*
-import com.mahmoudhamdyae.themoviedb1.models.Movie
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import kotlinx.coroutines.flow.Flow
 
 @Dao

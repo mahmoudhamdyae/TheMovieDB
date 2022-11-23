@@ -7,7 +7,7 @@
 
         <variable
             name="property"
-            type="com.mahmoudhamdyae.themoviedb1.models.Movie" />
+            type="com.mahmoudhamdyae.themoviedb1.data.models.Movie" />
     </data>
 
     <FrameLayout

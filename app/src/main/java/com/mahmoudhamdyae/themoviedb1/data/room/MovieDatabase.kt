@@ -1,8 +1,8 @@
-package com.mahmoudhamdyae.themoviedb1.room
+package com.mahmoudhamdyae.themoviedb1.data.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.mahmoudhamdyae.themoviedb1.models.Movie
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 
 @Database(
     entities = [Movie::class], version = 1, exportSchema = false

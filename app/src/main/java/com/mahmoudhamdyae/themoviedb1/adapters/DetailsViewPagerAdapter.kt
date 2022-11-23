@@ -2,10 +2,10 @@ package com.mahmoudhamdyae.themoviedb1.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.mahmoudhamdyae.themoviedb1.ui.TrailersFragment
-import com.mahmoudhamdyae.themoviedb1.models.Movie
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.ui.ReviewsFragment
 import com.mahmoudhamdyae.themoviedb1.ui.SummaryFragment
+import com.mahmoudhamdyae.themoviedb1.ui.TrailersFragment
 
 /**
  * The Adapter of the view pager

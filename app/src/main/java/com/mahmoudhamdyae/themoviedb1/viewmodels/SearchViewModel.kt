@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.mahmoudhamdyae.themoviedb1.models.Movie
-import com.mahmoudhamdyae.themoviedb1.repository.Repository
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
+import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

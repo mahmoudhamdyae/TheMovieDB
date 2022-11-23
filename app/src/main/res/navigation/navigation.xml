@@ -55,7 +55,7 @@
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="selectedMovie"
-            app:argType="com.mahmoudhamdyae.themoviedb1.models.Movie" />
+            app:argType="com.mahmoudhamdyae.themoviedb1.data.models.Movie" />
     </fragment>
     <fragment
         android:id="@+id/allFragment"
@@ -64,7 +64,7 @@
         tools:layout="@layout/fragment_all">
         <argument
             android:name="movies"
-            app:argType="com.mahmoudhamdyae.themoviedb1.models.NetworkMovieContainer" />
+            app:argType="com.mahmoudhamdyae.themoviedb1.data.models.NetworkMovieContainer" />
         <action
             android:id="@+id/action_allFragment_to_detailFragment"
             app:destination="@id/detailFragment" />

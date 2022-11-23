@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahmoudhamdyae.themoviedb1.R
 import com.mahmoudhamdyae.themoviedb1.adapters.MovieExploreAdapter
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentTvShowsBinding
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
+import com.mahmoudhamdyae.themoviedb1.data.models.NetworkMovieContainer
 import com.mahmoudhamdyae.themoviedb1.viewmodels.TVShowsViewModel
 import com.mahmoudhamdyae.themoviedb1.viewmodelsfactory.TVShowsViewModelFactory
-import com.mahmoudhamdyae.themoviedb1.models.Movie
-import com.mahmoudhamdyae.themoviedb1.models.NetworkMovieContainer
 
 class TVShowsFragment : Fragment() {
 

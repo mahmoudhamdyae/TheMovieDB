@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.mahmoudhamdyae.themoviedb1.models.Movie
-import com.mahmoudhamdyae.themoviedb1.room.MovieDao
-import com.mahmoudhamdyae.themoviedb1.room.MoviesDatabase
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
+import com.mahmoudhamdyae.themoviedb1.data.room.MovieDao
+import com.mahmoudhamdyae.themoviedb1.data.room.MoviesDatabase
 import org.junit.After
 import org.junit.Before
 import org.junit.Test

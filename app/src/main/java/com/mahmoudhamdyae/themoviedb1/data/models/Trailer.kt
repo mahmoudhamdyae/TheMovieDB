@@ -1,4 +1,4 @@
-package com.mahmoudhamdyae.themoviedb1.models
+package com.mahmoudhamdyae.themoviedb1.data.models
 
 import com.squareup.moshi.JsonClass
 

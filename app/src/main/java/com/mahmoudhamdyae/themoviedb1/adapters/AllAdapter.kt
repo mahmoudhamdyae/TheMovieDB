@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.databinding.MovieViewItemBinding
-import com.mahmoudhamdyae.themoviedb1.models.Movie
 
 class AllAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<Movie, AllAdapter.MoviePropertyViewHolder>(DiffCallback) {

@@ -5,9 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
-import com.mahmoudhamdyae.themoviedb1.models.Movie
-import com.mahmoudhamdyae.themoviedb1.repository.Repository
-import com.mahmoudhamdyae.themoviedb1.room.MoviesDatabase
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
+import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
+import com.mahmoudhamdyae.themoviedb1.data.room.MoviesDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

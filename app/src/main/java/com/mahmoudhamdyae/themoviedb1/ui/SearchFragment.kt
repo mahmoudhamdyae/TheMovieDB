@@ -17,7 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb1.R
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentSearchBinding
 import com.mahmoudhamdyae.themoviedb1.adapters.MovieExploreAdapter
-import com.mahmoudhamdyae.themoviedb1.models.NetworkMovieContainer
+import com.mahmoudhamdyae.themoviedb1.data.models.NetworkMovieContainer
 import com.mahmoudhamdyae.themoviedb1.viewmodels.SearchViewModel
 
 class SearchFragment : Fragment() {

@@ -11,9 +11,9 @@ import com.mahmoudhamdyae.themoviedb1.adapters.AllAdapter
 import com.mahmoudhamdyae.themoviedb1.adapters.ReviewsAdapter
 import com.mahmoudhamdyae.themoviedb1.adapters.TrailersAdapter
 import com.mahmoudhamdyae.themoviedb1.adapters.MovieExploreAdapter
-import com.mahmoudhamdyae.themoviedb1.models.Movie
-import com.mahmoudhamdyae.themoviedb1.models.Review
-import com.mahmoudhamdyae.themoviedb1.models.Trailer
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
+import com.mahmoudhamdyae.themoviedb1.data.models.Review
+import com.mahmoudhamdyae.themoviedb1.data.models.Trailer
 
 /**
  * When there is no Movie property data (data is null), hide the [RecyclerView], otherwise show it.

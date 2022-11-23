@@ -11,11 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahmoudhamdyae.themoviedb1.R
 import com.mahmoudhamdyae.themoviedb1.adapters.MovieExploreAdapter
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
+import com.mahmoudhamdyae.themoviedb1.data.models.NetworkMovieContainer
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentMoviesBinding
 import com.mahmoudhamdyae.themoviedb1.viewmodels.MoviesViewModel
 import com.mahmoudhamdyae.themoviedb1.viewmodelsfactory.MoviesViewModelFactory
-import com.mahmoudhamdyae.themoviedb1.models.Movie
-import com.mahmoudhamdyae.themoviedb1.models.NetworkMovieContainer
 
 class MoviesFragment : Fragment () {
 

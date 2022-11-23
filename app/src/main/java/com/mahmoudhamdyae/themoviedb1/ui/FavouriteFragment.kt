@@ -11,10 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb1.R
-import com.mahmoudhamdyae.themoviedb1.databinding.FragmentFavouriteBinding
 import com.mahmoudhamdyae.themoviedb1.adapters.MovieExploreAdapter
+import com.mahmoudhamdyae.themoviedb1.data.models.NetworkMovieContainer
+import com.mahmoudhamdyae.themoviedb1.databinding.FragmentFavouriteBinding
 import com.mahmoudhamdyae.themoviedb1.viewmodels.FavouriteViewModel
-import com.mahmoudhamdyae.themoviedb1.models.NetworkMovieContainer
 
 class FavouriteFragment: Fragment() {
 

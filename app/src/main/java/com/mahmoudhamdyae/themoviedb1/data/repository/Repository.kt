@@ -1,7 +1,7 @@
-package com.mahmoudhamdyae.themoviedb1.repository
+package com.mahmoudhamdyae.themoviedb1.data.repository
 
-import com.mahmoudhamdyae.themoviedb1.network.MovieApi
-import com.mahmoudhamdyae.themoviedb1.room.MovieDao
+import com.mahmoudhamdyae.themoviedb1.data.network.MovieApi
+import com.mahmoudhamdyae.themoviedb1.data.room.MovieDao
 
 class Repository {
 
