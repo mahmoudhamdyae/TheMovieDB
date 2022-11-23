@@ -7,13 +7,13 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.mahmoudhamdyae.themoviedb1.all.AllAdapter
-import com.mahmoudhamdyae.themoviedb1.database.network.Movie
-import com.mahmoudhamdyae.themoviedb1.detail.reviews.ReviewsAdapter
-import com.mahmoudhamdyae.themoviedb1.detail.trailers.TrailersAdapter
-import com.mahmoudhamdyae.themoviedb1.database.network.Review
-import com.mahmoudhamdyae.themoviedb1.database.network.Trailer
-import com.mahmoudhamdyae.themoviedb1.explore.MovieExploreAdapter
+import com.mahmoudhamdyae.themoviedb1.adapters.AllAdapter
+import com.mahmoudhamdyae.themoviedb1.adapters.ReviewsAdapter
+import com.mahmoudhamdyae.themoviedb1.adapters.TrailersAdapter
+import com.mahmoudhamdyae.themoviedb1.adapters.MovieExploreAdapter
+import com.mahmoudhamdyae.themoviedb1.models.Movie
+import com.mahmoudhamdyae.themoviedb1.models.Review
+import com.mahmoudhamdyae.themoviedb1.models.Trailer
 
 /**
  * When there is no Movie property data (data is null), hide the [RecyclerView], otherwise show it.

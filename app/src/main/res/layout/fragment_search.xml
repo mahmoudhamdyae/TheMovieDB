@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.mahmoudhamdyae.themoviedb1.search.SearchViewModel" />
+            type="com.mahmoudhamdyae.themoviedb1.viewmodels.SearchViewModel" />
     </data>
 
     <LinearLayout
