@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import com.mahmoudhamdyae.themoviedb1.models.Movie
+import com.mahmoudhamdyae.themoviedb1.repository.Repository
 import com.mahmoudhamdyae.themoviedb1.room.MoviesDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -44,7 +45,7 @@ class FavouriteViewModel(application: Application): AndroidViewModel(application
     fun getFavourites() {
         coroutineScope.launch {
             try {
-                dao.getMovies().collect {
+                Repository().getFavouriteMovies(dao).collect {
                     _movies.value = listOf()
                     _tvShows.value = listOf()
                     it.forEach {movie : Movie ->

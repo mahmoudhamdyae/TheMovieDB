@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import com.mahmoudhamdyae.themoviedb1.models.Movie
+import com.mahmoudhamdyae.themoviedb1.repository.Repository
 import com.mahmoudhamdyae.themoviedb1.room.MoviesDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.first
@@ -36,7 +37,7 @@ class DetailViewModel(movie: Movie, app: Application) : AndroidViewModel(app) {
     fun isFavourite(movie: Movie): Boolean {
         var ret: Boolean
         runBlocking {
-            ret = dao.getMovies().first().contains(movie)
+            ret = Repository().getFavouriteMovies(dao).first().contains(movie)
         }
         return ret
     }

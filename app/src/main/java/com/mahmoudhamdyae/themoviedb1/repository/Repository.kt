@@ -1,10 +1,9 @@
 package com.mahmoudhamdyae.themoviedb1.repository
 
 import com.mahmoudhamdyae.themoviedb1.network.MovieApi
+import com.mahmoudhamdyae.themoviedb1.room.MovieDao
 
 class Repository {
-
-
 
     suspend fun getPopularMovies(page: Int) =
         MovieApi.retrofitService.getPopularMoviesAsync(page.toString()).await().results
@@ -36,9 +35,5 @@ class Repository {
     suspend fun getTVTrailers(movieId: String) =
         MovieApi.retrofitService.getTVTrailersAsync(movieId).await().results
 
-    suspend fun getFavouriteMovies() {
-    }
-
-    suspend fun getFavouriteTVShows() {
-    }
+    fun getFavouriteMovies(dao: MovieDao) = dao.getMovies()
 }
