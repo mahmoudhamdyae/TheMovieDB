@@ -1,20 +1,22 @@
 package com.mahmoudhamdyae.themoviedb1.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.room.Room
+import androidx.lifecycle.ViewModel
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
-import com.mahmoudhamdyae.themoviedb1.data.room.MoviesDatabase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FavouriteViewModel(application: Application): AndroidViewModel(application) {
+@HiltViewModel
+class FavouriteViewModel @Inject constructor(
+    private val repository: Repository
+): ViewModel() {
 
     private val _movies = MutableStateFlow<List<Movie>>(listOf())
     val movies: MutableStateFlow<List<Movie>>
@@ -28,13 +30,6 @@ class FavouriteViewModel(application: Application): AndroidViewModel(application
     val test: LiveData<String>
         get() = _test
 
-
-    private val db = Room.databaseBuilder(
-    application,
-    MoviesDatabase::class.java, "movies"
-    ).build()
-    private val dao = db.movieDao()
-
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
@@ -45,7 +40,7 @@ class FavouriteViewModel(application: Application): AndroidViewModel(application
     fun getFavourites() {
         coroutineScope.launch {
             try {
-                Repository().getFavouriteMovies(dao).collect {
+                repository.getFavouriteMovies().collect {
                     _movies.value = listOf()
                     _tvShows.value = listOf()
                     it.forEach {movie : Movie ->

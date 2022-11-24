@@ -9,9 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.mahmoudhamdyae.themoviedb1.R
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentSummaryBinding
 import com.mahmoudhamdyae.themoviedb1.viewmodels.SummaryViewModel
-import com.mahmoudhamdyae.themoviedb1.viewmodelsfactory.SummaryViewModelFactory
 
-class SummaryFragment(val overview: String): Fragment() {
+class SummaryFragment(private val overview: String): Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,8 +20,10 @@ class SummaryFragment(val overview: String): Fragment() {
         val binding = FragmentSummaryBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        val viewModelFactory = SummaryViewModelFactory(overview, requireActivity().application)
-        val viewModel = ViewModelProvider(this, viewModelFactory)[SummaryViewModel::class.java]
+        val viewModelFactory =
+            SummaryViewModel.SummaryViewModelFactory(overview)
+        val viewModel =
+            ViewModelProvider(this, viewModelFactory)[SummaryViewModel::class.java]
         binding.viewModel = viewModel
 
         viewModel.overview.observe(viewLifecycleOwner) {

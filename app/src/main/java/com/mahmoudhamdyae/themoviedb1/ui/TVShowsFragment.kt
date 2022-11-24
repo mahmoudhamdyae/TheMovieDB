@@ -5,18 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahmoudhamdyae.themoviedb1.R
 import com.mahmoudhamdyae.themoviedb1.adapters.MovieExploreAdapter
-import com.mahmoudhamdyae.themoviedb1.databinding.FragmentTvShowsBinding
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.models.NetworkMovieContainer
+import com.mahmoudhamdyae.themoviedb1.databinding.FragmentTvShowsBinding
 import com.mahmoudhamdyae.themoviedb1.viewmodels.TVShowsViewModel
-import com.mahmoudhamdyae.themoviedb1.viewmodelsfactory.TVShowsViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TVShowsFragment : Fragment() {
 
     private var _binding: FragmentTvShowsBinding? = null
@@ -36,8 +37,7 @@ class TVShowsFragment : Fragment() {
         binding.lifecycleOwner = this
 
         // Initialize [MoviesViewModel].
-        val viewModelFactory = TVShowsViewModelFactory(1, requireActivity().application)
-        val viewModel : TVShowsViewModel = ViewModelProvider(this, viewModelFactory)[TVShowsViewModel::class.java]
+        val viewModel : TVShowsViewModel by activityViewModels()
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel

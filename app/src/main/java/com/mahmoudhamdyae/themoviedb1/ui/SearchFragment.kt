@@ -10,16 +10,18 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mahmoudhamdyae.themoviedb1.R
-import com.mahmoudhamdyae.themoviedb1.databinding.FragmentSearchBinding
 import com.mahmoudhamdyae.themoviedb1.adapters.MovieExploreAdapter
 import com.mahmoudhamdyae.themoviedb1.data.models.NetworkMovieContainer
+import com.mahmoudhamdyae.themoviedb1.databinding.FragmentSearchBinding
 import com.mahmoudhamdyae.themoviedb1.viewmodels.SearchViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     override fun onCreateView(
@@ -31,7 +33,7 @@ class SearchFragment : Fragment() {
         binding.lifecycleOwner = this
 
         // View model
-        val viewModel = ViewModelProvider(this)[SearchViewModel::class.java]
+        val viewModel : SearchViewModel by activityViewModels()
         binding.viewModel = viewModel
 
         // Toolbar

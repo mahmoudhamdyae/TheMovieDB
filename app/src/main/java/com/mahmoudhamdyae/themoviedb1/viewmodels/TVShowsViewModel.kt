@@ -1,18 +1,22 @@
 package com.mahmoudhamdyae.themoviedb1.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.mahmoudhamdyae.themoviedb1.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class TVShowsViewModel @Inject constructor(
+    private val repository: Repository
+) : ViewModel() {
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
     private val _navigateToSelectedTVShow = MutableLiveData<Movie?>()
@@ -41,15 +45,15 @@ class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(a
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
-        getTVShowsPopular(page)
+        getTVShowsPopular()
         getTVShowsTopRated()
     }
 
-    private fun getTVShowsPopular(page: Int) {
+    private fun getTVShowsPopular() {
         coroutineScope.launch {
             try {
                 _statusPopular.value = MovieApiStatus.LOADING
-                _tvShowsListPopular.value = Repository().getPopularTVShows(page)
+                _tvShowsListPopular.value = repository.getPopularTVShows()
                 _statusPopular.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (tvShowsListPopular.value.isNullOrEmpty())
@@ -62,7 +66,7 @@ class TVShowsViewModel(page: Int, application: Application) : AndroidViewModel(a
         coroutineScope.launch {
             try {
                 _statusTopRated.value = MovieApiStatus.LOADING
-                _tvShowsListTopRated.value = Repository().getTopRatedTVShows()
+                _tvShowsListTopRated.value = repository.getTopRatedTVShows()
                 _statusTopRated.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (tvShowsListPopular.value.isNullOrEmpty())

@@ -1,18 +1,22 @@
 package com.mahmoudhamdyae.themoviedb1.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.mahmoudhamdyae.themoviedb1.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class MoviesViewModel @Inject constructor(
+    private val repository: Repository
+) : ViewModel() {
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
     private val _navigateToSelectedMovie = MutableLiveData<Movie?>()
@@ -41,15 +45,15 @@ class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(ap
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
-        getMoviesPopular(page)
+        getMoviesPopular()
         getMoviesTopRated()
     }
 
-    private fun getMoviesPopular(page : Int) {
+    private fun getMoviesPopular() {
         coroutineScope.launch {
             try {
                 _statusPopular.value = MovieApiStatus.LOADING
-                _moviesListPopular.value = Repository().getPopularMovies(page)
+                _moviesListPopular.value = repository.getPopularMovies()
                 _statusPopular.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (_moviesListPopular.value.isNullOrEmpty())
@@ -62,7 +66,7 @@ class MoviesViewModel(page: Int, application: Application) : AndroidViewModel(ap
         coroutineScope.launch {
             try {
                 _statusTopRated.value = MovieApiStatus.LOADING
-                _moviesListTopRated.value = Repository().getTopRatedMovies()
+                _moviesListTopRated.value = repository.getTopRatedMovies()
                 _statusTopRated.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (_moviesListTopRated.value.isNullOrEmpty())

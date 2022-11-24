@@ -1,39 +1,48 @@
 package com.mahmoudhamdyae.themoviedb1.data.repository
 
-import com.mahmoudhamdyae.themoviedb1.data.network.MovieApi
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
+import com.mahmoudhamdyae.themoviedb1.data.network.ApiService
 import com.mahmoudhamdyae.themoviedb1.data.room.MovieDao
+import javax.inject.Inject
 
-class Repository {
+class Repository @Inject constructor(
+    private val apiService: ApiService,
+    private val dao: MovieDao
+) {
 
-    suspend fun getPopularMovies(page: Int) =
-        MovieApi.retrofitService.getPopularMoviesAsync(page.toString()).await().results
+    suspend fun getPopularMovies() =
+        apiService.getPopularMoviesAsync().await().results
 
     suspend fun getTopRatedMovies() =
-        MovieApi.retrofitService.getTopRatedMoviesAsync().await().results
+        apiService.getTopRatedMoviesAsync().await().results
 
-    suspend fun getPopularTVShows(page: Int) =
-        MovieApi.retrofitService.getPopularTVShowsAsync(page.toString()).await().results
+    suspend fun getPopularTVShows() =
+        apiService.getPopularTVShowsAsync().await().results
 
     suspend fun getTopRatedTVShows() =
-        MovieApi.retrofitService.getTopRatedTVShowsAsync().await().results
+        apiService.getTopRatedTVShowsAsync().await().results
 
     suspend fun getSearchedMovies(query: String) =
-        MovieApi.retrofitService.getMovieSearchAsync(query).await().results
+        apiService.getMovieSearchAsync(query).await().results
 
     suspend fun getSearchedTVShows(query: String) =
-        MovieApi.retrofitService.getTVShowSearchAsync(query).await().results
+        apiService.getTVShowSearchAsync(query).await().results
 
     suspend fun getReviews(movieId: String) =
-        MovieApi.retrofitService.getReviewsAsync(movieId).await().results
+        apiService.getReviewsAsync(movieId).await().results
 
     suspend fun getTrailers(movieId: String) =
-        MovieApi.retrofitService.getTrailersAsync(movieId).await().results
+        apiService.getTrailersAsync(movieId).await().results
 
     suspend fun getTVReviews(movieId: String) =
-        MovieApi.retrofitService.getTVReviewsAsync(movieId).await().results
+        apiService.getTVReviewsAsync(movieId).await().results
 
     suspend fun getTVTrailers(movieId: String) =
-        MovieApi.retrofitService.getTVTrailersAsync(movieId).await().results
+        apiService.getTVTrailersAsync(movieId).await().results
 
-    fun getFavouriteMovies(dao: MovieDao) = dao.getMovies()
+    fun getFavouriteMovies() = dao.getMovies()
+
+    fun insertFavouriteMovie(movie: Movie) = dao.insertMovie(movie)
+
+    fun deleteFavouriteMovie(movie: Movie) = dao.deleteMovie(movie)
 }

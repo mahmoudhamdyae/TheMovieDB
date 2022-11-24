@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mahmoudhamdyae.themoviedb1.MainActivity
@@ -16,8 +16,9 @@ import com.mahmoudhamdyae.themoviedb1.R
 import com.mahmoudhamdyae.themoviedb1.adapters.DetailsViewPagerAdapter
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentDetailBinding
 import com.mahmoudhamdyae.themoviedb1.viewmodels.DetailViewModel
-import com.mahmoudhamdyae.themoviedb1.viewmodelsfactory.DetailViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
@@ -35,8 +36,7 @@ class DetailFragment : Fragment() {
         (activity as MainActivity).makeBottomNavigationViewInvisible()
 
         val movie = DetailFragmentArgs.fromBundle(requireArguments()).selectedMovie
-        val viewModelFactory = DetailViewModelFactory(movie, requireActivity().application)
-        val viewModel = ViewModelProvider(this, viewModelFactory)[DetailViewModel::class.java]
+        val viewModel : DetailViewModel by viewModels()
         binding.viewModel = viewModel
 
         // Navigate Up

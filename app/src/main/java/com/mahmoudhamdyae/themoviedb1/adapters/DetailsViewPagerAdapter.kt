@@ -27,8 +27,8 @@ class DetailsViewPagerAdapter(
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> SummaryFragment(movie.overview)
-            1 -> ReviewsFragment(movie.id, isMovie)
-            else -> TrailersFragment(movie.id, isMovie)
+            1 -> ReviewsFragment(movie, isMovie)
+            else -> TrailersFragment(movie, isMovie)
         }
     }
 }

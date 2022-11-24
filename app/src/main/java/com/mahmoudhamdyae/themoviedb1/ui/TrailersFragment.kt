@@ -7,14 +7,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.mahmoudhamdyae.themoviedb1.adapters.TrailersAdapter
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentTrailersBinding
 import com.mahmoudhamdyae.themoviedb1.viewmodels.TrailersViewModel
-import com.mahmoudhamdyae.themoviedb1.viewmodelsfactory.TrailersViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
+class TrailersFragment(
+    private val movie: Movie,
+    private val isMovie: Boolean
+): Fragment() {
 
-class TrailersFragment(private val movieID: String, private val isMovie: Boolean):Fragment() {
+    @Inject
+    lateinit var trailersViewModelFactory : TrailersViewModel.TrailersViewModelFactory
+    val viewModel : TrailersViewModel by viewModels { TrailersViewModel.providesFactory(
+        assistedFactory = trailersViewModelFactory,
+        movieId = movie.id,
+        isMovie = isMovie
+    ) }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,8 +37,6 @@ class TrailersFragment(private val movieID: String, private val isMovie: Boolean
         val binding = FragmentTrailersBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        val viewModelFactory = TrailersViewModelFactory(movieID, isMovie, requireActivity().application)
-        val viewModel = ViewModelProvider(this, viewModelFactory)[TrailersViewModel::class.java]
         binding.viewModel = viewModel
 
         binding.trailersList.adapter = TrailersAdapter(TrailersAdapter.OnClickListener{

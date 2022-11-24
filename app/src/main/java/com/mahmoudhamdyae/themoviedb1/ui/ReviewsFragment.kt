@@ -5,13 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.mahmoudhamdyae.themoviedb1.adapters.ReviewsAdapter
+import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentReviewsBinding
 import com.mahmoudhamdyae.themoviedb1.viewmodels.ReviewsViewModel
-import com.mahmoudhamdyae.themoviedb1.viewmodelsfactory.ReviewsViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class ReviewsFragment(private val movieID: String, private val isMovie: Boolean): Fragment() {
+@AndroidEntryPoint
+class ReviewsFragment(
+    private val movie: Movie,
+    private val isMovie: Boolean
+): Fragment() {
+
+    @Inject
+    lateinit var reviewsViewModelFactory : ReviewsViewModel.ReviewsViewModelFactory
+    private val viewModel : ReviewsViewModel by viewModels { ReviewsViewModel.providesFactory(
+        assistedFactory = reviewsViewModelFactory,
+        movieId = movie.id,
+        isMovie = isMovie
+    ) }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -20,8 +35,6 @@ class ReviewsFragment(private val movieID: String, private val isMovie: Boolean)
         val binding = FragmentReviewsBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        val viewModelFactory = ReviewsViewModelFactory(movieID, isMovie, requireActivity().application)
-        val viewModel = ViewModelProvider(this, viewModelFactory)[ReviewsViewModel::class.java]
         binding.viewModel = viewModel
 
         binding.reviewsList.adapter = ReviewsAdapter()

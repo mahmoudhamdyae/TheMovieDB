@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -15,10 +15,12 @@ import com.mahmoudhamdyae.themoviedb1.adapters.MovieExploreAdapter
 import com.mahmoudhamdyae.themoviedb1.data.models.NetworkMovieContainer
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentFavouriteBinding
 import com.mahmoudhamdyae.themoviedb1.viewmodels.FavouriteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavouriteFragment: Fragment() {
 
-    private lateinit var viewModel : FavouriteViewModel
+    private val viewModel : FavouriteViewModel by viewModels()
     private lateinit var binding: FragmentFavouriteBinding
 
     override fun onCreateView(
@@ -29,7 +31,6 @@ class FavouriteFragment: Fragment() {
         binding = FragmentFavouriteBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        viewModel = ViewModelProvider(this)[FavouriteViewModel::class.java]
         binding.viewModel = viewModel
 
         binding.toolbar.setNavigationOnClickListener {

@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahmoudhamdyae.themoviedb1.R
@@ -15,8 +15,9 @@ import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.models.NetworkMovieContainer
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentMoviesBinding
 import com.mahmoudhamdyae.themoviedb1.viewmodels.MoviesViewModel
-import com.mahmoudhamdyae.themoviedb1.viewmodelsfactory.MoviesViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MoviesFragment : Fragment () {
 
     private var _binding: FragmentMoviesBinding? = null
@@ -35,8 +36,7 @@ class MoviesFragment : Fragment () {
         binding.lifecycleOwner = this
 
         // Initialize [MoviesViewModel].
-        val viewModelFactory = MoviesViewModelFactory(1, requireActivity().application)
-        val viewModel : MoviesViewModel = ViewModelProvider(this, viewModelFactory)[MoviesViewModel::class.java]
+        val viewModel : MoviesViewModel by activityViewModels()
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel

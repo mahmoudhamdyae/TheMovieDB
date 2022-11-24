@@ -5,14 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mahmoudhamdyae.themoviedb1.adapters.AllAdapter
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentAllBinding
 import com.mahmoudhamdyae.themoviedb1.viewmodels.AllViewModel
-import com.mahmoudhamdyae.themoviedb1.viewmodelsfactory.AllViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AllFragment: Fragment() {
 
     override fun onCreateView(
@@ -23,9 +24,7 @@ class AllFragment: Fragment() {
         val binding = FragmentAllBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        val movies = AllFragmentArgs.fromBundle(requireArguments()).movies.results
-        val viewModelFactory = AllViewModelFactory(movies, requireActivity().application)
-        val viewModel = ViewModelProvider(this, viewModelFactory)[AllViewModel::class.java]
+        val viewModel : AllViewModel by viewModels()
         binding.viewModel = viewModel
 
         binding.toolbar.title = AllFragmentArgs.fromBundle(requireArguments()).toolbarText

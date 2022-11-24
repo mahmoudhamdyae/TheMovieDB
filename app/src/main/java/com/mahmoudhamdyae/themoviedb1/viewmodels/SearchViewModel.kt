@@ -1,17 +1,21 @@
 package com.mahmoudhamdyae.themoviedb1.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class SearchViewModel @Inject constructor(
+    private val repository: Repository,
+) : ViewModel() {
 
     private val _movies = MutableLiveData<List<Movie>>()
     val movies : LiveData<List<Movie>>
@@ -32,7 +36,7 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
         coroutineScope.launch {
             try {
                 _movies.value = listOf()
-                _movies.value = Repository().getSearchedMovies(query)
+                _movies.value = repository.getSearchedMovies(query)
             } catch (e: Exception) {
                 _error.value = e.toString()
             }
@@ -43,7 +47,7 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
         coroutineScope.launch {
             try {
                 _tvShows.value = listOf()
-                _tvShows.value = Repository().getSearchedTVShows(query)
+                _tvShows.value = repository.getSearchedTVShows(query)
             } catch (e: Exception) {
                 _error.value = e.toString()
             }
