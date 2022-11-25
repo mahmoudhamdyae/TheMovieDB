@@ -53,7 +53,7 @@ class TVShowsViewModel @Inject constructor(
         coroutineScope.launch {
             try {
                 _statusPopular.value = MovieApiStatus.LOADING
-                _tvShowsListPopular.value = repository.getPopularTVShows()
+                _tvShowsListPopular.value = repository.getPopularTVShows(1)
                 _statusPopular.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (tvShowsListPopular.value.isNullOrEmpty())
@@ -66,7 +66,7 @@ class TVShowsViewModel @Inject constructor(
         coroutineScope.launch {
             try {
                 _statusTopRated.value = MovieApiStatus.LOADING
-                _tvShowsListTopRated.value = repository.getTopRatedTVShows()
+                _tvShowsListTopRated.value = repository.getTopRatedTVShows(1)
                 _statusTopRated.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (tvShowsListPopular.value.isNullOrEmpty())

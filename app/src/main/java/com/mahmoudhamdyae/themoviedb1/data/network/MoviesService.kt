@@ -18,11 +18,11 @@ interface MoviesService {
      */
     // https://api.themoviedb.org/3/discover/movie?api_key=API_KEY&sort_by=popularity.desc&page=1
     @GET("discover/movie?api_key=$API_KEY&sort_by=popularity.desc")
-    fun getPopularMoviesAsync(): Deferred<NetworkMovieContainer>
+    fun getPopularMoviesAsync(@Query("page") page: Int): Deferred<NetworkMovieContainer>
 
     // https://api.themoviedb.org/3/movie/top_rated?api_key=$API_KEY
     @GET("movie/top_rated?api_key=$API_KEY")
-    fun getTopRatedMoviesAsync(): Deferred<NetworkMovieContainer>
+    fun getTopRatedMoviesAsync(@Query("page") page: Int): Deferred<NetworkMovieContainer>
 
     // https://api.themoviedb.org/3/movie/760161/reviews?api_key=API_KEY
     @GET("movie/{movieId}/reviews?api_key=$API_KEY")

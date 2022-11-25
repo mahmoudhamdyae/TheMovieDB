@@ -9,11 +9,11 @@ class TVShowsRepository @Inject constructor(
 
     // Retrofit
 
-    suspend fun getPopularTVShows() =
-        tvShowsService.getPopularTVShowsAsync().await().results
+    suspend fun getPopularTVShows(page: Int) =
+        tvShowsService.getPopularTVShowsAsync(page).await().results
 
-    suspend fun getTopRatedTVShows() =
-        tvShowsService.getTopRatedTVShowsAsync().await().results
+    suspend fun getTopRatedTVShows(page: Int) =
+        tvShowsService.getTopRatedTVShowsAsync(page).await().results
 
     suspend fun getSearchedTVShows(query: String) =
         tvShowsService.getTVShowSearchAsync(query).await().results

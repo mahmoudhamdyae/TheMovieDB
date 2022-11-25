@@ -13,11 +13,11 @@ interface TVShowsService {
 
     // https://api.themoviedb.org/3/discover/tv?api_key=API_KEY&sort_by=popularity.desc&page=1
     @GET("discover/tv?api_key=${BuildConfig.API_KEY}&sort_by=popularity.desc")
-    fun getPopularTVShowsAsync() : Deferred<NetworkMovieContainer>
+    fun getPopularTVShowsAsync(@Query("page") page: Int) : Deferred<NetworkMovieContainer>
 
     // https://api.themoviedb.org/3/movie/top_rated?api_key=$API_KEY
     @GET("tv/top_rated?api_key=${BuildConfig.API_KEY}")
-    fun getTopRatedTVShowsAsync() : Deferred<NetworkMovieContainer>
+    fun getTopRatedTVShowsAsync(@Query("page") page: Int) : Deferred<NetworkMovieContainer>
 
     // https://api.themoviedb.org/3/tv/760161/reviews?api_key=API_KEY
     @GET("tv/{movieId}/reviews?api_key=${BuildConfig.API_KEY}")

@@ -6,11 +6,11 @@ import javax.inject.Inject
 class MoviesRepository @Inject constructor(
     private val moviesService: MoviesService
 ) {
-    suspend fun getPopularMovies() =
-        moviesService.getPopularMoviesAsync().await().results
+    suspend fun getPopularMovies(page: Int) =
+        moviesService.getPopularMoviesAsync(page).await().results
 
-    suspend fun getTopRatedMovies() =
-        moviesService.getTopRatedMoviesAsync().await().results
+    suspend fun getTopRatedMovies(page: Int) =
+        moviesService.getTopRatedMoviesAsync(page).await().results
 
     suspend fun getSearchedMovies(query: String) =
         moviesService.getMovieSearchAsync(query).await().results

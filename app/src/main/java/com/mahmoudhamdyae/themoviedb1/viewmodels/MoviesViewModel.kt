@@ -53,7 +53,7 @@ class MoviesViewModel @Inject constructor(
         coroutineScope.launch {
             try {
                 _statusPopular.value = MovieApiStatus.LOADING
-                _moviesListPopular.value = repository.getPopularMovies()
+                _moviesListPopular.value = repository.getPopularMovies(1)
                 _statusPopular.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (_moviesListPopular.value.isNullOrEmpty())
@@ -66,7 +66,7 @@ class MoviesViewModel @Inject constructor(
         coroutineScope.launch {
             try {
                 _statusTopRated.value = MovieApiStatus.LOADING
-                _moviesListTopRated.value = repository.getTopRatedMovies()
+                _moviesListTopRated.value = repository.getTopRatedMovies(1)
                 _statusTopRated.value = MovieApiStatus.DONE
             } catch (e: Exception) {
                 if (_moviesListTopRated.value.isNullOrEmpty())
