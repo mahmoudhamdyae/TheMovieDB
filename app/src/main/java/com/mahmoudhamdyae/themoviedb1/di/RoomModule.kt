@@ -16,11 +16,6 @@ import javax.inject.Singleton
 object RoomModule {
 
     @Provides
-    fun provideDao(movieDatabase: MoviesDatabase): MovieDao {
-        return movieDatabase.movieDao()
-    }
-
-    @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): MoviesDatabase {
         return Room.databaseBuilder(
@@ -28,5 +23,10 @@ object RoomModule {
             MoviesDatabase::class.java,
             "database"
         ).build()
+    }
+
+    @Provides
+    fun provideDao(movieDatabase: MoviesDatabase): MovieDao {
+        return movieDatabase.movieDao()
     }
 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
-import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
+import com.mahmoudhamdyae.themoviedb1.data.room.FavouriteRepository
 import com.mahmoudhamdyae.themoviedb1.ui.DetailFragmentArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val repository: Repository,
+    private val repository: FavouriteRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 

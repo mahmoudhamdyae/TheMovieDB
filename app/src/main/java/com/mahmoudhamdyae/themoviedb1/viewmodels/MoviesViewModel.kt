@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mahmoudhamdyae.themoviedb1.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
-import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
+import com.mahmoudhamdyae.themoviedb1.data.repository.MoviesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MoviesViewModel @Inject constructor(
-    private val repository: Repository
+    private val repository: MoviesRepository
 ) : ViewModel() {
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property

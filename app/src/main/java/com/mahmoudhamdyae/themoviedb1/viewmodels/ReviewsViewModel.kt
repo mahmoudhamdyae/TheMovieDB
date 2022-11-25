@@ -6,7 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mahmoudhamdyae.themoviedb1.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb1.data.models.Review
-import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
+import com.mahmoudhamdyae.themoviedb1.data.repository.MoviesRepository
+import com.mahmoudhamdyae.themoviedb1.data.repository.TVShowsRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -15,17 +16,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-//@HiltViewModel
 class ReviewsViewModel @AssistedInject constructor(
-    private val repository: Repository,
+    private val moviesRepository: MoviesRepository,
+    private val tvShowsRepository: TVShowsRepository,
     @Assisted
     private val movieId: String,
     @Assisted
     private val isMovie: Boolean
 ) : ViewModel() {
-
-//    private val movieId  = DetailFragmentArgs.fromSavedStateHandle(savedStateHandle).selectedMovie.id
-//    private val isMovie = DetailFragmentArgs.fromSavedStateHandle(savedStateHandle).selectedMovie.title != ""
 
     private val _status = MutableLiveData<MovieApiStatus>()
     val status: LiveData<MovieApiStatus>
@@ -48,10 +46,10 @@ class ReviewsViewModel @AssistedInject constructor(
                 _status.value = MovieApiStatus.LOADING
 
                 if (isMovie) {
-                    _reviewsList.value = repository.getReviews(movieId)
+                    _reviewsList.value = moviesRepository.getReviews(movieId)
                 }
                 else {
-                    _reviewsList.value = repository.getTVReviews(movieId)
+                    _reviewsList.value = tvShowsRepository.getTVReviews(movieId)
                 }
 
                 _status.value = MovieApiStatus.DONE
@@ -66,27 +64,6 @@ class ReviewsViewModel @AssistedInject constructor(
         super.onCleared()
         viewModelJob.cancel()
     }
-
-//    companion object {
-//
-//        val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-//            @Suppress("UNCHECKED_CAST")
-//            override fun <T : ViewModel> create(
-//                modelClass: Class<T>,
-//                extras: CreationExtras
-//            ): T {
-//                // Get the Application object from extras
-//                val application = checkNotNull(extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]) as BaseApplication
-//                // Create a SavedStateHandle for this ViewModel from extras
-//                val savedStateHandle = extras.createSavedStateHandle()
-//
-//                return ReviewsViewModel(
-//                    Repository(MovieApiService()),
-//                    savedStateHandle
-//                ) as T
-//            }
-//        }
-//    }
 
     @AssistedFactory
     interface ReviewsViewModelFactory {
