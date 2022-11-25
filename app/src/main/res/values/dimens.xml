@@ -58,4 +58,8 @@
 
     <!-- Search Fragment -->
     <dimen name="search_button_padding">8dp</dimen>
+
+    <!-- Trailers -->
+    <dimen name="trailer_image_width">150dp</dimen>
+    <dimen name="trailer_image_height">100dp</dimen>
 </resources>

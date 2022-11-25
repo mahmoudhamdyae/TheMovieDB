@@ -24,12 +24,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/trailers_list"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="@dimen/movies_padding"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:trailersData="@{viewModel.trailersList}"
-            tools:listitem="@layout/trailer_view_item" />
+            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/trailer_view_item"
+            tools:spanCount="2" />
 
         <TextView
             android:id="@+id/empty_trailers_text_view"

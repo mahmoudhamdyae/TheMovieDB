@@ -1,4 +1,4 @@
-package com.mahmoudhamdyae.themoviedb1
+package com.mahmoudhamdyae.themoviedb1.binding
 
 import android.view.View
 import android.widget.ImageView
@@ -7,10 +7,12 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.mahmoudhamdyae.themoviedb1.MovieApiStatus
+import com.mahmoudhamdyae.themoviedb1.R
 import com.mahmoudhamdyae.themoviedb1.adapters.AllAdapter
+import com.mahmoudhamdyae.themoviedb1.adapters.MovieExploreAdapter
 import com.mahmoudhamdyae.themoviedb1.adapters.ReviewsAdapter
 import com.mahmoudhamdyae.themoviedb1.adapters.TrailersAdapter
-import com.mahmoudhamdyae.themoviedb1.adapters.MovieExploreAdapter
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.models.Review
 import com.mahmoudhamdyae.themoviedb1.data.models.Trailer
@@ -77,4 +79,19 @@ fun bindReviewsRecyclerView(recyclerView: RecyclerView, data: List<Review>?) {
 fun bindTrailersRecyclerView(recyclerView: RecyclerView, data: List<Trailer>?) {
     val adapter = recyclerView.adapter as TrailersAdapter
     adapter.submitList(data)
+}
+
+@BindingAdapter("trailersImage")
+fun bindTrailersImage(imageView: ImageView, key: String?) {
+    key.let {
+        val imgUrlFull  = "https://img.youtube.com/vi/${key ?: ""}/default.jpg"
+        val imgUri = imgUrlFull.toUri().buildUpon().scheme("https").build()
+        Glide.with(imageView.context)
+            .load(imgUri)
+            .apply(
+                RequestOptions()
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.ic_broken_image))
+            .into(imageView)
+    }
 }

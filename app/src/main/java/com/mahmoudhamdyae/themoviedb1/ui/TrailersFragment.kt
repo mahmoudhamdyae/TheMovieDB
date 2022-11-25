@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.mahmoudhamdyae.themoviedb1.adapters.TrailersAdapter
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentTrailersBinding
+import com.mahmoudhamdyae.themoviedb1.getNoOfColumns
 import com.mahmoudhamdyae.themoviedb1.viewmodels.TrailersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -39,6 +41,7 @@ class TrailersFragment(
 
         binding.viewModel = viewModel
 
+        binding.trailersList.layoutManager = GridLayoutManager(context, getNoOfColumns(context))
         binding.trailersList.adapter = TrailersAdapter(TrailersAdapter.OnClickListener{
             val url = "https://www.youtube.com/watch?v=${it.key}"
             val i = Intent(Intent.ACTION_VIEW)

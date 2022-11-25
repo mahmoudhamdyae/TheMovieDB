@@ -39,6 +39,8 @@
     <string name="status_image_description">Status Image</string>
     <string name="favourite_image_button_description">Favourite</string>
     <string name="search_button_description">Search</string>
+    <string name="trailer_image_view_description">Trailer Image</string>
+    <string name="trailer_image_youtube_description">Youtube Image</string>
 
     <!-- All Fragment Toolbar -->
     <string name="toolbar_popular_movies">Popular Movies</string>
