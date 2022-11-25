@@ -104,7 +104,7 @@
                 app:tabIndicatorHeight="@dimen/tab_indicator_height"
                 app:tabMode="fixed"
                 app:tabSelectedTextColor="@color/tabSelectedTextColor"
-                app:tabTextColor="@color/tabTextColor" />
+                app:tabTextColor="@color/tabUnselectedTextColor" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager2.widget.ViewPager2

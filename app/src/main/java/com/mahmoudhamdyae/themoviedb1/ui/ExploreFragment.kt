@@ -6,8 +6,9 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mahmoudhamdyae.themoviedb1.R
-import com.mahmoudhamdyae.themoviedb1.databinding.FragmentExploreBinding
 import com.mahmoudhamdyae.themoviedb1.adapters.ExploreViewPageAdapter
+import com.mahmoudhamdyae.themoviedb1.databinding.FragmentExploreBinding
+
 
 @Suppress("DEPRECATION")
 class ExploreFragment : Fragment() {
@@ -36,6 +37,11 @@ class ExploreFragment : Fragment() {
                 0 -> getString(R.string.tab_movies)
                 else -> getString(R.string.tab_tv_shows)
             }
+
+            tab.setIcon(when (position) {
+                0 -> R.drawable.ic_baseline_movie_24
+                else -> R.drawable.ic_baseline_live_tv_24
+            })
         }.attach()
 
         setHasOptionsMenu(true)
