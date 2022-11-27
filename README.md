@@ -30,7 +30,6 @@
 * [MVVM Arch](https://www.toptal.com/android/android-apps-mvvm-with-clean-architecture)
 * [Retrofit](https://www.youtube.com/watch?v=t6Sql3WMAnk)
 * [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
-* [job](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/)
 * [Room Database](https://developer.android.com/codelabs/android-room-with-a-view-kotlin#0)
 * [Live Data](https://developer.android.com/reference/androidx/lifecycle/LiveData)
 * [Navigation component](https://developer.android.com/guide/navigation/navigation-getting-started)
