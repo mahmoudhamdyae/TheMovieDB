@@ -13,7 +13,7 @@
 
 ## Demo
 <p>
-  <img src="Screenshots/Vid.gif" height="500" width="250">
+https://user-images.githubusercontent.com/26709991/204145630-a20e97ac-2d29-49c0-b72c-f2c45d0c776e.mp4
 </p>
 
 ## Downloads
