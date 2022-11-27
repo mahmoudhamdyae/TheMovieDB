@@ -34,4 +34,5 @@
 * [Room Database](https://developer.android.com/codelabs/android-room-with-a-view-kotlin#0)
 * [Live Data](https://developer.android.com/reference/androidx/lifecycle/LiveData)
 * [Navigation component](https://developer.android.com/guide/navigation/navigation-getting-started)
+* [Dagger Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
 * [Testing](https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics#0)
