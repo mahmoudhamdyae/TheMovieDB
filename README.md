@@ -12,9 +12,7 @@
 </p>
 
 ## Demo
-<p>
 https://user-images.githubusercontent.com/26709991/204145630-a20e97ac-2d29-49c0-b72c-f2c45d0c776e.mp4
-</p>
 
 ## Downloads
 [<img alt="Get it on Google Play" height="80" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png">](https://play.google.com/store/apps/details?id=com.mahmoudhamdyae.themoviedb)
