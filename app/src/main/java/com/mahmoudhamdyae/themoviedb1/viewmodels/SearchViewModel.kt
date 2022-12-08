@@ -3,13 +3,11 @@ package com.mahmoudhamdyae.themoviedb1.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.repository.MoviesRepository
 import com.mahmoudhamdyae.themoviedb1.data.repository.TVShowsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,11 +29,8 @@ class SearchViewModel @Inject constructor(
     val error : LiveData<String>
         get() = _error
 
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
     fun getSearchedMovies(query: String) {
-        coroutineScope.launch {
+        viewModelScope.launch {
             try {
                 _movies.value = listOf()
                 _movies.value = moviesRepository.getSearchedMovies(query)
@@ -46,7 +41,7 @@ class SearchViewModel @Inject constructor(
     }
 
     fun getSearchedTVShows(query: String) {
-        coroutineScope.launch {
+        viewModelScope.launch {
             try {
                 _tvShows.value = listOf()
                 _tvShows.value = tvShowsRepository.getSearchedTVShows(query)
@@ -54,10 +49,5 @@ class SearchViewModel @Inject constructor(
                 _error.value = e.toString()
             }
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
     }
 }

@@ -1,9 +1,6 @@
 package com.mahmoudhamdyae.themoviedb1.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.mahmoudhamdyae.themoviedb1.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb1.data.models.Trailer
 import com.mahmoudhamdyae.themoviedb1.data.repository.MoviesRepository
@@ -11,9 +8,6 @@ import com.mahmoudhamdyae.themoviedb1.data.repository.TVShowsRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class TrailersViewModel @AssistedInject constructor(
@@ -33,15 +27,12 @@ class TrailersViewModel @AssistedInject constructor(
     val trailersList: LiveData<List<Trailer>>
         get() = _trailersList
 
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main )
-
     init {
         getTrailers()
     }
 
     private fun getTrailers() {
-        coroutineScope.launch {
+        viewModelScope.launch {
             try {
                 _status.value = MovieApiStatus.LOADING
 
@@ -58,11 +49,6 @@ class TrailersViewModel @AssistedInject constructor(
                     _status.value = MovieApiStatus.ERROR
             }
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
     }
 
     @AssistedFactory

@@ -3,13 +3,11 @@ package com.mahmoudhamdyae.themoviedb1.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.mahmoudhamdyae.themoviedb1.MovieApiStatus
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.repository.MoviesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -41,16 +39,13 @@ class MoviesViewModel @Inject constructor(
     val moviesListTopRated: LiveData<List<Movie>>
         get() = _moviesListTopRated
 
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
     init {
         getMoviesPopular()
         getMoviesTopRated()
     }
 
     private fun getMoviesPopular() {
-        coroutineScope.launch {
+        viewModelScope.launch {
             try {
                 _statusPopular.value = MovieApiStatus.LOADING
                 _moviesListPopular.value = repository.getPopularMovies(1)
@@ -63,7 +58,7 @@ class MoviesViewModel @Inject constructor(
     }
 
     private fun getMoviesTopRated() {
-        coroutineScope.launch {
+        viewModelScope.launch {
             try {
                 _statusTopRated.value = MovieApiStatus.LOADING
                 _moviesListTopRated.value = repository.getTopRatedMovies(1)
@@ -88,10 +83,5 @@ class MoviesViewModel @Inject constructor(
      */
     fun displayPropertyDetailsComplete() {
         _navigateToSelectedMovie.value = null
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
     }
 }

@@ -3,12 +3,10 @@ package com.mahmoudhamdyae.themoviedb1.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.room.FavouriteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,15 +28,12 @@ class FavouriteViewModel @Inject constructor(
     val test: LiveData<String>
         get() = _test
 
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
     init {
         getFavourites()
     }
 
     fun getFavourites() {
-        coroutineScope.launch {
+        viewModelScope.launch {
             try {
                 repository.getFavouriteMovies().collect {
                     _movies.value = listOf()
@@ -59,10 +54,5 @@ class FavouriteViewModel @Inject constructor(
                 _test.value = e.toString()
             }
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
     }
 }
