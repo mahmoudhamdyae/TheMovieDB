@@ -24,16 +24,18 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
 
+    private lateinit var binding: FragmentSearchBinding
+    private val viewModel : SearchViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentSearchBinding.inflate(inflater)
+        binding = FragmentSearchBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        // View model
-        val viewModel : SearchViewModel by activityViewModels()
+        // View Model
         binding.viewModel = viewModel
 
         // Toolbar
@@ -55,13 +57,7 @@ class SearchFragment : Fragment() {
 
         // Search button
         binding.searchButton.setOnClickListener {
-            val editText = binding.searchEditText.text.toString()
-            if (editText.isNotBlank()) {
-                binding.linearLayout.visibility = View.VISIBLE
-                hideKeyboard()
-                viewModel.getSearchedMovies(editText)
-                viewModel.getSearchedTVShows(editText)
-            }
+            getMoviesAndTVShows()
         }
 
         // Search edit text
@@ -70,13 +66,7 @@ class SearchFragment : Fragment() {
                 // Identifier of the action. This will be either the identifier you supplied,
                 // or EditorInfo.IME_NULL if being called due to the enter key being pressed.
                 if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_DONE) {
-                    val editText = binding.searchEditText.text.toString()
-                    if (editText.isNotBlank()) {
-                        binding.linearLayout.visibility = View.VISIBLE
-                        hideKeyboard()
-                        viewModel.getSearchedMovies(editText)
-                        viewModel.getSearchedTVShows(editText)
-                    }
+                    getMoviesAndTVShows()
                     return@OnEditorActionListener true
                 }
                 // Return true if you have consumed the action, else false.
@@ -115,12 +105,22 @@ class SearchFragment : Fragment() {
                 binding.linearLayout.visibility = View.VISIBLE
         }
 
-        // Toast test
+        // Toast Error
         viewModel.error.observe(viewLifecycleOwner) {
             Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT).show()
         }
 
         return binding.root
+    }
+
+    private fun getMoviesAndTVShows() {
+        val editText = binding.searchEditText.text.toString()
+        if (editText.isNotBlank()) {
+            binding.linearLayout.visibility = View.VISIBLE
+            hideKeyboard()
+            viewModel.getSearchedMovies(editText)
+            viewModel.getSearchedTVShows(editText)
+        }
     }
 
     private fun hideKeyboard() {
@@ -130,6 +130,7 @@ class SearchFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
         val view = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
         view.visibility = View.VISIBLE
     }

@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.mahmoudhamdyae.themoviedb1.viewmodels.FavouriteViewModel" />
@@ -41,7 +43,8 @@
                     android:orientation="horizontal"
                     android:paddingStart="@dimen/activity_padding"
                     android:paddingTop="@dimen/activity_padding"
-                    android:paddingEnd="@dimen/activity_padding">
+                    android:paddingEnd="@dimen/activity_padding"
+                    android:visibility="@{viewModel.isEmptyMovies ? View.GONE : View.VISIBLE}">
 
                     <TextView
                         android:layout_width="0dp"
@@ -69,7 +72,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingStart="@dimen/activity_padding"
-                    android:paddingEnd="@dimen/activity_padding">
+                    android:paddingEnd="@dimen/activity_padding"
+                    android:visibility="@{viewModel.isEmptyTVShows ? View.GONE : View.VISIBLE}">
 
                     <TextView
                         android:layout_width="0dp"
@@ -101,6 +105,7 @@
             android:layout_margin="@dimen/activity_padding"
             android:text="@string/favourite_empty_view"
             android:textColor="@color/colorText"
-            android:textSize="@dimen/favourite_empty_view_text" />
+            android:textSize="@dimen/favourite_empty_view_text"
+            android:visibility="@{!viewModel.isEmptyMovies || !viewModel.isEmptyTVShows ? View.GONE : View.VISIBLE}" />
     </RelativeLayout>
 </layout>

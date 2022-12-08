@@ -24,15 +24,42 @@ class FavouriteViewModel @Inject constructor(
     val tvShows: MutableStateFlow<List<Movie>>
         get() = _tvShows
 
-    private val _test = MutableLiveData<String>()
-    val test: LiveData<String>
-        get() = _test
+    private val _isEmptyMovies = MutableLiveData<Boolean>()
+    val isEmptyMovies : LiveData<Boolean>
+        get() = _isEmptyMovies
+
+    private val _isEmptyTVShows = MutableLiveData<Boolean>()
+    val isEmptyTVShows : LiveData<Boolean>
+        get() = _isEmptyTVShows
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
 
     init {
+        visibilityOfMovies()
+        visibilityOfTVShows()
+
         getFavourites()
     }
 
-    fun getFavourites() {
+    private fun visibilityOfMovies() {
+        viewModelScope.launch {
+            _movies.collect {
+                _isEmptyMovies.value = it.isEmpty()
+            }
+        }
+    }
+
+    private fun visibilityOfTVShows() {
+        viewModelScope.launch {
+            _tvShows.collect {
+                _isEmptyTVShows.value = it.isEmpty()
+            }
+        }
+    }
+
+    private fun getFavourites() {
         viewModelScope.launch {
             try {
                 repository.getFavouriteMovies().collect {
@@ -51,7 +78,7 @@ class FavouriteViewModel @Inject constructor(
                     _tvShows.value = _tvShows.value.reversed()
                 }
             } catch (e: Exception) {
-                _test.value = e.toString()
+                _error.value = e.toString()
             }
         }
     }
