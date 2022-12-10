@@ -15,7 +15,7 @@ android {
         applicationId "com.mahmoudhamdyae.themoviedb1"
         minSdk 21
         targetSdk 33
-        versionCode 3
+        versionCode 4
         versionName "1.1"
         buildConfigField("String", "API_KEY", API_KEY)
 
