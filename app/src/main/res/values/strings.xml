@@ -55,5 +55,10 @@
     <!-- Favourite Fragment -->
     <string name="favourite_empty_view">There is no favourites added</string>
 
+    <!-- Log In-->
+    <string name="log_in_label">You must sign in to set favourites</string>
+    <string name="log_in_button">Sign In</string>
+    <string name="sign_out">Sign Out</string>
+
     <!--<string name="network_not_available">Network is not available</string>-->
 </resources>

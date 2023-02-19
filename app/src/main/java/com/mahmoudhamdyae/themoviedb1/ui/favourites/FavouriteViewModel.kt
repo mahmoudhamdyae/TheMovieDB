@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseUser
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.room.FavouriteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -36,11 +37,21 @@ class FavouriteViewModel @Inject constructor(
     val error: LiveData<String>
         get() = _error
 
+    private val _user = MutableLiveData<FirebaseUser?>()
+    val user: LiveData<FirebaseUser?>
+        get() = _user
+
     init {
         visibilityOfMovies()
         visibilityOfTVShows()
 
         getFavourites()
+
+        getCurrentUser()
+    }
+
+    fun getCurrentUser() {
+        _user.value = repository.getUser()
     }
 
     private fun visibilityOfMovies() {

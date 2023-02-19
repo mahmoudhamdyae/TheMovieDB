@@ -11,7 +11,7 @@
             type="com.mahmoudhamdyae.themoviedb1.ui.favourites.FavouriteViewModel" />
     </data>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -21,6 +21,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:elevation="@dimen/toolbar_elevation"
+            app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
             app:title="@string/navigation_favourite"
             app:titleTextColor="@color/colorText" />
@@ -28,10 +29,11 @@
         <ScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar">
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -44,7 +46,8 @@
                     android:paddingStart="@dimen/activity_padding"
                     android:paddingTop="@dimen/activity_padding"
                     android:paddingEnd="@dimen/activity_padding"
-                    android:visibility="@{viewModel.isEmptyMovies ? View.GONE : View.VISIBLE}">
+                    android:visibility="@{viewModel.isEmptyMovies ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:layout_width="0dp"
@@ -64,6 +67,7 @@
                     android:id="@+id/recycler_view_movies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/linearlayout_movies"
                     app:moviesExploreListData="@{viewModel.movies}" />
 
                 <LinearLayout
@@ -73,7 +77,8 @@
                     android:orientation="horizontal"
                     android:paddingStart="@dimen/activity_padding"
                     android:paddingEnd="@dimen/activity_padding"
-                    android:visibility="@{viewModel.isEmptyTVShows ? View.GONE : View.VISIBLE}">
+                    android:visibility="@{viewModel.isEmptyTVShows ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@id/recycler_view_movies">
 
                     <TextView
                         android:layout_width="0dp"
@@ -93,19 +98,50 @@
                     android:id="@+id/recycler_view_tv_shows"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/linearlayout_tv_shows"
                     app:moviesExploreListData="@{viewModel.tvShows}" />
-            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/empty_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/activity_padding"
+                    android:gravity="center"
+                    android:text="@string/favourite_empty_view"
+                    android:textColor="@color/colorText"
+                    android:textSize="@dimen/favourite_empty_view_text"
+                    android:visibility="@{!viewModel.isEmptyMovies || !viewModel.isEmptyTVShows ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
-        <TextView
-            android:id="@+id/empty_view"
+        <LinearLayout
+            android:id="@+id/log_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="@dimen/activity_padding"
-            android:text="@string/favourite_empty_view"
-            android:textColor="@color/colorText"
-            android:textSize="@dimen/favourite_empty_view_text"
-            android:visibility="@{!viewModel.isEmptyMovies || !viewModel.isEmptyTVShows ? View.GONE : View.VISIBLE}" />
-    </RelativeLayout>
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_padding"
+                android:text="@string/log_in_label"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/favourite_empty_view_text" />
+
+            <Button
+                android:id="@+id/log_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/log_in_button" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
