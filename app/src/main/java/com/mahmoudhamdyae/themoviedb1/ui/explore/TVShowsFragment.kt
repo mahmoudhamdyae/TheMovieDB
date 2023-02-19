@@ -40,6 +40,11 @@ class TVShowsFragment : Fragment() {
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
+        binding.refreshLayout.setOnRefreshListener {
+            viewModel.getTVShowsPopular()
+            viewModel.getTVShowsTopRated()
+        }
+
         binding.photosGridPopular.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that

@@ -10,91 +10,97 @@
             type="com.mahmoudhamdyae.themoviedb1.ui.explore.MoviesViewModel" />
     </data>
 
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/activity_padding"
-                android:paddingTop="@dimen/activity_padding"
-                android:paddingEnd="@dimen/activity_padding">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/popular_movies"
-                    android:textColor="@color/colorText" />
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/activity_padding"
+                    android:paddingTop="@dimen/activity_padding"
+                    android:paddingEnd="@dimen/activity_padding">
 
-                <Button
-                    android:id="@+id/view_all_button_popular"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/popular_movies"
+                        android:textColor="@color/colorText" />
+
+                    <Button
+                        android:id="@+id/view_all_button_popular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/view_all" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/photos_grid_popular"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/view_all" />
+                    android:clipToPadding="false"
+                    android:padding="@dimen/movies_padding"
+                    app:moviesExploreListData="@{viewModel.moviesListPopular}"
+                    tools:listitem="@layout/movie_explore_view_item" />
+
+                <ImageView
+                    android:id="@+id/status_image_popular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/status_image_description"
+                    app:movieApiStatus="@{viewModel.statusPopular}"
+                    tools:src="@drawable/loading_animation" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/activity_padding"
+                    android:paddingEnd="@dimen/activity_padding">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/top_rated_movies"
+                        android:textColor="@color/colorText" />
+
+                    <Button
+                        android:id="@+id/view_all_button_top_rated"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/view_all" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/photos_grid_top_rated"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="true"
+                    android:padding="@dimen/movies_padding"
+                    app:moviesExploreListData="@{viewModel.moviesListTopRated}"
+                    tools:listitem="@layout/movie_explore_view_item" />
+
+                <ImageView
+                    android:id="@+id/status_image_top_rated"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/status_image_description"
+                    app:movieApiStatus="@{viewModel.statusTopRated}"
+                    tools:src="@drawable/loading_animation" />
             </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/photos_grid_popular"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:padding="@dimen/movies_padding"
-                app:moviesExploreListData="@{viewModel.moviesListPopular}"
-                tools:listitem="@layout/movie_explore_view_item" />
-
-            <ImageView
-                android:id="@+id/status_image_popular"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/status_image_description"
-                app:movieApiStatus="@{viewModel.statusPopular}"
-                tools:src="@drawable/loading_animation" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/activity_padding"
-                android:paddingEnd="@dimen/activity_padding">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/top_rated_movies"
-                    android:textColor="@color/colorText" />
-
-                <Button
-                    android:id="@+id/view_all_button_top_rated"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/view_all" />
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/photos_grid_top_rated"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="true"
-                android:padding="@dimen/movies_padding"
-                app:moviesExploreListData="@{viewModel.moviesListTopRated}"
-                tools:listitem="@layout/movie_explore_view_item" />
-
-            <ImageView
-                android:id="@+id/status_image_top_rated"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/status_image_description"
-                app:movieApiStatus="@{viewModel.statusTopRated}"
-                tools:src="@drawable/loading_animation" />
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

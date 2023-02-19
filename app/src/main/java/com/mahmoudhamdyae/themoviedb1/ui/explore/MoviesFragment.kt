@@ -39,6 +39,11 @@ class MoviesFragment : Fragment () {
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
+        binding.refreshLayout.setOnRefreshListener {
+            viewModel.getMoviesPopular()
+            viewModel.getMoviesTopRated()
+        }
+
         binding.photosGridPopular.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that

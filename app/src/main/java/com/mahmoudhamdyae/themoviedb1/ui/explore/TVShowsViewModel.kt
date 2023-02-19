@@ -44,7 +44,7 @@ class TVShowsViewModel @Inject constructor(
         getTVShowsTopRated()
     }
 
-    private fun getTVShowsPopular() {
+    fun getTVShowsPopular() {
         viewModelScope.launch {
             try {
                 _statusPopular.value = MovieApiStatus.LOADING
@@ -57,7 +57,7 @@ class TVShowsViewModel @Inject constructor(
         }
     }
 
-    private fun getTVShowsTopRated() {
+    fun getTVShowsTopRated() {
         viewModelScope.launch {
             try {
                 _statusTopRated.value = MovieApiStatus.LOADING
