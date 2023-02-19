@@ -45,8 +45,6 @@ class FavouriteViewModel @Inject constructor(
         visibilityOfMovies()
         visibilityOfTVShows()
 
-        getFavourites()
-
         getCurrentUser()
     }
 
@@ -72,31 +70,33 @@ class FavouriteViewModel @Inject constructor(
 
     fun getFavourites() {
         viewModelScope.launch {
-            repository.getMoviesFromFirebase().addOnSuccessListener { result ->
-                val moviesList : MutableList<Movie> = mutableListOf()
-                val tvShowsList : MutableList<Movie> = mutableListOf()
-                for (document in result) {
-                    val movieItem = Movie(
-                        id = document.id,
-                        title = document.get("title").toString(),
-                        name = document.get("name").toString(),
-                        posterPath = document.get("posterPath").toString(),
-                        overview = document.get("overview").toString(),
-                        userRating = document.get("userRating").toString(),
-                        releaseDate = document.get("releaseDate").toString()
-                    )
-                    if (movieItem.title != "") {
-                        // Movie
-                        moviesList.add(movieItem)
-                    } else {
-                        // TV Show
-                        tvShowsList.add(movieItem)
+            if (_user.value != null) {
+                repository.getMoviesFromFirebase().addOnSuccessListener { result ->
+                    val moviesList : MutableList<Movie> = mutableListOf()
+                    val tvShowsList : MutableList<Movie> = mutableListOf()
+                    for (document in result) {
+                        val movieItem = Movie(
+                            id = document.id,
+                            title = document.get("title").toString(),
+                            name = document.get("name").toString(),
+                            posterPath = document.get("posterPath").toString(),
+                            overview = document.get("overview").toString(),
+                            userRating = document.get("userRating").toString(),
+                            releaseDate = document.get("releaseDate").toString()
+                        )
+                        if (movieItem.title != "") {
+                            // Movie
+                            moviesList.add(movieItem)
+                        } else {
+                            // TV Show
+                            tvShowsList.add(movieItem)
+                        }
                     }
+                    _movies.value = moviesList
+                    _tvShows.value = tvShowsList
+                }.addOnFailureListener {
+                    _error.value = it.message.toString()
                 }
-                _movies.value = moviesList
-                _tvShows.value = tvShowsList
-            }.addOnFailureListener {
-                _error.value = it.message.toString()
             }
         }
     }
