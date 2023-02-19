@@ -26,18 +26,21 @@ class DetailViewModel @Inject constructor(
     val error: LiveData<String>
         get() = _error
 
+    private val _isFavourite = MutableLiveData<Boolean>()
+    val isFavourite: LiveData<Boolean>
+        get() = _isFavourite
+
     init {
         _selectedProperty.value = movie
+        setIsFavourite(movie)
     }
 
-    fun isFavourite(movie: Movie): Boolean {
-        var ret = false
+    private fun setIsFavourite(movie: Movie) {
         runBlocking {
-//            ret = repository.getFavouriteMovies().first().contains(movie)
             repository.getMoviesFromFirebase().addOnSuccessListener { result ->
                 for (document in result) {
                     if (movie.id == document.id) {
-                        ret = true
+                        _isFavourite.value = true
                         break
                     }
                 }
@@ -45,14 +48,12 @@ class DetailViewModel @Inject constructor(
                 _error.value = it.message.toString()
             }
         }
-        return ret
     }
 
     fun delMovie(movie: Movie) {
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
-//                    repository.deleteFavouriteMovie(movie)
                     repository.delMovieFromFirebase(movie.id).addOnFailureListener {
                         _error.value = it.message.toString()
                     }
@@ -67,7 +68,6 @@ class DetailViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
-//                    repository.insertFavouriteMovie(movie)
                     repository.addMovieToFirebase(movie).addOnFailureListener {
                         _error.value = it.message.toString()
                     }

@@ -47,13 +47,17 @@ class DetailFragment : Fragment() {
         emptyHeart = ResourcesCompat.getDrawable(resources, R.drawable.avd_heart_empty, null) as AnimatedVectorDrawable
         fillHeart = ResourcesCompat.getDrawable(resources, R.drawable.avd_heart_fill, null) as AnimatedVectorDrawable
 
-        show(viewModel.isFavourite(movie))
+        viewModel.isFavourite.observe(viewLifecycleOwner) {
+            show(it)
+        }
         binding.favouriteButton.setOnClickListener {
-            animate(viewModel.isFavourite(movie))
-            if (viewModel.isFavourite(movie)) {
-                viewModel.delMovie(movie)
-            } else {
-                viewModel.insertMovie(movie)
+            viewModel.isFavourite.observe(viewLifecycleOwner) {
+                animate(it)
+                if (it) {
+                    viewModel.delMovie(movie)
+                } else {
+                    viewModel.insertMovie(movie)
+                }
             }
         }
 
