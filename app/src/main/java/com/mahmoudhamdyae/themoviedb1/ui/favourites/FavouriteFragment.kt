@@ -97,6 +97,8 @@ class FavouriteFragment: Fragment() {
         // Show Bottom Navigation View
         val view = requireActivity().findViewById<BottomNavigationView>(R.id.nav_view)
         view.visibility = View.VISIBLE
+
+        viewModel.getFavourites()
     }
 
     private val signInLauncher = registerForActivityResult(

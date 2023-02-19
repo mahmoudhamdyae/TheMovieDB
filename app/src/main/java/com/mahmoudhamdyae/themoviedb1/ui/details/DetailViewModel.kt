@@ -5,7 +5,6 @@ import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.room.FavouriteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -32,9 +31,19 @@ class DetailViewModel @Inject constructor(
     }
 
     fun isFavourite(movie: Movie): Boolean {
-        var ret: Boolean
+        var ret = false
         runBlocking {
-            ret = repository.getFavouriteMovies().first().contains(movie)
+//            ret = repository.getFavouriteMovies().first().contains(movie)
+            repository.getMoviesFromFirebase().addOnSuccessListener { result ->
+                for (document in result) {
+                    if (movie.id == document.id) {
+                        ret = true
+                        break
+                    }
+                }
+            }.addOnFailureListener {
+                _error.value = it.message.toString()
+            }
         }
         return ret
     }
@@ -43,7 +52,10 @@ class DetailViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    repository.deleteFavouriteMovie(movie)
+//                    repository.deleteFavouriteMovie(movie)
+                    repository.delMovieFromFirebase(movie.id).addOnFailureListener {
+                        _error.value = it.message.toString()
+                    }
                 }
             } catch (e: Exception) {
                 _error.value = e.toString()
@@ -55,7 +67,10 @@ class DetailViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    repository.insertFavouriteMovie(movie)
+//                    repository.insertFavouriteMovie(movie)
+                    repository.addMovieToFirebase(movie).addOnFailureListener {
+                        _error.value = it.message.toString()
+                    }
                 }
             } catch (e: Exception) {
                 _error.value = e.toString()

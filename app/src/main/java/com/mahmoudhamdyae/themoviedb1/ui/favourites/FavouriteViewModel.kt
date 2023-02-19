@@ -70,26 +70,33 @@ class FavouriteViewModel @Inject constructor(
         }
     }
 
-    private fun getFavourites() {
+    fun getFavourites() {
         viewModelScope.launch {
-            try {
-                repository.getFavouriteMovies().collect {
-                    _movies.value = listOf()
-                    _tvShows.value = listOf()
-                    it.forEach {movie : Movie ->
-                        if (movie.title != "") {
-                            // Movie
-                            _movies.value = _movies.value + movie
-                        } else {
-                            // TV Show
-                            _tvShows.value = _tvShows.value + movie
-                        }
+            repository.getMoviesFromFirebase().addOnSuccessListener { result ->
+                val moviesList : MutableList<Movie> = mutableListOf()
+                val tvShowsList : MutableList<Movie> = mutableListOf()
+                for (document in result) {
+                    val movieItem = Movie(
+                        id = document.id,
+                        title = document.get("title").toString(),
+                        name = document.get("name").toString(),
+                        posterPath = document.get("posterPath").toString(),
+                        overview = document.get("overview").toString(),
+                        userRating = document.get("userRating").toString(),
+                        releaseDate = document.get("releaseDate").toString()
+                    )
+                    if (movieItem.title != "") {
+                        // Movie
+                        moviesList.add(movieItem)
+                    } else {
+                        // TV Show
+                        tvShowsList.add(movieItem)
                     }
-                    _movies.value = _movies.value.reversed()
-                    _tvShows.value = _tvShows.value.reversed()
                 }
-            } catch (e: Exception) {
-                _error.value = e.toString()
+                _movies.value = moviesList
+                _tvShows.value = tvShowsList
+            }.addOnFailureListener {
+                _error.value = it.message.toString()
             }
         }
     }
