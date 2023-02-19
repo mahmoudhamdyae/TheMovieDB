@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.mahmoudhamdyae.themoviedb1.viewmodels.AllViewModel" />
+            type="com.mahmoudhamdyae.themoviedb1.ui.all.AllViewModel" />
     </data>
 
     <LinearLayout

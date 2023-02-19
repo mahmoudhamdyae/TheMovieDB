@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.mahmoudhamdyae.themoviedb1.viewmodels.DetailViewModel" />
+            type="com.mahmoudhamdyae.themoviedb1.ui.details.DetailViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

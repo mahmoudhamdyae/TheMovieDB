@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.mahmoudhamdyae.themoviedb1.viewmodels.SummaryViewModel" />
+            type="com.mahmoudhamdyae.themoviedb1.ui.details.summary.SummaryViewModel" />
     </data>
 
     <ScrollView

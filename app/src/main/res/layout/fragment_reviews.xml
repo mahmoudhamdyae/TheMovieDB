@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.mahmoudhamdyae.themoviedb1.viewmodels.ReviewsViewModel" />
+            type="com.mahmoudhamdyae.themoviedb1.ui.details.reviews.ReviewsViewModel" />
     </data>
 
     <RelativeLayout

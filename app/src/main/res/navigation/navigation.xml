@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_explore"
-        android:name="com.mahmoudhamdyae.themoviedb1.ui.ExploreFragment"
+        android:name="com.mahmoudhamdyae.themoviedb1.ui.explore.ExploreFragment"
         android:label="ExploreFragment"
         tools:layout="@layout/fragment_explore">
         <action
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.mahmoudhamdyae.themoviedb1.ui.SearchFragment"
+        android:name="com.mahmoudhamdyae.themoviedb1.ui.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_favourite">
         <action
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/navigation_favourite"
-        android:name="com.mahmoudhamdyae.themoviedb1.ui.FavouriteFragment"
+        android:name="com.mahmoudhamdyae.themoviedb1.ui.favourites.FavouriteFragment"
         android:label="FavouriteFragment"
         tools:layout="@layout/fragment_favourite">
         <action
@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.mahmoudhamdyae.themoviedb1.ui.DetailFragment"
+        android:name="com.mahmoudhamdyae.themoviedb1.ui.details.DetailFragment"
         android:label="DetailFragment"
         tools:layout="@layout/fragment_detail">
         <argument
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/allFragment"
-        android:name="com.mahmoudhamdyae.themoviedb1.ui.AllFragment"
+        android:name="com.mahmoudhamdyae.themoviedb1.ui.all.AllFragment"
         android:label="AllFragment"
         tools:layout="@layout/fragment_all">
         <argument
