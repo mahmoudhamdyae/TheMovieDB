@@ -40,7 +40,7 @@ class DetailViewModel @Inject constructor(
 
         _selectedProperty.value = movie
         if (_user.value != null) {
-            setIsFavourite(movie)
+            getFavouriteFromFirebase(movie)
         }
     }
 
@@ -48,7 +48,7 @@ class DetailViewModel @Inject constructor(
         _user.value = repository.getUser()
     }
 
-    private fun setIsFavourite(movie: Movie) {
+    private fun getFavouriteFromFirebase(movie: Movie) {
         runBlocking {
             repository.getMoviesFromFirebase().addOnSuccessListener { result ->
                 for (document in result) {
@@ -63,8 +63,8 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    fun setF(f: Boolean) {
-        _isFavourite.value = f
+    fun setIsFavourite(isFavourite: Boolean) {
+        _isFavourite.value = isFavourite
     }
 
     fun delMovie(movie: Movie) {

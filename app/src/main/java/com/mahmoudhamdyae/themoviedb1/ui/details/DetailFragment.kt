@@ -57,22 +57,18 @@ class DetailFragment : Fragment() {
         viewModel.user.observe(viewLifecycleOwner) {
             user = it
         }
-        var isFavourite: Boolean? = null
-        viewModel.isFavourite.observe(viewLifecycleOwner) {
-            isFavourite = it
-        }
         binding.favouriteButton.setOnClickListener {
             if (user != null) {
-                val i = isFavourite
-                Toast.makeText(context, i.toString(), Toast.LENGTH_SHORT).show()
                 // User signed in
-                animate(i!!)
-                if (i) {
-                    viewModel.delMovie(movie)
-                } else {
-                    viewModel.insertMovie(movie)
+                viewModel.isFavourite.observe(viewLifecycleOwner) { isFavourite ->
+                    animate(isFavourite!!)
+                    if (isFavourite) {
+                        viewModel.delMovie(movie)
+                    } else {
+                        viewModel.insertMovie(movie)
+                    }
+                    viewModel.setIsFavourite(!isFavourite)
                 }
-                viewModel.setF(!i)
             } else {
                 // No user signed
                 Snackbar.make(requireView(), getString(R.string.log_in_label), Snackbar.LENGTH_SHORT)
