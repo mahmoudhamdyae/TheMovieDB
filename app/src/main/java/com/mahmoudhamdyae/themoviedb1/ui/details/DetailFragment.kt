@@ -10,7 +10,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseUser
 import com.mahmoudhamdyae.themoviedb1.MainActivity
 import com.mahmoudhamdyae.themoviedb1.R
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentDetailBinding
@@ -50,14 +52,33 @@ class DetailFragment : Fragment() {
         viewModel.isFavourite.observe(viewLifecycleOwner) {
             show(it)
         }
+
+        var user: FirebaseUser?  = null
+        viewModel.user.observe(viewLifecycleOwner) {
+            user = it
+        }
+        var isFavourite: Boolean? = null
+        viewModel.isFavourite.observe(viewLifecycleOwner) {
+            isFavourite = it
+        }
         binding.favouriteButton.setOnClickListener {
-            viewModel.isFavourite.observe(viewLifecycleOwner) {
-                animate(it)
-                if (it) {
+            if (user != null) {
+                val i = isFavourite
+                Toast.makeText(context, i.toString(), Toast.LENGTH_SHORT).show()
+                // User signed in
+                animate(i!!)
+                if (i) {
                     viewModel.delMovie(movie)
                 } else {
                     viewModel.insertMovie(movie)
                 }
+                viewModel.setF(!i)
+            } else {
+                // No user signed
+                Snackbar.make(requireView(), getString(R.string.log_in_label), Snackbar.LENGTH_SHORT)
+                    .setAction(R.string.log_in_button) {
+                        Toast.makeText(context, "haha", Toast.LENGTH_SHORT).show()
+                    }.show()
             }
         }
 

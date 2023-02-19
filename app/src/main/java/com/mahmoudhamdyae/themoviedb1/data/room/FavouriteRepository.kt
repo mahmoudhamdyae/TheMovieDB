@@ -18,14 +18,6 @@ class FavouriteRepository @Inject constructor(
 
     private fun getUid() = getUser()?.uid
 
-    fun getFavouriteMovies() = dao.getMovies()
-
-    fun insertFavouriteMovie(movie: Movie) = dao.insertMovie(movie)
-
-    fun deleteFavouriteMovie(movie: Movie) = dao.deleteMovie(movie)
-
-
-
     private val db = Firebase.firestore
 
     fun getMoviesFromFirebase(): Task<QuerySnapshot> {

@@ -1,6 +1,7 @@
 package com.mahmoudhamdyae.themoviedb1.ui.details
 
 import androidx.lifecycle.*
+import com.google.firebase.auth.FirebaseUser
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.room.FavouriteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,13 +27,25 @@ class DetailViewModel @Inject constructor(
     val error: LiveData<String>
         get() = _error
 
-    private val _isFavourite = MutableLiveData<Boolean>()
+    private val _isFavourite = MutableLiveData(false)
     val isFavourite: LiveData<Boolean>
         get() = _isFavourite
 
+    private val _user = MutableLiveData<FirebaseUser?>()
+    val user: LiveData<FirebaseUser?>
+        get() = _user
+
     init {
+        getCurrentUser()
+
         _selectedProperty.value = movie
-        setIsFavourite(movie)
+        if (_user.value != null) {
+            setIsFavourite(movie)
+        }
+    }
+
+    private fun getCurrentUser() {
+        _user.value = repository.getUser()
     }
 
     private fun setIsFavourite(movie: Movie) {
@@ -48,6 +61,10 @@ class DetailViewModel @Inject constructor(
                 _error.value = it.message.toString()
             }
         }
+    }
+
+    fun setF(f: Boolean) {
+        _isFavourite.value = f
     }
 
     fun delMovie(movie: Movie) {
