@@ -39,14 +39,20 @@ class FavouriteFragment: Fragment() {
         binding.toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
-        binding.toolbar.inflateMenu(R.menu.favourites_menu)
-        binding.toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.sign_out -> {
-                    signOut()
-                    true
+
+        // Sign out
+        viewModel.user.observe(viewLifecycleOwner) { user ->
+            if (user != null) {
+                binding.toolbar.inflateMenu(R.menu.favourites_menu)
+                binding.toolbar.setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.sign_out -> {
+                            signOut()
+                            true
+                        }
+                        else -> false
+                    }
                 }
-                else -> false
             }
         }
 
