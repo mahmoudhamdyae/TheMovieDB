@@ -67,10 +67,8 @@ fun bindStatus(statusImageView: ImageView, status: MovieApiStatus?) {
 }
 
 @BindingAdapter("emptyViewStatus")
-fun bindEmptyView(emptyView: TextView, status: MovieApiStatus?) {
-    if (status == MovieApiStatus.LOADING) {
-        emptyView.visibility = View.GONE
-    }
+fun bindEmptyView(emptyView: TextView, status: Boolean?) {
+    emptyView.visibility = if (status!!) View.VISIBLE else View.GONE
 }
 
 // Reviews

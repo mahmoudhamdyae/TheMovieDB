@@ -46,6 +46,10 @@ class FavouriteViewModel @Inject constructor(
     val status: LiveData<MovieApiStatus>
         get() = _status
 
+    private val _emptyViewStatus = MutableLiveData(true)
+    val emptyViewStatus: LiveData<Boolean>
+        get() = _emptyViewStatus
+
     init {
         visibilityOfMovies()
         visibilityOfTVShows()
@@ -75,6 +79,7 @@ class FavouriteViewModel @Inject constructor(
 
     fun getFavourites() {
         viewModelScope.launch {
+            _emptyViewStatus.value = false
             _status.value = MovieApiStatus.LOADING
             if (_user.value != null) {
                 repository.getMoviesFromFirebase().addOnSuccessListener { result ->
@@ -101,9 +106,11 @@ class FavouriteViewModel @Inject constructor(
                     _movies.value = moviesList
                     _tvShows.value = tvShowsList
                     _status.value = MovieApiStatus.DONE
+                    _emptyViewStatus.value = moviesList.isEmpty() && tvShowsList.isEmpty()
                 }.addOnFailureListener {
                     _error.value = it.message.toString()
                     _status.value = MovieApiStatus.ERROR
+                    _emptyViewStatus.value = false
                 }
             }
         }

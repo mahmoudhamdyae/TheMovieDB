@@ -112,9 +112,8 @@
                     android:text="@string/favourite_empty_view"
                     android:textColor="@color/colorText"
                     android:textSize="@dimen/favourite_empty_view_text"
-                    android:visibility="@{!viewModel.isEmptyMovies || !viewModel.isEmptyTVShows ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:emptyViewStatus="@{viewModel.status}"
+                    app:emptyViewStatus="@{viewModel.emptyViewStatus}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
