@@ -1,14 +1,10 @@
 package com.mahmoudhamdyae.themoviedb1.ui.details
 
 import androidx.lifecycle.*
-import com.google.firebase.auth.FirebaseUser
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.room.FavouriteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,25 +27,17 @@ class DetailViewModel @Inject constructor(
     val isFavourite: LiveData<Boolean>
         get() = _isFavourite
 
-    private val _user = MutableLiveData<FirebaseUser?>()
-    val user: LiveData<FirebaseUser?>
-        get() = _user
-
     init {
-        getCurrentUser()
-
         _selectedProperty.value = movie
-        if (_user.value != null) {
+        if (repository.getUser() != null) {
             getFavouriteFromFirebase(movie)
         }
     }
 
-    private fun getCurrentUser() {
-        _user.value = repository.getUser()
-    }
+    fun getCurrentUser() = repository.getUser()
 
     private fun getFavouriteFromFirebase(movie: Movie) {
-        runBlocking {
+        viewModelScope.launch {
             repository.getMoviesFromFirebase().addOnSuccessListener { result ->
                 for (document in result) {
                     if (movie.id == document.id) {
@@ -63,35 +51,29 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    fun setIsFavourite(isFavourite: Boolean) {
-        _isFavourite.value = isFavourite
-    }
-
     fun delMovie(movie: Movie) {
-        viewModelScope.launch {
-            try {
-                withContext(Dispatchers.IO) {
-                    repository.delMovieFromFirebase(movie.id).addOnFailureListener {
-                        _error.value = it.message.toString()
-                    }
+        try {
+            viewModelScope.launch {
+                repository.delMovieFromFirebase(movie.id).addOnFailureListener {
+                    _error.value = it.message.toString()
                 }
-            } catch (e: Exception) {
-                _error.value = e.toString()
             }
+            _isFavourite.value = false
+        } catch (e: Exception) {
+            _error.value = e.toString()
         }
     }
 
     fun insertMovie(movie: Movie) {
-        viewModelScope.launch {
-            try {
-                withContext(Dispatchers.IO) {
-                    repository.addMovieToFirebase(movie).addOnFailureListener {
-                        _error.value = it.message.toString()
-                    }
+        try {
+            viewModelScope.launch {
+                repository.addMovieToFirebase(movie).addOnFailureListener {
+                    _error.value = it.message.toString()
                 }
-            } catch (e: Exception) {
-                _error.value = e.toString()
             }
+            _isFavourite.value = true
+        } catch (e: Exception) {
+            _error.value = e.toString()
         }
     }
 }

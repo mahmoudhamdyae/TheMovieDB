@@ -13,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.firebase.auth.FirebaseUser
 import com.mahmoudhamdyae.themoviedb1.MainActivity
 import com.mahmoudhamdyae.themoviedb1.R
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentDetailBinding
@@ -51,25 +50,20 @@ class DetailFragment : Fragment() {
         emptyHeart = ResourcesCompat.getDrawable(resources, R.drawable.avd_heart_empty, null) as AnimatedVectorDrawable
         fillHeart = ResourcesCompat.getDrawable(resources, R.drawable.avd_heart_fill, null) as AnimatedVectorDrawable
 
+        var isFavourite = false
         viewModel.isFavourite.observe(viewLifecycleOwner) {
+            isFavourite = it
             show(it)
         }
 
-        var user: FirebaseUser?  = null
-        viewModel.user.observe(viewLifecycleOwner) {
-            user = it
-        }
         binding.favouriteButton.setOnClickListener {
-            if (user != null) {
+            if (viewModel.getCurrentUser() != null) {
                 // User signed in
-                viewModel.isFavourite.observe(viewLifecycleOwner) { isFavourite ->
-                    animate(isFavourite!!)
-                    if (isFavourite) {
-                        viewModel.delMovie(movie)
-                    } else {
-                        viewModel.insertMovie(movie)
-                    }
-                    viewModel.setIsFavourite(!isFavourite)
+                animate(isFavourite)
+                if (isFavourite) {
+                    viewModel.delMovie(movie)
+                } else {
+                    viewModel.insertMovie(movie)
                 }
             } else {
                 // No user signed
