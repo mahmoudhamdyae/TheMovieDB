@@ -2,8 +2,7 @@ package com.mahmoudhamdyae.themoviedb1.ui.details.reviews
 
 import androidx.lifecycle.*
 import com.mahmoudhamdyae.themoviedb1.data.models.Review
-import com.mahmoudhamdyae.themoviedb1.data.repository.MoviesRepository
-import com.mahmoudhamdyae.themoviedb1.data.repository.TVShowsRepository
+import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
 import com.mahmoudhamdyae.themoviedb1.utility.MovieApiStatus
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -11,8 +10,7 @@ import dagger.assisted.AssistedInject
 import kotlinx.coroutines.launch
 
 class ReviewsViewModel @AssistedInject constructor(
-    private val moviesRepository: MoviesRepository,
-    private val tvShowsRepository: TVShowsRepository,
+    private val repository: Repository,
     @Assisted
     private val movieId: String,
     @Assisted
@@ -37,10 +35,10 @@ class ReviewsViewModel @AssistedInject constructor(
                 _status.value = MovieApiStatus.LOADING
 
                 if (isMovie) {
-                    _reviewsList.value = moviesRepository.getReviews(movieId)
+                    _reviewsList.value = repository.getReviews(movieId)
                 }
                 else {
-                    _reviewsList.value = tvShowsRepository.getTVReviews(movieId)
+                    _reviewsList.value = repository.getTVReviews(movieId)
                 }
 
                 _status.value = MovieApiStatus.DONE

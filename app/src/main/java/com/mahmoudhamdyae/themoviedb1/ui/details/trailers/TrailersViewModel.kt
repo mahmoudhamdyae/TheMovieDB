@@ -2,8 +2,7 @@ package com.mahmoudhamdyae.themoviedb1.ui.details.trailers
 
 import androidx.lifecycle.*
 import com.mahmoudhamdyae.themoviedb1.data.models.Trailer
-import com.mahmoudhamdyae.themoviedb1.data.repository.MoviesRepository
-import com.mahmoudhamdyae.themoviedb1.data.repository.TVShowsRepository
+import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
 import com.mahmoudhamdyae.themoviedb1.utility.MovieApiStatus
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -11,8 +10,7 @@ import dagger.assisted.AssistedInject
 import kotlinx.coroutines.launch
 
 class TrailersViewModel @AssistedInject constructor(
-    private val moviesRepository: MoviesRepository,
-    private val tvShowsRepository: TVShowsRepository,
+    private val repository: Repository,
     @Assisted
     private val movieId: String,
     @Assisted
@@ -37,10 +35,10 @@ class TrailersViewModel @AssistedInject constructor(
                 _status.value = MovieApiStatus.LOADING
 
                 if (isMovie) {
-                    _trailersList.value = moviesRepository.getTrailers(movieId)
+                    _trailersList.value = repository.getTrailers(movieId)
                 }
                 else {
-                    _trailersList.value = tvShowsRepository.getTVTrailers(movieId)
+                    _trailersList.value = repository.getTVTrailers(movieId)
                 }
 
                 _status.value = MovieApiStatus.DONE

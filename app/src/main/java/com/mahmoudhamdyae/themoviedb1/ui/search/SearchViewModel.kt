@@ -5,16 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
-import com.mahmoudhamdyae.themoviedb1.data.repository.MoviesRepository
-import com.mahmoudhamdyae.themoviedb1.data.repository.TVShowsRepository
+import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val moviesRepository: MoviesRepository,
-    private val tvShowsRepository: TVShowsRepository,
+    private val repository: Repository
 ) : ViewModel() {
 
     private val _movies = MutableLiveData<List<Movie>>()
@@ -33,7 +31,7 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _movies.value = listOf()
-                _movies.value = moviesRepository.getSearchedMovies(query)
+                _movies.value = repository.getSearchedMovies(query)
             } catch (e: Exception) {
                 _error.value = e.toString()
             }
@@ -44,7 +42,7 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _tvShows.value = listOf()
-                _tvShows.value = tvShowsRepository.getSearchedTVShows(query)
+                _tvShows.value = repository.getSearchedTVShows(query)
             } catch (e: Exception) {
                 _error.value = e.toString()
             }

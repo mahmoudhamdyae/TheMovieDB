@@ -1,8 +1,7 @@
 package com.mahmoudhamdyae.themoviedb1.di
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.mahmoudhamdyae.themoviedb1.data.network.MoviesService
-import com.mahmoudhamdyae.themoviedb1.data.network.TVShowsService
+import com.mahmoudhamdyae.themoviedb1.data.network.ApiService
 import com.mahmoudhamdyae.themoviedb1.utility.Constants.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -36,11 +35,6 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideMovieService(retrofit: Retrofit): MoviesService =
-        retrofit.create(MoviesService::class.java)
-
-    @Provides
-    @Singleton
-    fun provideTVShowService(retrofit: Retrofit): TVShowsService =
-        retrofit.create(TVShowsService::class.java)
+    fun provideMovieService(retrofit: Retrofit): ApiService =
+        retrofit.create(ApiService::class.java)
 }
