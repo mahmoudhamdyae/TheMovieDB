@@ -2,6 +2,7 @@ package com.mahmoudhamdyae.themoviedb1.binding
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -62,6 +63,13 @@ fun bindStatus(statusImageView: ImageView, status: MovieApiStatus?) {
             statusImageView.visibility = View.GONE
         }
         else -> {}
+    }
+}
+
+@BindingAdapter("emptyViewStatus")
+fun bindEmptyView(emptyView: TextView, status: MovieApiStatus?) {
+    if (status == MovieApiStatus.LOADING) {
+        emptyView.visibility = View.GONE
     }
 }
 
