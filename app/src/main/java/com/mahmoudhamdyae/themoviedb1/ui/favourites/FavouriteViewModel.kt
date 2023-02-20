@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.FirebaseUser
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
 import com.mahmoudhamdyae.themoviedb1.utility.MovieApiStatus
@@ -38,10 +37,6 @@ class FavouriteViewModel @Inject constructor(
     val error: LiveData<String>
         get() = _error
 
-    private val _user = MutableLiveData<FirebaseUser?>()
-    val user: LiveData<FirebaseUser?>
-        get() = _user
-
     private val _status = MutableLiveData<MovieApiStatus>()
     val status: LiveData<MovieApiStatus>
         get() = _status
@@ -53,13 +48,9 @@ class FavouriteViewModel @Inject constructor(
     init {
         visibilityOfMovies()
         visibilityOfTVShows()
-
-        getCurrentUser()
     }
 
-    fun getCurrentUser() {
-        _user.value = repository.getUser()
-    }
+    fun getCurrentUser() = repository.getUser()
 
     private fun visibilityOfMovies() {
         viewModelScope.launch {
@@ -81,7 +72,7 @@ class FavouriteViewModel @Inject constructor(
         viewModelScope.launch {
             _emptyViewStatus.value = false
             _status.value = MovieApiStatus.LOADING
-            if (_user.value != null) {
+            if (getCurrentUser() != null) {
                 repository.getMoviesFromFirebase().addOnSuccessListener { result ->
                     val moviesList : MutableList<Movie> = mutableListOf()
                     val tvShowsList : MutableList<Movie> = mutableListOf()

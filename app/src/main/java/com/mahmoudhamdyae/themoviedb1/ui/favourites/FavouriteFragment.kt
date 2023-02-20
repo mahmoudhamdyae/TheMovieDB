@@ -42,28 +42,24 @@ class FavouriteFragment: Fragment() {
         }
 
         // Sign out
-        viewModel.user.observe(viewLifecycleOwner) { user ->
-            if (user != null) {
-                binding.toolbar.inflateMenu(R.menu.favourites_menu)
-                binding.toolbar.setOnMenuItemClickListener {
-                    when (it.itemId) {
-                        R.id.sign_out -> {
-                            signOut(signInLauncher)
-                            true
-                        }
-                        else -> false
+        if (viewModel.getCurrentUser() != null) {
+            binding.toolbar.inflateMenu(R.menu.favourites_menu)
+            binding.toolbar.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.sign_out -> {
+                        signOut(signInLauncher)
+                        true
                     }
+                    else -> false
                 }
             }
         }
 
         // Log In
-        viewModel.user.observe(viewLifecycleOwner) { user ->
-            if (user == null) {
-                binding.scrollView.visibility = View.GONE
-            } else {
-                binding.logIn.visibility = View.GONE
-            }
+        if (viewModel.getCurrentUser() == null) {
+            binding.scrollView.visibility = View.GONE
+        } else {
+            binding.logIn.visibility = View.GONE
         }
         binding.logInButton.setOnClickListener {
             launchSignInFlow(signInLauncher)
