@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
-import com.mahmoudhamdyae.themoviedb1.data.room.FavouriteRepository
+import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
 import com.mahmoudhamdyae.themoviedb1.utility.MovieApiStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavouriteViewModel @Inject constructor(
-    private val repository: FavouriteRepository
+    private val repository: Repository
 ): ViewModel() {
 
     private val _movies = MutableStateFlow<List<Movie>>(listOf())

@@ -2,14 +2,14 @@ package com.mahmoudhamdyae.themoviedb1.ui.details
 
 import androidx.lifecycle.*
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
-import com.mahmoudhamdyae.themoviedb1.data.room.FavouriteRepository
+import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val repository: FavouriteRepository,
+    private val repository: Repository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
