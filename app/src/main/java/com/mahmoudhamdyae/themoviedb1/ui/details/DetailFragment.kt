@@ -10,12 +10,14 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseUser
 import com.mahmoudhamdyae.themoviedb1.MainActivity
 import com.mahmoudhamdyae.themoviedb1.R
 import com.mahmoudhamdyae.themoviedb1.databinding.FragmentDetailBinding
+import com.mahmoudhamdyae.themoviedb1.utility.launchSignInFlow
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -73,7 +75,7 @@ class DetailFragment : Fragment() {
                 // No user signed
                 Snackbar.make(requireView(), getString(R.string.log_in_label), Snackbar.LENGTH_SHORT)
                     .setAction(R.string.log_in_button) {
-                        Toast.makeText(context, "haha", Toast.LENGTH_SHORT).show()
+                        launchSignInFlow(signInLauncher)
                     }.show()
             }
         }
@@ -112,4 +114,7 @@ class DetailFragment : Fragment() {
         drawable.start()
         show(!full)
     }
+
+    private val signInLauncher = registerForActivityResult(
+        FirebaseAuthUIActivityResultContract()) {}
 }
