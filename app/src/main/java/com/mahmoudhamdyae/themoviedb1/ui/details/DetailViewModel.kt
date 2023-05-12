@@ -1,6 +1,10 @@
 package com.mahmoudhamdyae.themoviedb1.ui.details
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.mahmoudhamdyae.themoviedb1.data.models.Movie
 import com.mahmoudhamdyae.themoviedb1.data.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
